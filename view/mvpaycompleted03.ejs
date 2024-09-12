@@ -64,7 +64,7 @@
                 <p class="titleBox">결제 완료</p>
 
                 <!-- 결제완료 이미지 -->
-                <div class="paymentCompletedImg"></div>
+                <div class="paymentCompletedImg"> 결제 완료 이미지 (뭔지 모름) </div>
 
 
             </section>
@@ -84,6 +84,13 @@
     </section>
 
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => { // 5초뒤 종료
+        setTimeout(() => {
+            window.location.href = "/";
+        }, 5000);
+    });
+</script>
 </body>
 
 </html>
