@@ -10,25 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
     <!-- icon -->
     <script src="https://kit.fontawesome.com/611c1b2c45.js" crossorigin="anonymous"></script>
-        <!-- 외부 CSS 파일 링크 -->
-        <link rel="stylesheet" href="style.css">
+    <!-- 외부 CSS 파일 링크 -->
+    <link rel="stylesheet" href="style.css">
 
     <title>Document</title>
-<style>
-
-
-/* 타이틀 박스 */
-.titleBox{ text-align: center;
+    <style>
+        /* 타이틀 박스 */
+        .titleBox {
+            text-align: center;
             font-size: 1.8rem;
             position: relative;
             left: 50%;
             transform: translate(-50%, 90%);
 
 
-}
+        }
 
-/*  결제완료 이미지 박스 */
-.paymentCompletedImg{
+        /*  결제완료 이미지 박스 */
+        .paymentCompletedImg {
             height: 30rem;
             width: 40rem;
             background-color: #444444;
@@ -36,24 +35,22 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -60%);
-}
-
-
-</style>
+        }
+    </style>
 </head>
 
 <body></body>
-    <!-- ===최상위 컨테이너=== -->
-    <div class="wrap">
-        <!-- ===레이아웃 영역=== -->
-        <section class="layoutArea">
-            <!-- ===사이드바 영역=== -->
-            <section class="progressSidebar">
-                <div class="progressSettings completedStep"><span class="stepLabel">영화 선택</span></div>
-                <div class="progressSettings remainingStep"><span class="stepLabel">시간 선택</span></div>
-                <div class="progressSettings remainingStep"><span class="stepLabel">좌석 선택</span></div>
-                <div class="progressSettings remainingStep"><span class="stepLabel">결제</span></div>
-            </section>
+<!-- ===최상위 컨테이너=== -->
+<div class="wrap">
+    <!-- ===레이아웃 영역=== -->
+    <section class="layoutArea">
+        <!-- ===사이드바 영역=== -->
+        <section class="progressSidebar">
+            <div class="progressSettings completedStep"><span class="stepLabel">영화 선택</span></div>
+            <div class="progressSettings remainingStep"><span class="stepLabel">시간 선택</span></div>
+            <div class="progressSettings remainingStep"><span class="stepLabel">좌석 선택</span></div>
+            <div class="progressSettings remainingStep"><span class="stepLabel">결제</span></div>
+        </section>
         <!-- ===팝업 영역=== -->
         <section class="popupArea">
             <article class="popupBar">
@@ -61,32 +58,32 @@
                 <i class="popupBarTextCommon fa-solid fa-x"></i>
             </article>
             <section class="popupContent">
-                <!-- ~여기에 작성~ -->            
-                 
-                <!-- 타이틀 박스 -->
-            <p class="titleBox">결제 완료</p>
+                <!-- ~여기에 작성~ -->
 
-            <!-- 결제완료 이미지 -->
-            <div class="paymentCompletedImg"></div>
+                <!-- 타이틀 박스 -->
+                <p class="titleBox">결제 완료</p>
+
+                <!-- 결제완료 이미지 -->
+                <div class="paymentCompletedImg"></div>
 
 
             </section>
         </section>
-        </section>
-        <!-- ===하단바 영역=== -->
-        <section class="bottomBar">
-            <article class="barButtonsArea">
-                <button class="barButtons staffCallButton">직원호출</button>
-                <button class="barButtons"><i class="bottomBarIcon fa-solid fa-house"></i></button>
-                <button class="barButtons"><i class="bottomBarIcon fa-solid fa-backward"></i></button>
-            </article>
-            <img class="logoImg" src="images/logo.png" alt="로고이미지">
-            <article class="clockArea"><i class="bottomBarIcon fa-regular fa-clock"></i><span
-                    class="timeDisplay">12:00</span>
-            </article>
-        </section>
+    </section>
+    <!-- ===하단바 영역=== -->
+    <section class="bottomBar">
+        <article class="barButtonsArea">
+            <button class="barButtons staffCallButton">직원호출</button>
+            <button class="barButtons"><i class="bottomBarIcon fa-solid fa-house"></i></button>
+            <button class="barButtons"><i class="bottomBarIcon fa-solid fa-backward"></i></button>
+        </article>
+        <img class="logoImg" src="images/logo.png" alt="로고이미지">
+        <article class="clockArea"><i class="bottomBarIcon fa-regular fa-clock"></i><span
+                class="timeDisplay">12:00</span>
+        </article>
+    </section>
 
-    </div>
+</div>
 </body>
 
 </html>
