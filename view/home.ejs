@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="style/main.css">
+<div class="main">
+    <div id="buyTicketArea" class="mainWrapper">
+        <form action="/choice" method="get">
+            <input type="submit" id="buyTicketBtn" class="buyTicketBtn" value="티켓 구매">
+            <!-- <button id="buyTicketBtn" class="buyTicketBtn">티켓 구매</button> -->
+        </form>
+    </div>
+    <div id="printResevedTicketArea" class="mainWrapper">
+        <h2 class="printResevedTicketMessage">예매 티켓 출력</h2>
+        <form action="/reserved" method="get">
+            <input class="displayKeypad" placeholder="010-1234-5678" name="number" readonly>
+            <%- include("denominator/keypadFrame") %>
+        </form>
+    </div>
+</div>

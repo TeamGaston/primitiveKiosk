@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>Hexagon Cinema</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- icon -->
+    <script src="https://kit.fontawesome.com/611c1b2c45.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style/layout.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <section class="layoutArea">
+            <!-- 여기에서 콘텐츠가 삽입됩니다. -->
+            <%- include(content) %>
+
+            <% if ( typeof popup !=="undefined" ) { %>
+                <%- include( popup ) %>
+            <% } %>
+        </section>
+        
+        <% if ( typeof bottomBar !=="undefined" ) { %>
+            <%- include( bottomBar ) %>
+        <% } %>
+
+    </div>
+</body>
+
+</html>
