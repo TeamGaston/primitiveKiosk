@@ -316,6 +316,13 @@
     const selectionSwitcher = new SelectionSwitcher('selectionSwitcher');
     selectionSwitcher.control();
 
+    const posters = document.querySelectorAll(".posterItem");
+    posters.forEach( (poster)=> {
+      poster.addEventListener( "click", ()=>{
+        window.location.href = "/select_movie_time_popup";
+      });
+    });
+
   </script>
 </body>
 
