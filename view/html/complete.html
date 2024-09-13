@@ -15,28 +15,28 @@
 
     <title>payment_complete</title>
     <style>
-        /* 타이틀 박스 */
-        .titleBox {
-            text-align: center;
+         .popupContent {
+            display: flex;
+            padding: 2rem;
+            align-items: center;
+            flex-direction: column;
+        }
+        .popupContentText {
             font-size: 2.4rem;
-            position: relative;
-            left: 50%;
-            transform: translate(-50%, 90%);
-<<<<<<< HEAD:view/html/mvpaycompleted03.html
-=======
-            padding-top: 2rem;
->>>>>>> 4ea9b393dbbeed8851c24dc1276d743200d45f4a:view/팀플이에유/payment_complete.html
+            width: 100%;
+            text-align: center;
+            margin: 2rem 0 3rem 0;
+            color: white;
         }
 
         /*  결제완료 이미지 박스 */
-        .paymentCompletedImg {
-            height: 25rem; margin-top: 1rem;
-            width: 40rem;
-            background-color: #444444;
-            position: relative;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -60%);
+        .popupContentImg {
+            width: 50rem;
+            height: 50rem; margin-left: 2rem;
+            background-image: url("images/card_input.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            outline: none;
         }
     </style>
 </head>
@@ -63,10 +63,10 @@
                 <!-- ~여기에 작성~ -->
 
                 <!-- 타이틀 박스 -->
-                <p class="titleBox">결제 완료</p>
+                <p class="popupContentText">결제 완료</p>
 
                 <!-- 결제완료 이미지 -->
-                <div class="paymentCompletedImg"></div>
+                <div class="popupContentImg"></div>
 
 
             </section>

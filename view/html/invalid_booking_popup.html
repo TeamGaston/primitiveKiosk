@@ -14,17 +14,29 @@
   <link rel="stylesheet" href="style.css" />
   <title>Invalid_Booking_Popup</title>
   <style>
-    .IncorrectReservationNumber {
-      width: 40rem;
-      height: 25rem;
-      background-color: #423838;
-      position: relative;
-      top: 23%;
-      left: 26%;
-      font-size: 2rem;
-      text-align: center;
-      line-height: 10rem;
-    }
+    .popupContent {
+            display: flex;
+            padding: 2rem;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .popupContentImg {
+            width: 50rem;
+            height: 50rem; margin-left: 2rem;
+            background-image: url("images/warning.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            outline: none;
+        }
+    .popupContentText {
+            font-size: 2.4rem;
+            width: 100%;
+            text-align: center;
+            margin: 2rem 0 3rem 0;
+            color: white;
+        }
+
   </style>
 
 </head>
@@ -57,9 +69,8 @@
         </article>
         <section class="popupContent">
           <!-- === 잘못된 예매번호 표시 부분 === -->
-          <div class="IncorrectReservationNumber">
-            잘못된 예매번호 입니다.
-          </div>
+          <p class="popupContentText">경고</p>
+          <div class="popupContentImg"></div>
         </section>
       </section>
     </section>

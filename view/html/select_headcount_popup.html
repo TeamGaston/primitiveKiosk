@@ -18,10 +18,11 @@
         .selectPeople {
             width: 65%;
             height: 5rem;
-            background-color: #5c5c5c;
+            background-color: #3D3F4D;
             position: relative;
             margin-bottom: 5rem;
             top: 15%;
+            color: #ffffff;
             left: 17.5%;
         }
 
@@ -37,9 +38,10 @@
 
         /* 숫자 선택박스의 텍스트 */
         .ticketTitle {
-            border: 1px solid #0a0a0a;
+            border: 1px solid #3D3F4D;
             text-align: center;
             line-height: 5rem;
+            background-color: #24242C;
             font-size: 1.5rem;
             width: 7rem;
         }
@@ -48,13 +50,11 @@
         .number-selection {
             width: 100%;
             display: flex;
-            justify-content: space-between;
-            /* 자식 요소들 사이에 간격을 고르게 배치 */
+            justify-content: space-between; /* 자식 요소들 사이에 간격을 고르게 배치 */
         }
 
         .number-selection input[type="radio"] {
-            display: none;
-            /* 라디오 버튼 자체는 보이지 않게 숨김 */
+            display: none; /* 라디오 버튼 자체는 보이지 않게 숨김 */
         }
 
         .number-selection label {
@@ -62,16 +62,15 @@
             cursor: pointer;
             text-align: center;
             width: 4rem;
-            flex-grow: 1;
-            /* 라벨을 flex-grow로 균등하게 배치 */
-            border: 1px solid #0a0a0a;
+            flex-grow: 1; /* 라벨을 flex-grow로 균등하게 배치 */
+            border: 0.01rem solid #323440;
             line-height: 5rem;
             font-size: 1.5rem;
         }
 
         /* 라디오 버튼이 체크되었을 때 해당 라벨의 스타일을 변경 */
-        .number-selection input[type="radio"]:checked+label {
-            background-color: blue;
+        .number-selection input[type="radio"]:checked + label {
+            background-color: #DE1E2D;
             color: white;
         }
     </style>
@@ -98,36 +97,36 @@
                 <section class="popupContent">
                     <!-- ~여기에 작성~ -->
                     <div class="adult selectPeople">
-                        <div class="number-selection">
-                            <div class="ticketTitle">성인</div>
+                            <div class="number-selection">
+                                <div class="ticketTitle">성인</div>
 
-                            <input type="radio" id="adult-0" name="adult" value="0" />
-                            <label for="adult-0">0</label>
-
-                            <input type="radio" id="adult-1" name="adult" value="1" />
-                            <label for="adult-1">1</label>
-
-                            <input type="radio" id="adult-2" name="adult" value="2" />
-                            <label for="adult-2">2</label>
-
-                            <input type="radio" id="adult-3" name="adult" value="3" />
-                            <label for="adult-3">3</label>
-
-                            <input type="radio" id="adult-4" name="adult" value="4" />
-                            <label for="adult-4">4</label>
-
-                            <input type="radio" id="adult-5" name="adult" value="5" />
-                            <label for="adult-5">5</label>
-
-                            <input type="radio" id="adult-6" name="adult" value="6" />
-                            <label for="adult-6">6</label>
-
-                            <input type="radio" id="adult-7" name="adult" value="7" />
-                            <label for="adult-7">7</label>
-
-                            <input type="radio" id="adult-8" name="adult" value="8" />
-                            <label for="adult-8">8</label>
-                        </div>
+                                <input type="radio" id="adult-0" name="adult" value="0" />
+                                <label for="adult-0">0</label>
+                        
+                                <input type="radio" id="adult-1" name="adult" value="1" />
+                                <label for="adult-1">1</label>
+                        
+                                <input type="radio" id="adult-2" name="adult" value="2" />
+                                <label for="adult-2">2</label>
+                        
+                                <input type="radio" id="adult-3" name="adult" value="3" />
+                                <label for="adult-3">3</label>
+                        
+                                <input type="radio" id="adult-4" name="adult" value="4" />
+                                <label for="adult-4">4</label>
+                        
+                                <input type="radio" id="adult-5" name="adult" value="5" />
+                                <label for="adult-5">5</label>
+                        
+                                <input type="radio" id="adult-6" name="adult" value="6" />
+                                <label for="adult-6">6</label>
+                        
+                                <input type="radio" id="adult-7" name="adult" value="7" />
+                                <label for="adult-7">7</label>
+                        
+                                <input type="radio" id="adult-8" name="adult" value="8" />
+                                <label for="adult-8">8</label>
+                            </div>
                     </div>
                     <!-- 청소년 부분 숫자 -->
                     <div class="youth selectPeople">
@@ -136,33 +135,33 @@
 
                             <input type="radio" id="youth-0" name="youth" value="0" />
                             <label for="youth-0">0</label>
-
+                    
                             <input type="radio" id="youth-1" name="youth" value="1" />
                             <label for="youth-1">1</label>
-
+                    
                             <input type="radio" id="youth-2" name="youth" value="2" />
                             <label for="youth-2">2</label>
-
+                    
                             <input type="radio" id="youth-3" name="youth" value="3" />
                             <label for="youth-3">3</label>
-
+                    
                             <input type="radio" id="youth-4" name="youth" value="4" />
                             <label for="youth-4">4</label>
-
+                    
                             <input type="radio" id="youth-5" name="youth" value="5" />
                             <label for="youth-5">5</label>
-
+                    
                             <input type="radio" id="youth-6" name="youth" value="6" />
                             <label for="youth-6">6</label>
-
+                    
                             <input type="radio" id="youth-7" name="youth" value="7" />
                             <label for="youth-7">7</label>
-
+                    
                             <input type="radio" id="youth-8" name="youth" value="8" />
                             <label for="youth-8">8</label>
                         </div>
-                    </div>
-
+                </div>
+                   
                     <!-- 우대 부분 숫자 -->
                     <div class="youth selectPeople">
                         <div class="number-selection">
@@ -170,34 +169,34 @@
 
                             <input type="radio" id="special-0" name="special" value="0" />
                             <label for="special-0">0</label>
-
+                    
                             <input type="radio" id="special-1" name="special" value="1" />
                             <label for="special-1">1</label>
-
+                    
                             <input type="radio" id="special-2" name="special" value="2" />
                             <label for="special-2">2</label>
-
+                    
                             <input type="radio" id="special-3" name="special" value="3" />
                             <label for="special-3">3</label>
-
+                    
                             <input type="radio" id="special-4" name="special" value="4" />
                             <label for="special-4">4</label>
-
+                    
                             <input type="radio" id="special-5" name="special" value="5" />
                             <label for="special-5">5</label>
-
+                    
                             <input type="radio" id="special-6" name="special" value="6" />
                             <label for="special-6">6</label>
-
+                    
                             <input type="radio" id="special-7" name="special" value="7" />
                             <label for="special-7">7</label>
-
+                    
                             <input type="radio" id="special-8" name="special" value="8" />
                             <label for="special-8">8</label>
                         </div>
-                    </div>
-
-
+                </div>
+                   
+                   
                     <button class="selectPeopleBtn">확인</button>
                 </section>
             </section>
