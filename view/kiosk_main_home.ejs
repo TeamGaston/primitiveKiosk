@@ -79,8 +79,7 @@
       <!--#상단바#-->
       <section class="topBar">
         <img class="logoImg" src="images/logo.png" alt="로고이미지">
-        <article class="clockArea"><i class="bottomBarIcon fa-regular fa-clock"></i><span
-            class="timeDisplay">12:00</span>
+        <article class="clockArea"><i class="bottomBarIcon fa-regular fa-clock"></i><span id="touchPageClock" class="timeDisplay">00:00</span>
         </article>
       </section>
       <section class="movieTeaserArea">
@@ -98,9 +97,25 @@
   <!-- #script# -->
   <script>
       const touchScreen = document.getElementById("touchScreen");
+      
       touchScreen.addEventListener("click",()=>{
         window.location.href="/home";
-      })
+      });
+
+      const clock = document.getElementById("touchPageClock");
+      
+      const updateClock = () => {
+        const time = new Date();
+
+        const [ hour, minute ] = [ time.getHours().toString().padStart(2, "0"), time.getMinutes().toString().padStart(2, "0") ];
+
+        clock.innerText = `${hour}:${minute}`;
+      }
+
+      updateClock();
+      setInterval( () => {
+        updateClock();
+      }, 5000 );
   </script>
 </body>
 

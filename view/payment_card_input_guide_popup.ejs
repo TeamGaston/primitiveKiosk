@@ -58,6 +58,7 @@
                     <!-- ~여기에 작성~ -->
                     <p class="popupContentText">카드입력</p>
                     <img class="popupContentImg">
+                    <p id="timer" class="popupContentText">5</p>
                 </section>
             </section>
         </section>
@@ -76,10 +77,19 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => { // 5초뒤 종료
-            setTimeout(()=>{
-                window.location.href = "/showPayment";
-            }, 5000);
+        document.addEventListener( "DOMContentLoaded", () => { // 5초뒤 종료
+
+            const timer = document.getElementById("timer");
+            timer.style.color = "white";
+            for ( let i=1; i <= 5; i++ ) {
+                setTimeout( ()=> {
+                    timer.innerText = `${6 - i}` ;
+                    
+                    if ( i === 5 ) {
+                        window.location.href = "/showPayment";
+                    }
+                }, i * 1000 );
+            }
         });
     </script>
 </body>
