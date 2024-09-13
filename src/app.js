@@ -14,25 +14,25 @@ app.listen( 3000, () => {
 });
 
 app.get( "/earnPoint", (req, res) => {
-    //res.render(""); // 포인트를 적립하시겠습니까?
+    res.render("payment_point_selection_popup"); // 포인트를 적립하시겠습니까?
 } );
 
 app.get( "/inputPoint", (req, res) => {
-    res.render("mvpoint02"); // 포인트 적립을 위한 번호 넣기
+    res.render("payment_Accumulation_popup"); // 포인트 적립을 위한 번호 넣기
 } );
 
 app.get( "/buying", (req, res) => {
-    res.render( "paymentPopup_donghyun" ); // 카드 입력 대기
+    res.render( "payment_card_input_guide_popup" ); // 카드 입력 대기
 } );
 
 app.get( "/showPayment", (req, res) => {
-    
+    res.render("payment_summary_popup");
 } );
 
 app.get( "/printTicket", (req, res) => {
-    res.render( "ticketPrintPopup( youjung )" ); // 티켓 출력 하시겠습니까?
+    res.render( "ticket_print_popup" ); // 티켓 출력 하시겠습니까?
 } );
 
 app.get( "/complete", (req, res) => {
-    res.render( "mvpaycompleted03" );
+    res.render( "payment_complete" );
 } );
