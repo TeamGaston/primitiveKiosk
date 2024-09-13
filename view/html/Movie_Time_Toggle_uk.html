@@ -161,7 +161,7 @@
 
       <!-- ##영화/시간 토글## -->
       <section class="toggleContainer">
-        <article class="toggleGroup">
+        <article id="toggleGroup" class="toggleGroup">
           <div id="movieSelectionStatus" class="toggleItem activeToggle">영화별 선택</div>
           <div id="timeSelectionStatus" class="toggleItem">시간대별 선택</div>
         </article>
@@ -256,30 +256,65 @@
   </div>
   <!-- ==script== -->
   <script>
-    const movieSelectionStatus = document.getElementById('movieSelectionStatus');
-    const timeSelectionStatus = document.getElementById('timeSelectionStatus');
-    const posterGallery = document.getElementById('posterGallery');
-    const scheduleGallery = document.getElementById('scheduleGalleryWrap');
 
-    /// 영화별선택 ///
-    movieSelectionStatus.addEventListener("click", (e) => {
-      if (!movieSelectionStatus.classList.contains('activeToggle')) {
-        movieSelectionStatus.classList.add('activeToggle');
-        timeSelectionStatus.classList.remove('activeToggle');
+    class SelectionSwitcher {
+      constructor(id) {
+        this.id = id;
       }
-      posterGallery.style.display = "flex";
-      scheduleGallery.style.display = "none";
-    });
+      setElementId() {
+        const domElement = {
+          toggleGroup: "",
+          movieSelectionStatus: "",
+          timeSelectionStatus: "",
+          posterGallery: "",
+          scheduleGalleryWrap: ""
+        }
+        // dom요소 할당
+        const applyIdToElement = (item) => {
+          for (let key in item) {
+            if (document.getElementById(key)) {
+              item[key] = document.getElementById(key);
+            }
+          }
+        }
+        applyIdToElement(domElement);
+        this.setToggleState(domElement);
+      }//
+      setToggleState(domElement) {
+        const { toggleGroup } = domElement;
+        toggleGroup.addEventListener("click", (event) => {
+          const eventId = event.target.id;
+          this.processSelectionChange(eventId, domElement);
+        })
+      }//
+      processSelectionChange(eventId, domElement) {
+        const { movieSelectionStatus, timeSelectionStatus, posterGallery, scheduleGalleryWrap } = domElement;
+        const selectionStatus = (activate, deactivate) => {
+          if (!activate.classList.contains('activeToggle')) {
+            activate.classList.add('activeToggle');
+            deactivate.classList.remove('activeToggle');
+          }
+        }
+        // 이벤트 처리 //
+        switch (eventId) {
+          case "movieSelectionStatus":
+            selectionStatus(movieSelectionStatus, timeSelectionStatus);
+            posterGallery.style.display = "flex";
+            scheduleGalleryWrap.style.display = "none";
+            break;
+          case "timeSelectionStatus":
+            selectionStatus(timeSelectionStatus, movieSelectionStatus);
+            posterGallery.style.display = "none";
+            scheduleGalleryWrap.style.display = "block";
+        }
+      }//
+      control() {
+        this.setElementId();
+      }//
+    }//$SelectionSwitcher
 
-    /// 시간대별 선택 ///
-    timeSelectionStatus.addEventListener("click", (e) => {
-      if (!timeSelectionStatus.classList.contains('activeToggle')) {
-        timeSelectionStatus.classList.add('activeToggle');
-        movieSelectionStatus.classList.remove('activeToggle');
-      }
-      posterGallery.style.display = "none";
-      scheduleGallery.style.display = "block";
-    });
+    const selectionSwitcher = new SelectionSwitcher('selectionSwitcher');
+    selectionSwitcher.control();
 
   </script>
 </body>

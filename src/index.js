@@ -13,18 +13,13 @@ app.listen( 3000, () => {
     console.log("3000 Port is ready");
 });
 
-<<<<<<< HEAD
 app.get( "/", (req, res) => {
-    
-=======
-app.get( "/earnPoint", (req, res) => {
-    //res.sendFile("html/");
->>>>>>> cd40919d9331a58873b75ec5a8e3a25d275fb885
-} );
+    res.render("main_temp");
+});
 
 app.get( "/inputPoint", (req, res) => {
     
-} );
+});
 
 app.get( "/buying", (req, res) => {
     
