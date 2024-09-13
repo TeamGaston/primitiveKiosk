@@ -21,7 +21,7 @@
   position: relative;
   width: 100%;
   height: 91%;
-  background: #3b3b3b;
+  background: #2d2d37;
 }
 
 /* ===하단바 영역=== */
@@ -31,8 +31,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #515151;
+  background-color: #24242C;
   padding: 0 5rem;
+  box-shadow: 0px -15px 5px -2px gray;
 }
 
 .barButtonsArea {
@@ -47,16 +48,15 @@
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
-  background: e6e6e6;
-  color: #333;
+  background: #3f3f3f;
+  color: #24242C;
   padding: 0.5rem 1rem;
-  border-radius: 0.4rem;
-  border: 1px solid #d1d1d1;
+  border: 1px solid;
 }
 
 .barButtons:hover {
-  background: #f2f2f2;
-  color: #000;
+  background: #6F122D;
+  color: #77384b;
   box-shadow: 0 4px 8px rgba(22, 22, 22, 0.3);
 }
 
@@ -68,10 +68,12 @@
   height: 3rem;
   margin-top: -1rem;
   margin-right: 16.5rem;
+  opacity: 0.6;
 }
 
 .clockArea {
   color: #E6E6E6;
+  opacity: 0.7;
 }
 
 .timeDisplay {
@@ -108,6 +110,7 @@
   background: url("images/completed_shape.png") no-repeat;
   background-size: contain;
 }
+
 /* 미완료단계 */
 .remainingStep {
   background: url("images/remaining_shape.png") no-repeat;
@@ -125,7 +128,7 @@
   height: 54rem;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
 .popupBar {
@@ -134,14 +137,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #E6E6E6;
+  background-color: #1a2129;
+  color: #50657b;
   padding: 2rem;
 }
-.popupBarTextCommon{
+
+.popupBarTextCommon {
   font-size: 1.4rem;
 }
-.popupContent{
+
+.popupContent {
   width: 100%;
   height: 92%;
-  background-color: #ADADAD;
+  background: #0F2027;
+  background: linear-gradient(to bottom, #2c53644d, #203a4385, #0F2027);
 }
