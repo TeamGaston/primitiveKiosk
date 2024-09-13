@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 10px;
+}
+
+/* ===최상위 컨테이너=== */
+.wrap {
+  width: 128rem;
+  height: 72rem;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+/* ===레이아웃 영역=== */
+.layoutArea {
+  position: relative;
+  width: 100%;
+  height: 91%;
+  background: #2d2d37;
+}
+
+/* ===하단바 영역=== */
+.bottomBar {
+  width: 100%;
+  height: 9%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #24242C;
+  padding: 0 5rem;
+  box-shadow: 0px -15px 5px -2px gray;
+}
+
+.barButtonsArea {
+  display: flex;
+  gap: 1.7rem;
+}
+
+.barButtons {
+  width: 7.5rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  background: #3f3f3f;
+  color: #24242C;
+  padding: 0.5rem 1rem;
+  border: 1px solid;
+}
+
+.barButtons:hover {
+  background: #6F122D;
+  color: #77384b;
+  box-shadow: 0 4px 8px rgba(22, 22, 22, 0.3);
+}
+
+.bottomBarIcon {
+  font-size: 1.7rem;
+}
+
+.logoImg {
+  height: 3rem;
+  margin-top: -1rem;
+  margin-right: 16.5rem;
+  opacity: 0.6;
+}
+
+.clockArea {
+  color: #E6E6E6;
+  opacity: 0.7;
+}
+
+.timeDisplay {
+  font-size: 1.7rem;
+  margin-left: 0.6rem;
+  font-weight: 500;
+}
+
+.staffCallButton {
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+/* ===사이드바(진행프로세스)=== */
+.progressSidebar {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  left: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.progressSettings {
+  color: #fff;
+  width: 8rem;
+  height: 8rem;
+  line-height: 7.5rem;
+  text-align: center;
+}
+
+/* 진행완료단계 */
+.completedStep {
+  background: url("images/completed_shape.png") no-repeat;
+  background-size: contain;
+}
+
+/* 미완료단계 */
+.remainingStep {
+  background: url("images/remaining_shape.png") no-repeat;
+  background-size: contain;
+}
+
+.stepLabel {
+  font-size: 1.25rem;
+}
+
+/* ===팝업 영역=== */
+.popupArea {
+  position: absolute;
+  width: 84rem;
+  height: 54rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.popupBar {
+  width: 100%;
+  height: 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a2129;
+  color: #50657b;
+  padding: 2rem;
+}
+
+.popupBarTextCommon {
+  font-size: 1.4rem;
+}
+
+.popupContent {
+  width: 100%;
+  height: 92%;
+  background: #0F2027;
+  background: linear-gradient(to bottom, #2c53644d, #203a4385, #0F2027);
+}
