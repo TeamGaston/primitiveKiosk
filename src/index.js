@@ -13,8 +13,16 @@ app.listen( 3000, () => {
     console.log("3000 Port is ready");
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> beebdb680910a16176a1d4846b3d0da179e47b83
 app.get( "/", (req, res) => {
-    res.render("main_temp");
+    res.render("kiosk_main_home");
+});
+
+app.get( "/home", (req, res) => {
+    res.render("kiosk_ticket_purchase");
 });
 
 app.get( "/inputPoint", (req, res) => {
