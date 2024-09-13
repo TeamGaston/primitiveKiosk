@@ -16,20 +16,20 @@ app.get("/",()=>{
     console.log("root accept");
 });
 
-app.get( "/Movie-Info_Popup", (req, res) => {
-    res.render( "Movie-Info_Popup" );
+app.get( "/select_movie_time_popup", (req, res) => {
+    res.render( "select_movie_time_popup" );
 } );
 
-app.get( "/selectPeople", (req, res) => {
+app.get( "/select_headcount_popup", (req, res) => {
     console.log(req.query);
     console.log(typeof req.query);
     const movieData =  req.query ;
-    res.render("Select_People_Popup_donghyun", {movieData: movieData});
+    res.render("select_headcount_popup", {movieData: movieData});
 } );
 
-app.get("seatSelection",(req,res)=>{
-    res.render("seatSelection_donghyun");
-});
+// app.get("seatSelection",(req,res)=>{
+//     res.render("seatSelection_donghyun");
+// });
 
 
 // app.get( "/printTicket", (req, res) => {

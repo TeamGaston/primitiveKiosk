@@ -231,7 +231,6 @@
             if(event.target.name == "special"){
                 movieData.special = event.target.value;
             }
-
         });
 
         document.getElementById("selectPeopleBtn").addEventListener("click",()=>{
@@ -239,11 +238,10 @@
                 if(movieData.adult == 0 && movieData.youth == 0 && movieData.special == 0){
                     alert("인원을 선택해주세요!");
                 }else{
-                    console.log( "이동해야겠지?" )
+                    console.log( "이동해야겠지?" );
                 }
             }
         );
-        
 
     </script>
 </body>

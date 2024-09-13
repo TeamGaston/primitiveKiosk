@@ -175,9 +175,8 @@
                 movieData.startAndEndTime = paragraphs[1].innerHTML;
                 console.log(movieData);
                 const query = objectToQueryString(movieData);
-                location.href = `/selectPeople?${query}`;
+                location.href = `/select_headcount_popup?${query}`;
             }
-
         });
 
     </script>
