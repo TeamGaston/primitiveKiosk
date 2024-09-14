@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="style.css">
 
 
-    <title>select_movie_time_popup</title>
+    <title>Movie-Info_Popup</title>
 
     <style>
         /* 시간선택팝업 */
@@ -64,7 +64,7 @@
             height: 30rem;
             display: flex;
             flex-wrap: wrap;
-            margin-left: 4rem;
+            margin-left: 4rem; 
             margin-right: -1.3rem;
             margin-top: 3rem;
             gap: 2rem;
@@ -75,6 +75,12 @@
             height: 6rem;
             list-style: none;
             border: .06rem solid rgba(255, 255, 255, 0.479);
+            text-align: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+        /*추가사항*/
+        .mvTimeList p{
             text-align: center;
             font-size: 1.2rem;
             color: white;
@@ -114,12 +120,12 @@
                                     <p class="theather">A관</p>
                                     <p class="startAndEndTime">09시00분~12시00분</p>
                                 </li>
-
+                                
                                 <li class="mvTimeList">
                                     <p class="theather">A관</p>
                                     <p class="startAndEndTime">09시00분~12시00분</p>
                                 </li>
-
+                              
                             </ul>
                         </div>
                         <div class="posterInformation">
@@ -145,26 +151,25 @@
         </section>
 
     </div>
-    <!-- ==script== -->
     <script>
         function objectToQueryString(obj) {
-            return Object.keys(obj)
-                .map(key => { return `${key}=${obj[key]}` })
-                .join('&');
+        return Object.keys(obj)
+            .map(key => {return `${key}=${obj[key]}`})
+            .join('&');
         }
 
-        const movieData = {
-            name: "",
-            movieDuration: "", //상영시간
-            theater: "",
-            startAndEndTime: ""
+        const movieData ={
+            name:"",
+            movieDuration:"", //상영시간
+            theater:"",
+            startAndEndTime:""
         }
 
         movieData.name = document.getElementById("mvName").innerHTML;
         movieData.movieDuration = document.getElementById("mvTime").innerHTML;
 
-        document.getElementById("allMvTime").addEventListener("click", (event) => {
-            if (event.target && event.target.closest("li")) {
+        document.getElementById("allMvTime").addEventListener("click",(event)=>{
+            if(event.target && event.target.closest("li")){
                 const paragraphs = event.target.closest("li").getElementsByTagName("p");
                 movieData.theater = paragraphs[0].innerHTML;
                 movieData.startAndEndTime = paragraphs[1].innerHTML;

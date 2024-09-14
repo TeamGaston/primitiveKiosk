@@ -4,66 +4,81 @@ import path from "path";
 
 const app = express();
 
-app.use( express.static("public") );
+app.use(express.static("public"));
 
 app.set("view engine", "ejs");
 app.set("views", "view");
 
-app.listen( 3000, () => {
+app.listen(3000, () => {
     console.log("3000 Port is ready");
 });
 
+/// ===페이지 이동=== ///
+
+// 화면을 터치해주세요
 app.get("/", (req, res) => {
-    res.render("kiosk_main_home"); // touch page
+    res.render("touch_page");
 });
 
+// home (현장예매, 예매티켓조회)
 app.get("/home", (req, res) => {
-    res.render("kiosk_ticket_purchase"); // home
+    res.render("home");
 });
 
+// 영화별/시간대별 선택
 app.get("/movie_selection", (req, res) => {
-    res.render("Movie_Selection"); // movie choice
+    res.render("movie_time_selection");
 });
 
-app.get( "/select_movie_time_popup", (req, res) => {
-    res.render( "select_movie_time_popup" );
-} );
+// 상영시간선택
+app.get("/select_movie_time_popup", (req, res) => {
+    res.render("select_movie_time_popup");
+});
 
-app.get( "/select_headcount_popup", (req, res) => {
+// 관람 인원 설정
+app.get("/select_headcount_popup", (req, res) => {
     console.log(req.query);
     console.log(typeof req.query);
-    const movieData =  req.query ;
-    res.render("select_headcount_popup", {movieData: movieData});
-} );
-
-app.get( "/select_seat", (req, res) => {
-    res.render( "seat_selectionA" );
+    const movieData = req.query;
+    res.render("select_headcount_popup", { movieData: movieData });
 });
 
-app.get( "/payment", (req, res) => {
-    res.render( "Payment_PointsUsage_uk" );
-} );
+// 좌석선택
+app.get("/select_seat", (req, res) => {
+    res.render("seat_selectionA");
+});
 
-app.get( "/earnPoint", (req, res) => {
-    res.render("payment_point_selection_popup"); // 포인트를 적립하시겠습니까?
-} );
+// 결제창
+app.get("/payment", (req, res) => {
+    res.render("payment");
+});
 
-app.get( "/inputPoint", (req, res) => {
-    res.render("payment_Accumulation_popup"); // 포인트 적립을 위한 번호 넣기
-} );
+// 포인트를 적립하시겠습니까?
+app.get("/earnPoint", (req, res) => {
+    res.render("payment_point_selection_popup"); 
+});
 
-app.get( "/buying", (req, res) => {
-    res.render( "payment_card_input_guide_popup" ); // 카드 입력 대기
-} );
+// 포인트 적립을 위한 번호 넣기
+app.get("/inputPoint", (req, res) => {
+    res.render("payment_point_accumulation_popup"); 
+});
 
-app.get( "/showPayment", (req, res) => {
+ // 카드 입력 대기 [setTimeout]
+app.get("/buying", (req, res) => {
+    res.render("payment_card_input_popup");
+});
+
+// 결제가 완료되었습니다 [setTimeout]
+app.get("/showPayment", (req, res) => { 
     res.render("payment_summary_popup");
-} );
+});
 
-app.get( "/printTicket", (req, res) => {
-    res.render( "ticket_print_popup" ); // 티켓 출력 하시겠습니까?
-} );
+// 티켓 출력 
+app.get("/printTicket", (req, res) => {
+    res.render("ticket_print_popup"); 
+});
 
-app.get( "/complete", (req, res) => {
-    res.render( "payment_complete" );
-} );
+// 결제완료 [setTimeout]
+app.get("/complete", (req, res) => {
+    res.render("complete");
+});

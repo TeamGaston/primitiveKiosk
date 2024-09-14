@@ -12,14 +12,14 @@
     <script src="https://kit.fontawesome.com/611c1b2c45.js" crossorigin="anonymous"></script>
     <!-- css -->
     <link rel="stylesheet" href="style.css">
-    <title>seat_selectionA</title>
+    <title>seat_selectionB</title>
     <style>
-        .layoutArea {
+
+        .layoutArea{
             display: flex;
             align-items: center;
             flex-direction: column;
         }
-
         .sectionTop {
             margin-top: 8rem;
             width: 100%;
@@ -117,7 +117,7 @@
         }
 
         /* 선택되지 않은 좌석 */
-        label {
+        label{
             display: flex;
             justify-content: center;
             align-items: center;
@@ -134,9 +134,9 @@
             background-color: #ff9933;
         }
 
-        .chosenBtn {
+        .chosenBtn{
             position: absolute;
-            left: 90%;
+            left : 90%;
             bottom: 4%;
             width: 8rem;
             height: 4.5rem;
@@ -167,12 +167,13 @@
 
             <section class="sectionBottom">
                 <div class="seatsArea">
-                    <empty></empty>
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat1">A1</label>
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat2">A2</label>
+
+                    <empty></empty>
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat3">A3</label>
@@ -180,8 +181,11 @@
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat4">A4</label>
 
+
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat5">A5</label>
+                    
+                    <empty></empty>
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat6">A6</label>
@@ -191,7 +195,7 @@
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat8">A8</label>
-                    <empty></empty>
+                    
 
                 </div>
                 <div class="seatsArea">
@@ -200,18 +204,16 @@
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat2">2</label>
-
+                    <empty></empty>
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat3">3</label>
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat4">4</label>
-                    <empty></empty>
-                    <empty></empty>
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat5">5</label>
-
+                    <empty></empty>
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat6">6</label>
 
@@ -228,18 +230,16 @@
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat2">2</label>
-
+                    <empty></empty>
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat3">3</label>
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat4">4</label>
-                    <empty></empty>
-                    <empty></empty>
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat5">5</label>
-
+                    <empty></empty>
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat6">6</label>
 
@@ -256,18 +256,16 @@
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat2">2</label>
-
+                    <empty></empty>
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat3">3</label>
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat4">4</label>
-                    <empty></empty>
-                    <empty></empty>
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat5">5</label>
-
+                    <empty></empty>
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat6">6</label>
 
@@ -276,7 +274,6 @@
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat8">8</label>
-
                 </div>
                 <div class="seatsArea">
                     <input type="checkbox" class="seat-checkbox">
@@ -284,18 +281,16 @@
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat2">2</label>
-
+                    <empty></empty>
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat3">3</label>
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat4">4</label>
-                    <empty></empty>
-                    <empty></empty>
 
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat5">5</label>
-
+                    <empty></empty>
                     <input type="checkbox" class="seat-checkbox">
                     <label for="seat6">6</label>
 
@@ -306,7 +301,7 @@
                     <label for="seat8">8</label>
 
                 </div>
-                <button id="choosenSeat" class="chosenBtn">선택완료</button>
+                <button class="chosenBtn">선택완료</button>
             </section>
             <!-- ===사이드바 영역=== -->
             <section class="progressSidebar">
@@ -330,14 +325,6 @@
         </section>
 
     </div>
-    <!-- ==script== -->
-    <script>
-        const choosenSeat = document.getElementById("choosenSeat");
-
-        choosenSeat.addEventListener("click", () => {
-            window.location.href = "/payment";
-        });
-    </script>
 </body>
 
 </html>

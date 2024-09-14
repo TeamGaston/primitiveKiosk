@@ -12,17 +12,16 @@
     <script src="https://kit.fontawesome.com/611c1b2c45.js" crossorigin="anonymous"></script>
     <!-- css -->
     <link rel="stylesheet" href="style.css">
-    <title>select_headcount_popup</title>
+    <title>Select_People_Popup</title>
     <style>
         /* 숫자 카운트 박스 공통된 부분  */
         .selectPeople {
             width: 65%;
             height: 5rem;
-            background-color: #3D3F4D;
+            background-color: #5c5c5c;
             position: relative;
             margin-bottom: 5rem;
             top: 15%;
-            color: #ffffff;
             left: 17.5%;
         }
 
@@ -38,10 +37,9 @@
 
         /* 숫자 선택박스의 텍스트 */
         .ticketTitle {
-            border: 1px solid #3D3F4D;
+            border: 1px solid #0a0a0a;
             text-align: center;
             line-height: 5rem;
-            background-color: #24242C;
             font-size: 1.5rem;
             width: 7rem;
         }
@@ -63,14 +61,14 @@
             text-align: center;
             width: 4rem;
             flex-grow: 1; /* 라벨을 flex-grow로 균등하게 배치 */
-            border: 0.01rem solid #323440;
+            border: 1px solid #0a0a0a;
             line-height: 5rem;
             font-size: 1.5rem;
         }
 
         /* 라디오 버튼이 체크되었을 때 해당 라벨의 스타일을 변경 */
         .number-selection input[type="radio"]:checked + label {
-            background-color: #DE1E2D;
+            background-color: blue;
             color: white;
         }
     </style>
@@ -94,13 +92,13 @@
                     <p class="popupTitle popupBarTextCommon">관람 인원 설정</p>
                     <i class="popupBarTextCommon fa-solid fa-x"></i>
                 </article>
-                <section class="popupContent">
+                <section id="popupContent" class="popupContent">
                     <!-- ~여기에 작성~ -->
                     <div class="adult selectPeople">
                             <div class="number-selection">
                                 <div class="ticketTitle">성인</div>
 
-                                <input type="radio" id="adult-0" name="adult" value="0" />
+                                <input type="radio" id="adult-0" name="adult" value="0" checked/>
                                 <label for="adult-0">0</label>
                         
                                 <input type="radio" id="adult-1" name="adult" value="1" />
@@ -133,7 +131,7 @@
                         <div class="number-selection">
                             <div class="ticketTitle">청소년</div>
 
-                            <input type="radio" id="youth-0" name="youth" value="0" />
+                            <input type="radio" id="youth-0" name="youth" value="0" checked/>
                             <label for="youth-0">0</label>
                     
                             <input type="radio" id="youth-1" name="youth" value="1" />
@@ -167,7 +165,7 @@
                         <div class="number-selection">
                             <div class="ticketTitle">우대</div>
 
-                            <input type="radio" id="special-0" name="special" value="0" />
+                            <input type="radio" id="special-0" name="special" value="0" checked />
                             <label for="special-0">0</label>
                     
                             <input type="radio" id="special-1" name="special" value="1" />
@@ -197,7 +195,7 @@
                 </div>
                    
                    
-                    <button id="selectPeopleBtn" class="selectPeopleBtn">확인</button>
+                    <button id= "selectPeopleBtn" class="selectPeopleBtn">확인</button>
                 </section>
             </section>
         </section>
@@ -214,38 +212,38 @@
                     class="timeDisplay">12:00</span>
             </article>
         </section>
-        <!-- ==script== -->
-        <script>
-            const movieData = <%- JSON.stringify(movieData) %>;
-            //영화관 인원수 디폴트 값 추가 
-            movieData.adult = 0;
-            movieData.youth = 0;
-            movieData.special = 0;
-    
-            document.getElementById("popupContent").addEventListener("click",(event)=>{
-                if(event.target.name == "adult"){
-                    movieData.adult = event.target.value;
-                }
-                if(event.target.name == "youth"){
-                    movieData.youth = event.target.value;
-                }
-                if(event.target.name == "special"){
-                    movieData.special = event.target.value;
-                }
-            });
-    
-            document.getElementById("selectPeopleBtn").addEventListener("click",()=>{
-                    console.log( movieData );
-                    if(movieData.adult == 0 && movieData.youth == 0 && movieData.special == 0){
-                        alert("인원을 선택해주세요!");
-                    }else{
-                        window.location.href = "/select_seat";
-                    }
-                }
-            );
-    
-        </script>
+
     </div>
+    <script>
+        const movieData = <%- JSON.stringify(movieData) %>;
+        //영화관 인원수 디폴트 값 추가 
+        movieData.adult = 0;
+        movieData.youth = 0;
+        movieData.special = 0;
+
+        document.getElementById("popupContent").addEventListener("click",(event)=>{
+            if(event.target.name == "adult"){
+                movieData.adult = event.target.value;
+            }
+            if(event.target.name == "youth"){
+                movieData.youth = event.target.value;
+            }
+            if(event.target.name == "special"){
+                movieData.special = event.target.value;
+            }
+        });
+
+        document.getElementById("selectPeopleBtn").addEventListener("click",()=>{
+                console.log( movieData );
+                if(movieData.adult == 0 && movieData.youth == 0 && movieData.special == 0){
+                    alert("인원을 선택해주세요!");
+                }else{
+                    window.location.href = "/select_seat";
+                }
+            }
+        );
+
+    </script>
 </body>
 
 </html>
