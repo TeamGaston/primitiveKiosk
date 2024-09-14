@@ -36,6 +36,11 @@
             color: white;
         }
 
+        .paymentTimerMessage{
+            font-size: 2.4rem;
+            color: white;
+        }
+
         .paymentInfo {
             width: 40rem;
             height: 5rem;
@@ -117,7 +122,7 @@
                             </div>
                         </div>
                         <div id="printReciptQuestion" class="printReciptQuestion">
-                            <h2 class="paymentCompleteMessage receiptText">3초 뒤에 티켓이 출력됩니다.</h2>
+                            <h2 class="paymentCompleteMessage receiptText"><span id="timer" class="paymentTimerMessage">5</span>초 뒤에 티켓이 출력됩니다.</h2>
                             <!-- <button class="printReciptQuestionBtn">아니요</button>
                             <button class="printReciptQuestionBtn">예</button> -->
                         </div>
@@ -137,7 +142,22 @@
                     class="timeDisplay">12:00</span>
             </article>
         </section>
-
+        <!-- ==script== -->
+        <script>
+            document.addEventListener("DOMContentLoaded", () => { // 5초뒤 종료
+                const timer = document.getElementById("timer");
+                timer.style.color = "white";
+                for (let i = 1; i <= 5; i++) {
+                    setTimeout(() => {
+                        timer.innerText = `${6 - i}`;
+    
+                        if (i === 5) {
+                            window.location.href = "/printTicket";
+                        }
+                    }, i * 1000);
+                }
+            });
+        </script>
     </div>
 </body>
 

@@ -197,7 +197,7 @@
                 </div>
                    
                    
-                    <button class="selectPeopleBtn">확인</button>
+                    <button id="selectPeopleBtn" class="selectPeopleBtn">확인</button>
                 </section>
             </section>
         </section>
@@ -214,7 +214,37 @@
                     class="timeDisplay">12:00</span>
             </article>
         </section>
-
+        <!-- ==script== -->
+        <script>
+            const movieData = <%- JSON.stringify(movieData) %>;
+            //영화관 인원수 디폴트 값 추가 
+            movieData.adult = 0;
+            movieData.youth = 0;
+            movieData.special = 0;
+    
+            document.getElementById("popupContent").addEventListener("click",(event)=>{
+                if(event.target.name == "adult"){
+                    movieData.adult = event.target.value;
+                }
+                if(event.target.name == "youth"){
+                    movieData.youth = event.target.value;
+                }
+                if(event.target.name == "special"){
+                    movieData.special = event.target.value;
+                }
+            });
+    
+            document.getElementById("selectPeopleBtn").addEventListener("click",()=>{
+                    console.log( movieData );
+                    if(movieData.adult == 0 && movieData.youth == 0 && movieData.special == 0){
+                        alert("인원을 선택해주세요!");
+                    }else{
+                        window.location.href = "/select_seat";
+                    }
+                }
+            );
+    
+        </script>
     </div>
 </body>
 

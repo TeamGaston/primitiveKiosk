@@ -36,15 +36,18 @@
             background-image: url("images/card_input.png");
             background-repeat: no-repeat;
             background-size: cover;
-            transform: scale(1.15); border: 1px solid red;
+            transform: scale(1.15);
+            border: 1px solid red;
         }
 
         .showTimerArea {
             height: 3rem;
             width: 100%;
         }
+
         .showTimer {
-            color: white; font-size: 1.6rem;
+            color: white;
+            font-size: 1.6rem;
             text-align: center;
         }
     </style>
@@ -70,11 +73,9 @@
                 </article>
                 <section class="popupContent">
                     <!-- ~여기에 작성~ -->
-                    <p class="popupContentText">카드 입력</p>
-                    <div class="popupContentImg"></div>
-                    <section class="showTimerArea">
-                    <div class="showTimer">시간이 나올거에융</div>
-                </section>
+                    <p class="popupContentText">카드입력</p>
+                    <img class="popupContentImg">
+                    <p id="timer" class="popupContentText">5</p>
                 </section>
             </section>
         </section>
@@ -91,6 +92,22 @@
             </article>
         </section>
     </div>
+    <!-- ==script== -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => { // 5초뒤 종료
+            const timer = document.getElementById("timer");
+            timer.style.color = "white";
+            for (let i = 1; i <= 5; i++) {
+                setTimeout(() => {
+                    timer.innerText = `${6 - i}`;
+
+                    if (i === 5) {
+                        window.location.href = "/showPayment";
+                    }
+                }, i * 1000);
+            }
+        });
+    </script>
 </body>
 
 </html>

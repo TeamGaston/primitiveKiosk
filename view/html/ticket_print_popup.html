@@ -68,7 +68,7 @@
                          영화 입장권
                     </div>
                     <section class="confirmButtonArea">
-                        <button class="confirmButtons" onclick="print()">프린트</button>
+                        <button id="printTicketBtn" class="confirmButtons">프린트</button>
                     </section>
                 </section>
             </section>
@@ -92,7 +92,16 @@
                     class="timeDisplay">12:00</span>
             </article>
         </section>
+    <!-- ==script== -->
+    <script>
+        const printTicketBtn = document.getElementById("printTicketBtn");
 
+        printTicketBtn.addEventListener( "click", () => {
+            window.print();
+            window.location.href = "/complete";
+        });
+    </script>
+</body>
     </div>
 </body>
 

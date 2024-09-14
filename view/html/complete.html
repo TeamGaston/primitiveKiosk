@@ -15,12 +15,13 @@
 
     <title>complete</title>
     <style>
-         .popupContent {
+        .popupContent {
             display: flex;
             padding: 2rem;
             align-items: center;
             flex-direction: column;
         }
+
         .popupContentText {
             font-size: 2.4rem;
             width: 100%;
@@ -32,7 +33,8 @@
         /*  결제완료 이미지 박스 */
         .popupContentImg {
             width: 50rem;
-            height: 50rem; margin-left: 2rem;
+            height: 50rem;
+            margin-left: 2rem;
             background-image: url("images/card_input.png");
             background-repeat: no-repeat;
             background-size: contain;
@@ -86,6 +88,14 @@
     </section>
 
 </div>
+<!-- ==script== -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => { // 5초뒤 종료
+        setTimeout(() => {
+            window.location.href = "/";
+        }, 5000);
+    });
+</script>
 </body>
 
 </html>

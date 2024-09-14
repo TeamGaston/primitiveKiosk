@@ -64,7 +64,7 @@
             height: 30rem;
             display: flex;
             flex-wrap: wrap;
-            margin-left: 4rem; 
+            margin-left: 4rem;
             margin-right: -1.3rem;
             margin-top: 3rem;
             gap: 2rem;
@@ -109,19 +109,22 @@
                         <div class="posterBasicInformation">
 
                             <div class="posterImg"></div>
-                            <ul class="allMvTime">
-                                <li class="mvTimeList">A관<br>09시00분<br>~12시00분</li>
-                                <li class="mvTimeList">A관<br>09시00분<br>~12시00분</li>
-                                <li class="mvTimeList">A관<br>09시00분<br>~12시00분</li>
-                                <li class="mvTimeList">A관<br>09시00분<br>~12시00분</li>
-                                <li class="mvTimeList">A관<br>09시00분<br>~12시00분</li>
-                                <li class="mvTimeList">A관<br>09시00분<br>~12시00분</li>
-                                <li class="mvTimeList">A관<br>09시00분<br>~12시00분</li>
+                            <ul class="allMvTime" id="allMvTime">
+                                <li class="mvTimeList">
+                                    <p class="theather">A관</p>
+                                    <p class="startAndEndTime">09시00분~12시00분</p>
+                                </li>
+
+                                <li class="mvTimeList">
+                                    <p class="theather">A관</p>
+                                    <p class="startAndEndTime">09시00분~12시00분</p>
+                                </li>
+
                             </ul>
                         </div>
                         <div class="posterInformation">
-                            <p class="mvName">영화제목</p>
-                            <p class="mvTime">시간</p>
+                            <p id="mvName" class="mvName">영화제목</p>
+                            <p id="mvTime" class="mvTime">시간</p>
                         </div>
 
 
@@ -142,6 +145,36 @@
         </section>
 
     </div>
+    <!-- ==script== -->
+    <script>
+        function objectToQueryString(obj) {
+            return Object.keys(obj)
+                .map(key => { return `${key}=${obj[key]}` })
+                .join('&');
+        }
+
+        const movieData = {
+            name: "",
+            movieDuration: "", //상영시간
+            theater: "",
+            startAndEndTime: ""
+        }
+
+        movieData.name = document.getElementById("mvName").innerHTML;
+        movieData.movieDuration = document.getElementById("mvTime").innerHTML;
+
+        document.getElementById("allMvTime").addEventListener("click", (event) => {
+            if (event.target && event.target.closest("li")) {
+                const paragraphs = event.target.closest("li").getElementsByTagName("p");
+                movieData.theater = paragraphs[0].innerHTML;
+                movieData.startAndEndTime = paragraphs[1].innerHTML;
+                console.log(movieData);
+                const query = objectToQueryString(movieData);
+                location.href = `/select_headcount_popup?${query}`;
+            }
+        });
+
+    </script>
 </body>
 
 </html>
