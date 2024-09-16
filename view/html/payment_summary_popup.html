@@ -152,12 +152,13 @@
         <script>
             document.addEventListener("DOMContentLoaded", () => { // 5초뒤 종료
                 const timer = document.getElementById("timer");
+                const timerSecond = 5;
                 timer.style.color = "white";
-                for (let i = 1; i <= 5; i++) {
+                for (let i = 1; i <= timerSecond; i++) {
                     setTimeout(() => {
-                        timer.innerText = `${6 - i}`;
+                        timer.innerText = `${(timerSecond+1) - i}`;
     
-                        if (i === 5) {
+                        if (i === timerSecond) {
                             window.location.href = "/printTicket";
                         }
                     }, i * 1000);

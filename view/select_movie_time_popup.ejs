@@ -109,10 +109,11 @@
         }
 
         /* 확인 버튼 스타일 */
-        
-        .popupContent{
+
+        .popupContent {
             position: relative;
         }
+
         .timeSelectionBtn {
             position: absolute;
             right: 5%;
@@ -270,12 +271,15 @@
                     listItem.classList.remove("activeMvTime");
                 });
                 item.classList.add("activeMvTime");
-                timeSelectionBtn.style.display="block";
+                timeSelectionBtn.style.display = "block";
             });
         });
-        timeSelectionBtn.addEventListener("click",()=>{
-            window.location.href = "/select_seat";
-        });
+
+        timeSelectionBtn.addEventListener("click", () => {
+
+            window.location.href = "/select_headcount";
+        })
+
 
     </script>
 </body>

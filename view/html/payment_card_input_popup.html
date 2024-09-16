@@ -37,7 +37,8 @@
             background-size: cover;
         }
 
-        .timeoutText, .timer{
+        .timeoutText,
+        .timer {
             font-size: 2rem;
             color: #d6d6d6;
             margin-top: 2rem;
@@ -66,14 +67,14 @@
                 <section class="popupContent">
                     <!-- ~여기에 작성~ -->
                     <p class="popupContentText">카드를 카드 리더기에 삽입해 주세요.</p>
-                    <p  class="timeoutText"><span id="timer" class="timer">5</span>초 후 자동종료 됩니다.</p>
+                    <p class="timeoutText"><span id="timer" class="timer">5</span>초 후 자동종료 됩니다.</p>
                     <div class="popupContentImg"></div>
                 </section>
             </section>
         </section>
         <!-- ===하단바 영역=== -->
         <section class="bottomBar">
-            <article class="barButtonsArea">1
+            <article class="barButtonsArea">
 
                 <button class="barButtons staffCallButton">직원호출</button>
                 <button class="barButtons"><i class="bottomBarIcon fa-solid fa-house"></i></button>
@@ -87,15 +88,17 @@
     </div>
     <!-- ==script== -->
     <script>
+
         document.addEventListener("DOMContentLoaded", () => { // 5초뒤 종료
             const timer = document.getElementById("timer");
+            const timerSecond = 5;
             timer.style.color = "white";
-            for (let i = 1; i <= 5; i++) {
+            for (let i = 1; i <= timerSecond; i++) {
                 setTimeout(() => {
-                    timer.innerText = `${6 - i}`;
+                    timer.innerText = `${(timerSecond + 1) - i}`;
 
-                    if (i === 5) {
-                        window.location.href = "/showPayment";
+                    if (i === timerSecond) {
+                        window.location.href = "/show_payment";
                     }
                 }, i * 1000);
             }
