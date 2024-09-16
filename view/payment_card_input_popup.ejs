@@ -66,7 +66,7 @@
                 <section class="popupContent">
                     <!-- ~여기에 작성~ -->
                     <p class="popupContentText">카드를 카드 리더기에 삽입해 주세요.</p>
-                    <p  class="timeoutText"><span id="timer" class="timer">5</span>초 후 자동종료 됩니다.</p>
+                    <p  class="timeoutText"><span id="timer" class="timer">3</span>초 후 자동종료 됩니다.</p>
                     <div class="popupContentImg"></div>
                 </section>
             </section>
@@ -90,9 +90,9 @@
         document.addEventListener("DOMContentLoaded", () => { // 5초뒤 종료
             const timer = document.getElementById("timer");
             timer.style.color = "white";
-            for (let i = 1; i <= 5; i++) {
+            for (let i = 1; i <= 3; i++) {
                 setTimeout(() => {
-                    timer.innerText = `${6 - i}`;
+                    timer.innerText = `${3 - i}`;
 
                     if (i === 5) {
                         window.location.href = "/showPayment";
