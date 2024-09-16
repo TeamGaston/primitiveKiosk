@@ -36,12 +36,12 @@ app.get("/select_movie_time_popup", (req, res) => {
 });
 
 // 관람 인원 설정
-app.get("/select_headcount_popup", (req, res) => {
+app.get("/select_headcount", (req, res) => {
     // console.log(req.query);
     // console.log(typeof req.query);
     // const movieData = req.query;
     // res.render("select_headcount_popup", { movieData: movieData });
-    res.render("/select_seat"); // 임시
+    res.render("select_headcount_popup"); // 임시
 });
 
 // 좌석선택
@@ -55,7 +55,7 @@ app.get("/payment", (req, res) => {
 });
 
 // ## 포인트 사용 ##
- 
+
 // 회원번호 입력
 app.get("/user_verification", (req, res) => {
     res.render("user_verification_popup");
@@ -84,7 +84,7 @@ app.get("/buying", (req, res) => {
 });
 
 // 결제가 완료되었습니다 [setTimeout]
-app.get("/showPayment", (req, res) => { 
+app.get("/show_payment", (req, res) => { 
     res.render("payment_summary_popup");
 });
 
