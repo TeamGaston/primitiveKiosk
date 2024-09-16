@@ -37,10 +37,11 @@ app.get("/select_movie_time_popup", (req, res) => {
 
 // 관람 인원 설정
 app.get("/select_headcount_popup", (req, res) => {
-    console.log(req.query);
-    console.log(typeof req.query);
-    const movieData = req.query;
-    res.render("select_headcount_popup", { movieData: movieData });
+    // console.log(req.query);
+    // console.log(typeof req.query);
+    // const movieData = req.query;
+    // res.render("select_headcount_popup", { movieData: movieData });
+    res.render("/select_seat"); // 임시
 });
 
 // 좌석선택
@@ -53,8 +54,20 @@ app.get("/payment", (req, res) => {
     res.render("payment");
 });
 
-// 포인트를 적립하시겠습니까?
-app.get("/earnPoint", (req, res) => {
+// ## 포인트 사용 ##
+ 
+// 회원번호 입력
+app.get("/user_verification", (req, res) => {
+    res.render("user_verification_popup");
+});
+
+// 사용 포인트 입력
+app.get("/point_confirmation", (req, res) => {
+    res.render("point_confirmation_popup");
+});
+
+// ## 카드 결제 ## 
+app.get("/earn_point", (req, res) => {
     res.render("payment_point_selection_popup"); 
 });
 
@@ -62,6 +75,8 @@ app.get("/earnPoint", (req, res) => {
 app.get("/inputPoint", (req, res) => {
     res.render("payment_point_accumulation_popup"); 
 });
+
+// === 결제 공통 ===
 
  // 카드 입력 대기 [setTimeout]
 app.get("/buying", (req, res) => {

@@ -17,7 +17,6 @@
         .earnPointPopup {
             width: 84rem;
             height: 100%;
-
             display: flex;
             flex-wrap: wrap;
             align-content: flex-start;
@@ -26,17 +25,14 @@
 
         .earnPointTitle {
             width: 100%;
-
             font-size: 2.4rem;
-            letter-spacing: .5rem;
+            letter-spacing: .3rem;
             color: white;
-
             text-align: center;
         }
 
         .earnPointBtnWrapper {
             width: 80%;
-
             display: flex;
             justify-content: space-evenly;
             margin-bottom: 2rem;
@@ -45,26 +41,20 @@
         .earnPointBtn {
             width: 18rem;
             height: 18rem;
-
             background-color: #3D3F4D;
-
             font-size: 3.2rem;
-
             color: #ffffff;
             border: none;
             border-radius: 0.5rem;
             box-shadow:
-                0 1px 1px rgba(0, 0, 0, 0.08),
-                0 2px 2px rgba(0, 0, 0, 0.12),
-                0 4px 4px rgba(0, 0, 0, 0.16),
-                0 8px 8px rgba(0, 0, 0, 0.20);
-            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+            rgba(0, 0, 0, 0.4) 0px 2px 4px,
+            rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+            rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
             cursor: pointer;
         }
 
         .earnPointBtn:hover {
             background-color: #d4d4d41c;
-
         }
 
         .earnPointBtn:active {
@@ -74,18 +64,21 @@
         .showEarnPoint {
             width: 55%;
             height: 6rem;
-            /* background-color: #444444; */
             border: .15rem solid #fff;
             border-radius: 0.5rem;
 
         }
 
-        .showEarnPointText {
+        .showEarnPointText,
+        .showEarnPointTotal {
             font-size: 1.8rem;
             text-align: center;
             line-height: 6rem;
-            color: #fff;
+            color: #ffffff;
+        }
 
+        .showEarnPointTotal{
+            color: #ffffff;
         }
 
         .earnPopupMarginTop {
@@ -99,31 +92,29 @@
     <div class="wrap">
         <!-- ===레이아웃 영역=== -->
         <section class="layoutArea">
-            <!-- ===사이드바 영역=== -->
-            <section class="progressSidebar">
-                <div class="progressSettings completedStep"><span class="stepLabel">영화 선택</span></div>
-                <div class="progressSettings remainingStep"><span class="stepLabel">시간 선택</span></div>
-                <div class="progressSettings remainingStep"><span class="stepLabel">좌석 선택</span></div>
-                <div class="progressSettings remainingStep"><span class="stepLabel">결제</span></div>
-            </section>
+             <!-- ===사이드바 영역=== -->
+             <!-- <section class="progressSidebar">
+                <div class="progressSettings completedStep"><span class="stepLabel">영화<br>선택</span></div>
+                <div class="progressSettings remainingStep"><span class="stepLabel">시간<br>선택</span></div>
+                <div class="progressSettings remainingStep"><span class="stepLabel">좌석<br>선택</span></div>
+                <div class="progressSettings remainingStep paymentStep"><span class="stepLabel">결제</span></div>
+            </section> -->
             <!-- ===팝업 영역=== -->
             <section class="popupArea">
                 <article class="popupBar">
-                    <p class="popupTitle popupBarTextCommon">팝업제목</p>
+                    <p class="popupTitle popupBarTextCommon">포인트 적립 안내</p>
                     <i class="popupBarTextCommon fa-solid fa-x"></i>
                 </article>
                 <section class="popupContent">
                     <div id="earnPointPopup" class="earnPointPopup">
                         <p id="earnPointTitle" class="earnPointTitle earnPopupMarginTop">포인트를 적립하시겠습니까?</p>
                         <div id="showEarnPoint" class="showEarnPoint earnPopupMarginTop">
-                            <p class="showEarnPointText">적립 예정 포인트 <span class="showEarnPointText">104</span>원</p>
+                            <p class="showEarnPointText">적립 예정 포인트&nbsp;:&nbsp;<span class="showEarnPointTotal">1,000</span>원</p>
                         </div>
                         <div id="earnPointBtnWrapper" class="earnPointBtnWrapper earnPopupMarginTop">
-                            <button id="earnPointYes" class="earnPointBtn">아니오</button>
-                            <button id="earnPointNo" class="earnPointBtn">예</button>
+                            <button id="earnPointNo" class="earnPointBtn">아니오</button>
+                            <button id="earnPointYes" class="earnPointBtn">예</button>
                         </div>
-
-
                     </div>
                 </section>
             </section>
@@ -150,9 +141,11 @@
         earnPointYes.addEventListener("click", () => {
             window.location.href = "/inputPoint";
         });
+
         earnPointNo.addEventListener("click", () => {
             window.location.href = "/buying";
         });
+        
     </script>
 </body>
 

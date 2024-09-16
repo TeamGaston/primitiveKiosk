@@ -33,12 +33,23 @@
         /*  결제완료 이미지 박스 */
         .popupContentImg {
             width: 50rem;
-            height: 50rem;
-            margin-left: 2rem;
-            background-image: url("images/card_input.png");
+            height: 30rem;
+            margin-left: 9rem;
+            background-image: url("images/payment_completed.png");
             background-repeat: no-repeat;
-            background-size: contain;
-            outline: none;
+            background-size: cover;
+            transform: scale(1.15);
+        }
+
+        .showTimerArea {
+            height: 3rem;
+            width: 100%;
+        }
+
+        .showTimer {
+            color: white;
+            font-size: 1.6rem;
+            text-align: center;
         }
     </style>
 </head>
@@ -49,27 +60,27 @@
     <!-- ===레이아웃 영역=== -->
     <section class="layoutArea">
         <!-- ===사이드바 영역=== -->
-        <section class="progressSidebar">
-            <div class="progressSettings completedStep"><span class="stepLabel">영화 선택</span></div>
-            <div class="progressSettings remainingStep"><span class="stepLabel">시간 선택</span></div>
-            <div class="progressSettings remainingStep"><span class="stepLabel">좌석 선택</span></div>
-            <div class="progressSettings remainingStep"><span class="stepLabel">결제</span></div>
-        </section>
+        <!-- <section class="progressSidebar">
+            <div class="progressSettings completedStep"><span class="stepLabel">영화<br>선택</span></div>
+            <div class="progressSettings remainingStep"><span class="stepLabel">시간<br>선택</span></div>
+            <div class="progressSettings remainingStep"><span class="stepLabel">좌석<br>선택</span></div>
+            <div class="progressSettings remainingStep paymentStep"><span class="stepLabel">결제</span></div>
+        </section> -->
         <!-- ===팝업 영역=== -->
         <section class="popupArea">
             <article class="popupBar">
-                <p class="popupTitle popupBarTextCommon">결제 완료</p>
+                <p class="popupTitle popupBarTextCommon">결제 완료 안내</p>
                 <i class="popupBarTextCommon fa-solid fa-x"></i>
             </article>
             <section class="popupContent">
                 <!-- ~여기에 작성~ -->
 
                 <!-- 타이틀 박스 -->
-                <p class="popupContentText">결제 완료</p>
+                <p class="popupContentText">결제가 완료되었습니다.</p>
 
                 <!-- 결제완료 이미지 -->
                 <div class="popupContentImg"></div>
-
+                <p id="timer" class="popupContentText">5</p>
 
             </section>
         </section>

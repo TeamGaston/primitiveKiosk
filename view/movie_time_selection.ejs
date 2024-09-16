@@ -45,10 +45,9 @@
     }
 
     .activeToggle {
-      background-color: #6F122D;
+      background-color: #DE1E2D;
       color: #fff;
     }
-
 
     /* ##영화-시간 메인 콘텐츠 영역## */
     .mainPosterContainer {
@@ -127,12 +126,12 @@
       height: 4.2rem;
       line-height: 4.2rem;
       margin: 1rem;
-      background-color: #d5d5d5;
       border-radius: 0.3rem;
       font-size: 1.42rem;
       font-weight: bold;
       text-align: center;
-      color: #222;
+      color: #FFFFFF;
+      border: .06rem solid rgba(255, 255, 255, 0.479);
       transition: background-color 0.2s ease, transform 0.2s ease;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       cursor: pointer;
@@ -151,13 +150,13 @@
     <!-- ===레이아웃 영역=== -->
     <section class="layoutArea">
 
-      <!-- ===사이드바 영역=== -->
-      <section class="progressSidebar">
-        <div class="progressSettings completedStep"><span class="stepLabel">영화 선택</span></div>
-        <div class="progressSettings remainingStep"><span class="stepLabel">시간 선택</span></div>
-        <div class="progressSettings remainingStep"><span class="stepLabel">좌석 선택</span></div>
-        <div class="progressSettings remainingStep"><span class="stepLabel">결제</span></div>
-      </section>
+       <!-- ===사이드바 영역=== -->
+       <section class="progressSidebar">
+        <div class="progressSettings completedStep"><span class="stepLabel">영화<br>선택</span></div>
+        <div class="progressSettings remainingStep"><span class="stepLabel">시간<br>선택</span></div>
+        <div class="progressSettings remainingStep"><span class="stepLabel">좌석<br>선택</span></div>
+        <div class="progressSettings remainingStep paymentStep"><span class="stepLabel">결제</span></div>
+    </section>
 
       <!-- ##영화/시간 토글## -->
       <section class="toggleContainer">
@@ -313,8 +312,10 @@
       }//
     }//$SelectionSwitcher
 
+    // 클래스 객체 생성
     const selectionSwitcher = new SelectionSwitcher('selectionSwitcher');
     selectionSwitcher.control();
+
     const posters = document.querySelectorAll(".posterItem");
     posters.forEach((poster) => {
       poster.addEventListener("click", () => {

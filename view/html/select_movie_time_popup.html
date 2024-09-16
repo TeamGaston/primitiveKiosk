@@ -22,7 +22,7 @@
         .posterBasicInformation {
             width: 100%;
             display: flex;
-            padding-top: 3.5rem;
+            padding-top: 5.5rem;
             position: relative;
             justify-content: center;
         }
@@ -30,7 +30,8 @@
         .posterImg {
             width: 25rem;
             height: 35rem;
-            background-color: #3b3b3b;
+            background-image: url("images/베테랑.png");
+            background-size: cover;
             /*border: 1px solid blue;*/
         }
 
@@ -60,9 +61,8 @@
         }
 
         .allMvTime {
-            width: 41rem;
+            width: 39.2rem;
             height: 30rem;
-            display: flex;
             flex-wrap: wrap;
             margin-left: 4rem;
             margin-right: -1.3rem;
@@ -71,17 +71,78 @@
         }
 
         .mvTimeList {
+            display: inline-block;
             width: 12rem;
-            height: 6rem;
+            height: 7rem;
             list-style: none;
             border: .06rem solid rgba(255, 255, 255, 0.479);
             text-align: center;
-            font-size: 1.2rem;
             color: white;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 1rem 0.78rem 0 0;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .mvTimeList:hover {
+            background-color: #1F1F1F;
+            border-color: #FFDD00;
+        }
+
+        .activeMvTime {
+            background: #DE1E2D;
+        }
+
+        .activeMvTime:hover {
+            background: #DE1E2D;
+        }
+
+        .theather {
+            font-size: 1.4rem;
+            margin-top: 2px;
+        }
+
+        .startAndEndTime {
+            font-size: 1.3rem;
+            line-height: 2rem;
+        }
+
+        /* 확인 버튼 스타일 */
+        
+        .popupContent{
+            position: relative;
+        }
+        .timeSelectionBtn {
+            position: absolute;
+            right: 5%;
+            bottom: 5%;
+            height: 4rem;
+            width: 11rem;
+            line-height: 4rem;
+            font-size: 1.6rem;
+            background-color: #DE1E2D;
+            color: #ffffff;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.6rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            display: none;
+        }
+
+        .timeSelectionBtn:hover {
+            background-color: #b41c2b;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeSelectionBtn:active {
+            background-color: #b41c2b;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
-
 
 <body>
     <!-- ===최상위 컨테이너=== -->
@@ -90,15 +151,15 @@
         <section class="layoutArea">
             <!-- ===사이드바 영역=== -->
             <section class="progressSidebar">
-                <div class="progressSettings completedStep"><span class="stepLabel">영화 선택</span></div>
-                <div class="progressSettings remainingStep"><span class="stepLabel">시간 선택</span></div>
-                <div class="progressSettings remainingStep"><span class="stepLabel">좌석 선택</span></div>
-                <div class="progressSettings remainingStep"><span class="stepLabel">결제</span></div>
+                <div class="progressSettings completedStep"><span class="stepLabel">영화<br>선택</span></div>
+                <div class="progressSettings completedStep"><span class="stepLabel">시간<br>선택</span></div>
+                <div class="progressSettings remainingStep"><span class="stepLabel">좌석<br>선택</span></div>
+                <div class="progressSettings remainingStep paymentStep"><span class="stepLabel">결제</span></div>
             </section>
             <!-- ===팝업 영역=== -->
             <section class="popupArea">
                 <article class="popupBar">
-                    <p class="popupTitle popupBarTextCommon">상영 시간 선택</p>
+                    <p class="popupTitle popupBarTextCommon">영화 시간을 선택해주세요.</p>
                     <i class="popupBarTextCommon fa-solid fa-x"></i>
                 </article>
                 <section class="popupContent">
@@ -110,24 +171,48 @@
 
                             <div class="posterImg"></div>
                             <ul class="allMvTime" id="allMvTime">
+                                <!-- 1 -->
                                 <li class="mvTimeList">
                                     <p class="theather">A관</p>
-                                    <p class="startAndEndTime">09시00분~12시00분</p>
+                                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
                                 </li>
-
+                                <!-- 2 -->
                                 <li class="mvTimeList">
                                     <p class="theather">A관</p>
-                                    <p class="startAndEndTime">09시00분~12시00분</p>
+                                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
                                 </li>
-
+                                <!-- 3 -->
+                                <li class="mvTimeList">
+                                    <p class="theather">A관</p>
+                                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
+                                </li>
+                                <!-- 4 -->
+                                <li class="mvTimeList">
+                                    <p class="theather">A관</p>
+                                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
+                                </li>
+                                <!-- 5 -->
+                                <li class="mvTimeList">
+                                    <p class="theather">A관</p>
+                                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
+                                </li>
+                                <!-- 6 -->
+                                <li class="mvTimeList">
+                                    <p class="theather">A관</p>
+                                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
+                                </li>
+                                <!-- 7 -->
+                                <li class="mvTimeList">
+                                    <p class="theather">A관</p>
+                                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
+                                </li>
                             </ul>
                         </div>
                         <div class="posterInformation">
-                            <p id="mvName" class="mvName">영화제목</p>
+                            <p id="mvName" class="mvName">영화명</p>
                             <p id="mvTime" class="mvTime">시간</p>
                         </div>
-
-
+                        <button id="timeSelectionCompleteBtn" class="timeSelectionBtn">선택 완료</button>
                 </section>
             </section>
         </section>
@@ -147,6 +232,8 @@
     </div>
     <!-- ==script== -->
     <script>
+        /*
+        // DH
         function objectToQueryString(obj) {
             return Object.keys(obj)
                 .map(key => { return `${key}=${obj[key]}` })
@@ -173,6 +260,22 @@
                 location.href = `/select_headcount_popup?${query}`;
             }
         });
+        */
+        // YJ
+        const mvTimeList = document.querySelectorAll(".mvTimeList");
+        const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
+        mvTimeList.forEach((item) => {
+            item.addEventListener("click", (event) => {
+                mvTimeList.forEach((listItem) => {
+                    listItem.classList.remove("activeMvTime");
+                });
+                item.classList.add("activeMvTime");
+                timeSelectionBtn.style.display="block";
+            });
+        });
+        timeSelectionBtn.addEventListener("click",()=>{
+           window.location.href("/select_seat");
+        })
 
     </script>
 </body>

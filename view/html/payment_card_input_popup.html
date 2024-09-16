@@ -19,36 +19,28 @@
             padding: 2rem;
             align-items: center;
             flex-direction: column;
+            padding-top: 4rem;
         }
 
         .popupContentText {
             font-size: 2.4rem;
             width: 100%;
             text-align: center;
-            margin: 2rem 0 3rem 0;
             color: white;
         }
 
         .popupContentImg {
-            width: 50rem;
-            height: 30rem;
-            margin-left: 2rem;
+            width: 80%;
+            height: 80%;
             background-image: url("images/card_input.png");
             background-repeat: no-repeat;
             background-size: cover;
-            transform: scale(1.15);
-            border: 1px solid red;
         }
 
-        .showTimerArea {
-            height: 3rem;
-            width: 100%;
-        }
-
-        .showTimer {
-            color: white;
-            font-size: 1.6rem;
-            text-align: center;
+        .timeoutText, .timer{
+            font-size: 2rem;
+            color: #d6d6d6;
+            margin-top: 2rem;
         }
     </style>
 </head>
@@ -59,29 +51,30 @@
         <!-- ===레이아웃 영역=== -->
         <section class="layoutArea">
             <!-- ===사이드바 영역=== -->
-            <section class="progressSidebar">
+            <!-- <section class="progressSidebar">
                 <div class="progressSettings completedStep"><span class="stepLabel">영화<br>선택</span></div>
                 <div class="progressSettings remainingStep"><span class="stepLabel">시간<br>선택</span></div>
                 <div class="progressSettings remainingStep"><span class="stepLabel">좌석<br>선택</span></div>
-                <div class="progressSettings remainingStep"><span class="stepLabel">결제</span></div>
-            </section>
+                <div class="progressSettings remainingStep paymentStep"><span class="stepLabel">결제</span></div>
+            </section> -->
             <!-- ===팝업 영역=== -->
             <section class="popupArea">
                 <article class="popupBar">
-                    <p class="popupTitle popupBarTextCommon">paymentPopup</p>
+                    <p class="popupTitle popupBarTextCommon">카드 삽입 안내</p>
                     <i class="popupBarTextCommon fa-solid fa-x"></i>
                 </article>
                 <section class="popupContent">
                     <!-- ~여기에 작성~ -->
-                    <p class="popupContentText">카드입력</p>
-                    <img class="popupContentImg">
-                    <p id="timer" class="popupContentText">5</p>
+                    <p class="popupContentText">카드를 카드 리더기에 삽입해 주세요.</p>
+                    <p  class="timeoutText"><span id="timer" class="timer">5</span>초 후 자동종료 됩니다.</p>
+                    <div class="popupContentImg"></div>
                 </section>
             </section>
         </section>
         <!-- ===하단바 영역=== -->
         <section class="bottomBar">
-            <article class="barButtonsArea">
+            <article class="barButtonsArea">1
+
                 <button class="barButtons staffCallButton">직원호출</button>
                 <button class="barButtons"><i class="bottomBarIcon fa-solid fa-house"></i></button>
                 <button class="barButtons"><i class="bottomBarIcon fa-solid fa-backward"></i></button>
