@@ -106,19 +106,6 @@
       window.location.href = "/home";
     });
 
-    const clock = document.getElementById("touchPageClock");
-
-    const updateClock = () => {
-      const time = new Date();
-      const [hour, minute] = [time.getHours().toString().padStart(2, "0"), time.getMinutes().toString().padStart(2, "0")];
-      clock.innerText = `${hour}:${minute}`;
-    }
-
-    updateClock();
-    setInterval(() => {
-      updateClock();
-    }, 5000);
-
   </script>
 </body>
 

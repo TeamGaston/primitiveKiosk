@@ -41,7 +41,7 @@ app.get("/select_headcount_popup", (req, res) => {
     // console.log(typeof req.query);
     // const movieData = req.query;
     // res.render("select_headcount_popup", { movieData: movieData });
-    res.render("/select_seat"); // 임시
+    res.render("/select_headcount_popup"); // 임시
 });
 
 // 좌석선택
@@ -55,7 +55,7 @@ app.get("/payment", (req, res) => {
 });
 
 // ## 포인트 사용 ##
- 
+
 // 회원번호 입력
 app.get("/user_verification", (req, res) => {
     res.render("user_verification_popup");
@@ -96,4 +96,8 @@ app.get("/printTicket", (req, res) => {
 // 결제완료 [setTimeout]
 app.get("/complete", (req, res) => {
     res.render("complete");
+});
+
+app.get("/test", (req, res) => {
+    res.render("layout");
 });
