@@ -112,8 +112,8 @@
                             <p class="showEarnPointText">적립 예정 포인트&nbsp;:&nbsp;<span class="showEarnPointTotal">1,000</span>원</p>
                         </div>
                         <div id="earnPointBtnWrapper" class="earnPointBtnWrapper earnPopupMarginTop">
-                            <button id="earnPointYes" class="earnPointBtn">아니오</button>
-                            <button id="earnPointNo" class="earnPointBtn">예</button>
+                            <button id="earnPointNo" class="earnPointBtn">아니오</button>
+                            <button id="earnPointYes" class="earnPointBtn">예</button>
                         </div>
                     </div>
                 </section>
@@ -141,9 +141,11 @@
         earnPointYes.addEventListener("click", () => {
             window.location.href = "/inputPoint";
         });
+
         earnPointNo.addEventListener("click", () => {
             window.location.href = "/buying";
         });
+        
     </script>
 </body>
 

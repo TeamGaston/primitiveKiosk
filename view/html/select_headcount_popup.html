@@ -251,7 +251,7 @@
         <!-- ==script== -->
         <script>
             /*
-            const movieData = <% - JSON.stringify(movieData) %>;
+            const movieData = JSON.stringify(movieData);
             //영화관 인원수 디폴트 값 추가 
             movieData.adult = 0;
             movieData.youth = 0;
@@ -271,12 +271,13 @@
             */
 
             document.getElementById("selectPeopleBtn").addEventListener("click", () => {
-                console.log(movieData);
-                if (movieData.adult == 0 && movieData.youth == 0 && movieData.special == 0) {
-                    alert("인원을 선택해주세요!");
-                } else {
-                    window.location.href = "/select_seat";
-                }
+                // console.log(movieData);
+                // if (movieData.adult == 0 && movieData.youth == 0 && movieData.special == 0) {
+                //     alert("인원을 선택해주세요!");
+                // } else {
+                //     window.location.href = "/select_seat";
+                // }
+                window.location.href = "/select_seat";
             }
             );
 

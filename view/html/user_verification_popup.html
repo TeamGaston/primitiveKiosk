@@ -60,7 +60,7 @@
                         <button class="key delete"><i class="fa-solid fa-delete-left"></i></button>
                         <button class="key">0</button>
                         <button class="key">재입력</button>
-                        <button class="check">확인</button>
+                        <button id="checkBtn" class="check">확인</button>
                     </section>
                 </section>
             </section>
@@ -80,9 +80,9 @@
 
     </div>
     <script>
-        const checkBtn = document.getElementById("check");
+        const checkBtn = document.getElementById("checkBtn");
         checkBtn.addEventListener("click",()=>{
-            window.location.href = "point_confirmation";
+            window.location.href = "/point_confirmation";
         })
     </script>
 </body>
