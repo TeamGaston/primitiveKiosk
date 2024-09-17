@@ -78,11 +78,7 @@
     </section>
 
 </section>
-
-<section id="popup" class="popupArea">
-    
-</section>
-
+<div id="popupPos"></div>
 <script>
 
     class SelectionSwitcher {
@@ -146,18 +142,17 @@
     selectionSwitcher.control();
 
     const posters = document.querySelectorAll(".posterItem");
-    const popup = document.getElementById("popup");
     posters.forEach((poster) => {
         poster.addEventListener("click", () => {
             //window.location.href = "/select_movie_time_popup";
-            popup.innerHTML = `<%- include("popup_select_movie_time") %>`;
 
+            fetch(`/popup/popup_select_movie_time`)
+                .then( response => response.text() )
+                .then( html => {
+                    document.getElementById("popupPos").innerHTML = html;
+                } );
         });
     });
-
-    
-
-
 
 </script>
 

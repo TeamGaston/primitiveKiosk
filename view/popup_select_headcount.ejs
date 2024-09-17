@@ -1,7 +1,7 @@
-<section class="popupArea">
+<section id="popup_select_headcount" class="popupArea">
     <article class="popupBar">
         <p class="popupTitle popupBarTextCommon">관람인원을 선택해주세요.</p>
-        <i class="popupBarTextCommon fa-solid fa-x"></i>
+        <div id="closePopup"><i class="popupBarTextCommon fa-solid fa-x"></i></div>
     </article>
     <section class="popupContent">
         <!-- ~여기에 작성~ -->
@@ -109,3 +109,107 @@
         <button id="selectPeopleBtn" class="selectPeopleBtn">선택 완료</button>
     </section>
 </section>
+
+<script>
+    const selectPeopleButton = document.getElementById( "selectPeopleBtn" );
+
+    selectPeopleButton.addEventListener( "click", () => {
+            window.location.href = "/select_seat";
+        } );
+</script>
+
+<style>
+    .popupContent {
+        text-align: center;
+    }
+
+    /* 숫자 카운트 박스 공통된 부분  */
+    .selectPeople {
+        width: 65%;
+        height: 5rem;
+        background-color: #3D3F4D;
+        position: relative;
+        margin-bottom: 5rem;
+        top: 15%;
+        color: #ffffff;
+        left: 17.5%;
+    }
+
+    /* 확인 버튼 스타일 */
+    .selectPeopleBtn {
+        height: 4rem;
+        width: 11rem;
+        font-size: 1.6rem;
+        margin-top: 10rem;
+        background-color: #DE1E2D;
+        color: #ffffff;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1.6rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s, box-shadow 0.2s;
+    }
+
+    .selectPeopleBtn:hover {
+        background-color: #b41c2b;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .selectPeopleBtn:active {
+        background-color: #b41c2b;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 숫자 선택박스의 텍스트 */
+    .ticketTitle {
+        text-align: center;
+        line-height: 5rem;
+        font-size: 1.5rem;
+        background-color: #1F1F2F;
+        width: 7rem;
+        color: #FFFFFF;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        font-weight: bold;
+    }
+
+    /* RadioCss 부분 설명 */
+    .number-selection {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .number-selection input[type="radio"] {
+        display: none;
+    }
+
+    .number-selection label {
+        display: inline-block;
+        cursor: pointer;
+        text-align: center;
+        width: 4rem;
+        flex-grow: 1;
+        /* 라벨을 flex-grow로 균등하게 배치 */
+        line-height: 5rem;
+        font-size: 1.5rem;
+        display: inline-block;
+        border: 1px solid #3D3F4D;
+        background-color: #2A2A2A;
+        color: #FFFFFF;
+        border-radius: 0.5rem;
+        transition: background-color 0.1s, border-color 0.1s;
+    }
+
+    .number-selection label:hover {
+        background-color: #1F1F1F;
+        border-color: #FFDD00;
+    }
+
+    /* 라디오 버튼이 체크되었을 때 해당 라벨의 스타일을 변경 */
+    .number-selection input[type="radio"]:checked+label {
+        background-color: #DE1E2D;
+        color: white;
+    }
+</style>
