@@ -49,7 +49,7 @@ app.get("/select_seat", (req, res) => {
     res.render("seat_selectionA");
 });
 
-// 결제창
+// ### 결제창 ###
 app.get("/payment", (req, res) => {
     res.render("payment");
 });
@@ -72,7 +72,7 @@ app.get("/earn_point", (req, res) => {
 });
 
 // 포인트 적립을 위한 번호 넣기
-app.get("/inputPoint", (req, res) => {
+app.get("/input_point", (req, res) => {
     res.render("payment_point_accumulation_popup"); 
 });
 

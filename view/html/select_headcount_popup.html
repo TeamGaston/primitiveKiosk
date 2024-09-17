@@ -46,14 +46,20 @@
             transition: background-color 0.2s, box-shadow 0.2s;
         }
 
-        .selectPeopleBtn:hover {
+        .selectPeopleBtn:hover :not(.disalbledBtn) {
             background-color: #b41c2b;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .selectPeopleBtn:active {
+        .selectPeopleBtn:active :not(.disalbledBtn) {
             background-color: #b41c2b;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .disalbledBtn {
+            background-color: #3b3b3b;
+            color: #9d9d9d;
+            pointer-events: none;
         }
 
         /* 숫자 선택박스의 텍스트 */
@@ -76,7 +82,7 @@
             justify-content: space-between;
         }
 
-        .number-selection input[type="radio"] {
+        .number-selection input[type="checkbox"] {
             display: none;
         }
 
@@ -103,7 +109,7 @@
         }
 
         /* 라디오 버튼이 체크되었을 때 해당 라벨의 스타일을 변경 */
-        .number-selection input[type="radio"]:checked+label {
+        .number-selection input[type="checkbox"]:checked+label {
             background-color: #DE1E2D;
             color: white;
         }
@@ -128,37 +134,37 @@
                     <p class="popupTitle popupBarTextCommon">관람인원을 선택해주세요.</p>
                     <i class="popupBarTextCommon fa-solid fa-x"></i>
                 </article>
-                <section class="popupContent">
+                <section id="popupContent" class="popupContent">
                     <!-- ~여기에 작성~ -->
                     <div class="adult selectPeople">
                         <div class="number-selection">
                             <div class="ticketTitle">성인</div>
 
-                            <input type="radio" id="adult-0" name="adult" value="0" />
-                            <label for="adult-0">0</label>
+                            <!-- <input type="checkbox" id="adult-0" name="adult" value="0" />
+                            <label for="adult-0">0</label> -->
 
-                            <input type="radio" id="adult-1" name="adult" value="1" />
+                            <input type="checkbox" id="adult-1" name="adult" value="1" />
                             <label for="adult-1">1</label>
 
-                            <input type="radio" id="adult-2" name="adult" value="2" />
+                            <input type="checkbox" id="adult-2" name="adult" value="2" />
                             <label for="adult-2">2</label>
 
-                            <input type="radio" id="adult-3" name="adult" value="3" />
+                            <input type="checkbox" id="adult-3" name="adult" value="3" />
                             <label for="adult-3">3</label>
 
-                            <input type="radio" id="adult-4" name="adult" value="4" />
+                            <input type="checkbox" id="adult-4" name="adult" value="4" />
                             <label for="adult-4">4</label>
 
-                            <input type="radio" id="adult-5" name="adult" value="5" />
+                            <input type="checkbox" id="adult-5" name="adult" value="5" />
                             <label for="adult-5">5</label>
 
-                            <input type="radio" id="adult-6" name="adult" value="6" />
+                            <input type="checkbox" id="adult-6" name="adult" value="6" />
                             <label for="adult-6">6</label>
 
-                            <input type="radio" id="adult-7" name="adult" value="7" />
+                            <input type="checkbox" id="adult-7" name="adult" value="7" />
                             <label for="adult-7">7</label>
 
-                            <input type="radio" id="adult-8" name="adult" value="8" />
+                            <input type="checkbox" id="adult-8" name="adult" value="8" />
                             <label for="adult-8">8</label>
                         </div>
                     </div>
@@ -167,31 +173,31 @@
                         <div class="number-selection">
                             <div class="ticketTitle">청소년</div>
 
-                            <input type="radio" id="youth-0" name="youth" value="0" />
-                            <label for="youth-0">0</label>
+                            <!-- <input type="checkbox" id="youth-0" name="youth" value="0" />
+                            <label for="youth-0">0</label> -->
 
-                            <input type="radio" id="youth-1" name="youth" value="1" />
+                            <input type="checkbox" id="youth-1" name="youth" value="1" />
                             <label for="youth-1">1</label>
 
-                            <input type="radio" id="youth-2" name="youth" value="2" />
+                            <input type="checkbox" id="youth-2" name="youth" value="2" />
                             <label for="youth-2">2</label>
 
-                            <input type="radio" id="youth-3" name="youth" value="3" />
+                            <input type="checkbox" id="youth-3" name="youth" value="3" />
                             <label for="youth-3">3</label>
 
-                            <input type="radio" id="youth-4" name="youth" value="4" />
+                            <input type="checkbox" id="youth-4" name="youth" value="4" />
                             <label for="youth-4">4</label>
 
-                            <input type="radio" id="youth-5" name="youth" value="5" />
+                            <input type="checkbox" id="youth-5" name="youth" value="5" />
                             <label for="youth-5">5</label>
 
-                            <input type="radio" id="youth-6" name="youth" value="6" />
+                            <input type="checkbox" id="youth-6" name="youth" value="6" />
                             <label for="youth-6">6</label>
 
-                            <input type="radio" id="youth-7" name="youth" value="7" />
+                            <input type="checkbox" id="youth-7" name="youth" value="7" />
                             <label for="youth-7">7</label>
 
-                            <input type="radio" id="youth-8" name="youth" value="8" />
+                            <input type="checkbox" id="youth-8" name="youth" value="8" />
                             <label for="youth-8">8</label>
                         </div>
                     </div>
@@ -201,37 +207,35 @@
                         <div class="number-selection">
                             <div class="ticketTitle">우대</div>
 
-                            <input type="radio" id="special-0" name="special" value="0" />
-                            <label for="special-0">0</label>
+                            <!-- <input type="checkbox" id="special-0" name="special" value="0" />
+                            <label for="special-0">0</label> -->
 
-                            <input type="radio" id="special-1" name="special" value="1" />
+                            <input type="checkbox" id="special-1" name="special" value="1" />
                             <label for="special-1">1</label>
 
-                            <input type="radio" id="special-2" name="special" value="2" />
+                            <input type="checkbox" id="special-2" name="special" value="2" />
                             <label for="special-2">2</label>
 
-                            <input type="radio" id="special-3" name="special" value="3" />
+                            <input type="checkbox" id="special-3" name="special" value="3" />
                             <label for="special-3">3</label>
 
-                            <input type="radio" id="special-4" name="special" value="4" />
+                            <input type="checkbox" id="special-4" name="special" value="4" />
                             <label for="special-4">4</label>
 
-                            <input type="radio" id="special-5" name="special" value="5" />
+                            <input type="checkbox" id="special-5" name="special" value="5" />
                             <label for="special-5">5</label>
 
-                            <input type="radio" id="special-6" name="special" value="6" />
+                            <input type="checkbox" id="special-6" name="special" value="6" />
                             <label for="special-6">6</label>
 
-                            <input type="radio" id="special-7" name="special" value="7" />
+                            <input type="checkbox" id="special-7" name="special" value="7" />
                             <label for="special-7">7</label>
 
-                            <input type="radio" id="special-8" name="special" value="8" />
+                            <input type="checkbox" id="special-8" name="special" value="8" />
                             <label for="special-8">8</label>
                         </div>
                     </div>
-
-
-                    <button id="selectPeopleBtn" class="selectPeopleBtn">선택 완료</button>
+                    <button id="selectPeopleBtn" class="selectPeopleBtn disalbledBtn">선택 완료</button>
                 </section>
             </section>
         </section>
@@ -250,36 +254,141 @@
         </section>
         <!-- ==script== -->
         <script>
-            /*
-            const movieData = JSON.stringify(movieData);
-            //영화관 인원수 디폴트 값 추가 
-            movieData.adult = 0;
-            movieData.youth = 0;
-            movieData.special = 0;
+            const selectPeopleBtn = document.getElementById("selectPeopleBtn");
+
+            // JSON으로 빠져야하는 객체
+            const movieData = {
+                adult: 0,
+                youth: 0,
+                special: 0
+            };
+
+            // DOM ID 할당 객체
+            const headCounterDom = {
+                adult: [],
+                youth: [],
+                special: []
+            }
+
 
             document.getElementById("popupContent").addEventListener("click", (event) => {
-                if (event.target.name == "adult") {
-                    movieData.adult = event.target.value;
+                switch (event.target.name) {
+                    case "adult":
+                        movieData.adult = event.target.value;
+                        break;
+                    case "youth":
+                        movieData.youth = event.target.value;
+                        break;
+                    case "special":
+                        movieData.special = event.target.value;
                 }
-                if (event.target.name == "youth") {
-                    movieData.youth = event.target.value;
-                }
-                if (event.target.name == "special") {
-                    movieData.special = event.target.value;
+                // console.log(movieData)
+            });
+
+            selectPeopleBtn.addEventListener("click", () => {
+                if ((movieData.adult + movieData.youth + movieData.special) == 0) {
+                    alert("인원을 선택해주세요!");
+                } else {
+                    window.location.href = "/select_seat";
                 }
             });
-            */
 
-            document.getElementById("selectPeopleBtn").addEventListener("click", () => {
-                // console.log(movieData);
-                // if (movieData.adult == 0 && movieData.youth == 0 && movieData.special == 0) {
-                //     alert("인원을 선택해주세요!");
-                // } else {
-                //     window.location.href = "/select_seat";
-                // }
-                window.location.href = "/select_seat";
+            // inputBox DOM ID 할당 //
+            for (let key in headCounterDom) {
+                for (let i = 1; i <= 8; i++) {
+                    if (document.getElementById(`${key}-${i}`)) {
+                        headCounterDom[key].push(document.getElementById(`${key}-${i}`));
+                    }
+                }
             }
-            );
+
+            // === 자료평탄화 ===
+            // ^Queue
+            class Queue {
+                constructor(id) {
+                    this.id = id;
+                    this.storage = [];
+                }
+                pushItem(item) { this.storage.push(item); }
+                shiftItem() { return this.storage.shift(); }
+                getAllItems() { return this.storage; }
+            }//$Queue
+
+            // ^Flatten
+            class Flatten {
+                constructor(id) {
+                    this.id = id;
+                    this.queue = new Queue('queue');
+                }//
+                flattening(value) {
+                    if (value && typeof value === "object") {
+                        if (Array.isArray(value)) {
+                            value.forEach((item) => {
+                                this.flattening(item);
+                            });
+                        } else if (!(value instanceof HTMLElement)) {
+                            // ** HTMLElement 체크하여 무한 순회 방지 **
+                            for (let key in value) {
+                                this.flattening(value[key]);
+                            }
+                        } else {
+                            // ** DOM 요소는 바로 Queue에 추가 **
+                            this.queue.pushItem(value);
+                        }
+                    } else {
+                        this.queue.pushItem(value);
+                    }
+                }
+                getFlattenedItems() {
+                    return this.queue.getAllItems();
+                }
+            }//$Flatten
+
+            const flatten = new Flatten("flatten")
+            flatten.flattening({ ...headCounterDom });
+
+            const domIdFlatten = [...flatten.getFlattenedItems()]
+
+            const confirmCheckType = () => {
+                let isChecked = false;
+                for (let i = 0; i < domIdFlatten.length; i++) {
+                    if (domIdFlatten[i].checked == true) {
+                        isChecked = true;
+                        break;
+                    }
+                }
+                return isChecked;
+            }
+
+            // 체크박스를 -> 라디오 버튼 기능처럼 사용 //
+            for (let key in headCounterDom) {
+                headCounterDom[key].forEach((item) => {
+                    item.addEventListener("click", (event) => {
+                        selectPeopleBtn.classList.remove("disalbledBtn")
+                        headCounterDom[key].forEach((item) => {
+                            if (item != document.getElementById(event.target.id)) {
+                                item.checked = false;
+                            }
+                            confirmCheckType();
+                            if (confirmCheckType() == false) {
+                                selectPeopleBtn.classList.add("disalbledBtn");
+                                movieData = {
+                                    adult: 0,
+                                    youth: 0,
+                                    special: 0
+                                }
+                            }
+
+                        })
+                    })
+                })
+            }
+
+
+
+
+
+
 
         </script>
     </div>
