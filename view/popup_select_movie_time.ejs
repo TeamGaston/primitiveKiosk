@@ -73,12 +73,12 @@
     });
 
     timeSelectionBtn.addEventListener("click", () => {
-        //window.location.href = "/select_headcount";
-        fetch(`/popup/popup_select_headcount`)
-                .then( response => response.text() )
-                .then( html => {
-                    document.getElementById("popupPos").innerHTML = html;
-                } );
+        window.location.href = "/select_headcount";
+        // fetch(`/popup/popup_select_headcount`)
+        //         .then( response => response.text() )
+        //         .then( html => {
+        //             document.getElementById("popupPos").innerHTML = html;
+        //         } );
     });
 
     const closePopup = document.getElementById("closePopup");
