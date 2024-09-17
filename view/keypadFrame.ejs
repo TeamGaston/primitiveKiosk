@@ -1,14 +1,25 @@
-<div type="number" class="phoneNumber"></div>
-        <button class="key">1</button>
-        <button class="key">2</button>
-        <button class="key">3</button>
-        <button class="key">4</button>
-        <button class="key">5</button>
-        <button class="key">6</button>
-        <button class="key">7</button>
-        <button class="key">8</button>
-        <button class="key">9</button>
-        <button class="key delete"><i class="fa-solid fa-delete-left"></i></button>
-        <button class="key">0</button>
-        <button class="key">재입력</button>
+<div id="displayNumber" type="number" class="phoneNumber"></div>
+        <button class="key" value="1">1</button>
+        <button class="key" value="2">2</button>
+        <button class="key" value="3">3</button>
+        <button class="key" value="4">4</button>
+        <button class="key" value="5">5</button>
+        <button class="key" value="6">6</button>
+        <button class="key" value="7">7</button>
+        <button class="key" value="8">8</button>
+        <button class="key" value="9">9</button>
+        <button class="key delete" value="delete"><i class="fa-solid fa-delete-left"></i></button>
+        <button class="key" value="0">0</button>
+        <button class="key" value="reset">재입력</button>
         <button id="checkBtn" class="check">확인</button>
+
+<script>
+        const displayNumber = document.getElementById("displayNumber");
+        const keys = document.querySelectorAll(".key");
+
+        keys.forEach( (key) => {
+                key.addEventListener( "click", () => {
+                        displayNumber.innerText += key.value;
+                } );
+        } );
+</script>
