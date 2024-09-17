@@ -41,11 +41,7 @@ app.get("/select_headcount", (req, res) => {
     // console.log(typeof req.query);
     // const movieData = req.query;
     // res.render("select_headcount_popup", { movieData: movieData });
-<<<<<<< HEAD
-    res.render("/select_headcount_popup"); // 임시
-=======
     res.render("select_headcount_popup"); // 임시
->>>>>>> 99fd61e83c0bee084b88f4889c9fd4637477eaf7
 });
 
 // 좌석선택
