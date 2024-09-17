@@ -97,3 +97,7 @@ app.get("/printTicket", (req, res) => {
 app.get("/complete", (req, res) => {
     res.render("complete");
 });
+
+app.get("/test", (req, res) => {
+    res.render("layout");
+});

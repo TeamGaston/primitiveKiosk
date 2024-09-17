@@ -12,7 +12,7 @@
   <script src="https://kit.fontawesome.com/611c1b2c45.js" crossorigin="anonymous"></script>
   <!-- css -->
   <link rel="stylesheet" href="style.css">
-  <title>touch_page</title>
+  <title>Welcome</title>
   <style>
     .logoImg {
       padding-left: 47.7rem;
@@ -105,19 +105,6 @@
     touchScreen.addEventListener("click", () => {
       window.location.href = "/home";
     });
-
-    const clock = document.getElementById("touchPageClock");
-
-    const updateClock = () => {
-      const time = new Date();
-      const [hour, minute] = [time.getHours().toString().padStart(2, "0"), time.getMinutes().toString().padStart(2, "0")];
-      clock.innerText = `${hour}:${minute}`;
-    }
-
-    updateClock();
-    setInterval(() => {
-      updateClock();
-    }, 5000);
 
   </script>
 </body>
