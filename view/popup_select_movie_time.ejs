@@ -1,61 +1,58 @@
-<!-- ===팝업 영역=== -->
-<section id="popup_select_movie_time" class="popupArea">
-    <article class="popupBar">
-        <p class="popupTitle popupBarTextCommon">영화 시간을 선택해주세요.</p>
-        <div id="closePopup"><i class="popupBarTextCommon fa-solid fa-x"></i></div>
-    </article>
-    <section class="popupContent">
-        <!-- ~여기에 작성~ -->
+<article class="popupBar">
+    <p class="popupTitle popupBarTextCommon">영화 시간을 선택해주세요.</p>
+    <div id="closePopup"><i class="popupBarTextCommon fa-solid fa-x"></i></div>
+</article>
+<section class="popupContent">
+    <!-- ~여기에 작성~ -->
 
-        <!-- 시간선택팝업 -->
-        <div class="timePopupAll">
-            <div class="posterBasicInformation">
+    <!-- 시간선택팝업 -->
+    <div class="timePopupAll">
+        <div class="posterBasicInformation">
 
-                <div class="posterImg"></div>
-                <ul class="allMvTime" id="allMvTime">
-                    <!-- 1 -->
-                    <li class="mvTimeList">
-                        <p class="theather">A관</p>
-                        <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                    </li>
-                    <!-- 2 -->
-                    <li class="mvTimeList">
-                        <p class="theather">A관</p>
-                        <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                    </li>
-                    <!-- 3 -->
-                    <li class="mvTimeList">
-                        <p class="theather">A관</p>
-                        <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                    </li>
-                    <!-- 4 -->
-                    <li class="mvTimeList">
-                        <p class="theather">A관</p>
-                        <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                    </li>
-                    <!-- 5 -->
-                    <li class="mvTimeList">
-                        <p class="theather">A관</p>
-                        <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                    </li>
-                    <!-- 6 -->
-                    <li class="mvTimeList">
-                        <p class="theather">A관</p>
-                        <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                    </li>
-                    <!-- 7 -->
-                    <li class="mvTimeList">
-                        <p class="theather">A관</p>
-                        <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                    </li>
-                </ul>
-            </div>
-            <div class="posterInformation">
-                <p id="mvName" class="mvName">영화명</p>
-                <p id="mvTime" class="mvTime">시간</p>
-            </div>
-            <button id="timeSelectionCompleteBtn" class="timeSelectionBtn">선택 완료</button>
-    </section>
+            <div class="posterImg"></div>
+            <ul class="allMvTime" id="allMvTime">
+                <!-- 1 -->
+                <li class="mvTimeList">
+                    <p class="theather">A관</p>
+                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
+                </li>
+                <!-- 2 -->
+                <li class="mvTimeList">
+                    <p class="theather">A관</p>
+                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
+                </li>
+                <!-- 3 -->
+                <li class="mvTimeList">
+                    <p class="theather">A관</p>
+                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
+                </li>
+                <!-- 4 -->
+                <li class="mvTimeList">
+                    <p class="theather">A관</p>
+                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
+                </li>
+                <!-- 5 -->
+                <li class="mvTimeList">
+                    <p class="theather">A관</p>
+                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
+                </li>
+                <!-- 6 -->
+                <li class="mvTimeList">
+                    <p class="theather">A관</p>
+                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
+                </li>
+                <!-- 7 -->
+                <li class="mvTimeList">
+                    <p class="theather">A관</p>
+                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
+                </li>
+            </ul>
+        </div>
+        <div class="posterInformation">
+            <p id="mvName" class="mvName">영화명</p>
+            <p id="mvTime" class="mvTime">시간</p>
+        </div>
+        <button id="timeSelectionCompleteBtn" class="timeSelectionBtn">선택 완료</button>
 </section>
 
 <script>
@@ -80,14 +77,6 @@
         //             document.getElementById("popupPos").innerHTML = html;
         //         } );
     });
-
-    const closePopup = document.getElementById("closePopup");
-    closePopup.style = "cursor: pointer";
-    
-    closePopup.addEventListener( "click", () => {
-        location.reload();
-        
-    } );
 </script>
 
 <style>

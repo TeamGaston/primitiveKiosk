@@ -8,23 +8,20 @@
 <script>
     const currentPage = new URL(window.location.href).pathname;
 
-    const progressPage = document.querySelectorAll(".progressSettings");
-
-    switch ( currentPage ) {
-        case "/movie_selection":
-            document.getElementById("stepSelectMovie").classList.replace( "remainingStep", "completedStep" );
-            break;
-        case "/select_movie_time_popup":
-        case "/select_headcount":
-            document.getElementById("stepSelectTime").classList.replace( "remainingStep", "completedStep" );
-            break;
-        case "/select_seat":
-            document.getElementById("stepSelectSeat").classList.replace( "remainingStep", "completedStep" );
-            break;
-        case "/payment":
-            document.getElementById("stepPayment").classList.replace( "remainingStep", "completedStep" );
-            break;
+    const pages = {
+        "/movie_selection": "stepSelectMovie",
+        "/select_movie_time_popup": "stepSelectTime",
+        "/select_headcount": "stepSelectTime",
+        "/select_seat": "stepSelectSeat",
+        "/payment": "stepPayment",
+        "/earn_point": "stepPayment"
     }
+
+    const updateSideBar = ( page ) => {
+        document.getElementById( page ). classList.replace( "remainingStep", "completedStep" );
+    }
+
+    ( pages[currentPage] ) && ( updateSideBar( pages[currentPage] ) );
     
 
 

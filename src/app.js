@@ -81,6 +81,7 @@ app.get("/point_confirmation", (req, res) => {
 });
 
 // ## 카드 결제 ## 
+// 포인트를 적랍하시겠습니까?
 app.get("/earn_point", (req, res) => {
     res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_payment_point_selection", bottomBar: "bottomBarFrame" });
 });
