@@ -38,19 +38,12 @@ app.get("/select_movie_time_popup", (req, res) => {
     res.render("layout", { content: "content_movie_selection", sideBar: "sideBarFrame", popup: "popup_select_movie_time", bottomBar: "bottomBarFrame" });
 });
 
-app.get("/popup/:popupId", (req, res) => {
-    const popupId = req.params.popupId; // URL에서 경로 매개변수 'popupId'를 가져옵니다.
-    console.log(popupId);
+// app.get("/popup/:popupId", (req, res) => {
+//     const popupId = req.params.popupId; // URL에서 경로 매개변수 'popupId'를 가져옵니다.
+//     console.log(popupId);
     
-    // EJS 템플릿 파일을 렌더링합니다.
-    res.render(`${popupId}`, {}, (err, html) => { 
-        if (err) {
-            res.status(404).send("Popup not found"); // 파일을 찾을 수 없거나 렌더링 오류 발생 시 404 상태 코드 반환
-        } else {
-            res.send(html); // 렌더링된 HTML을 클라이언트에 반환
-        }
-    });
-});
+//     res.render( "popup_layout", { popupContent: popupId } );
+// });
 
 
 // 관람 인원 설정
