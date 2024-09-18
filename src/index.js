@@ -1,6 +1,7 @@
-import express from "express";
+import express, { query } from "express";
 import mysql from "mysql";
 import path from "path";
+
 
 const app = express();
 
@@ -8,6 +9,7 @@ app.use(express.static("public"));
 
 app.set("view engine", "ejs");
 app.set("views", "view");
+app.set('views', path.join(__dirname, 'views'));
 
 app.listen(3000, () => {
     console.log("3000 Port is ready");
@@ -31,17 +33,17 @@ app.get("/movie_selection", (req, res) => {
 });
 
 // 상영시간선택
-app.get("/select_movie_time_popup", (req, res) => {
+app.get("/select_movie_time", (req, res) => {
     res.render("select_movie_time_popup");
 });
 
 // 관람 인원 설정
-app.get("/select_headcount", (req, res) => {
-    // console.log(req.query);
-    // console.log(typeof req.query);
-    // const movieData = req.query;
-    // res.render("select_headcount_popup", { movieData: movieData });
-    res.render("select_headcount_popup"); // 임시
+app.get(`/select_headcount_popup`, (req, res) => {
+    console.log(req.query);
+    console.log(typeof req.query);
+    const movieData = req.query;
+    res.render("select_headcount_popup", { movieData: movieData });
+    // res.render("select_headcount_popup"); // 임시
 });
 
 // 좌석선택

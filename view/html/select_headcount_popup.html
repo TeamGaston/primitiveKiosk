@@ -46,12 +46,12 @@
             transition: background-color 0.2s, box-shadow 0.2s;
         }
 
-        .selectPeopleBtn:hover :not(.disalbledBtn) {
+        .selectPeopleBtn:hover {
             background-color: #b41c2b;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .selectPeopleBtn:active :not(.disalbledBtn) {
+        .selectPeopleBtn:active {
             background-color: #b41c2b;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -268,30 +268,35 @@
                 adult: [],
                 youth: [],
                 special: []
+            };
+
+            for (let key in movieData) {
+                document.querySelectorAll(`input[name="${key}"]`).forEach((checkbox) => {
+                    checkbox.addEventListener('change', (event) => {
+                        const checkboxes = document.querySelectorAll(`input[name="${key}"]:checked`);
+                        if (checkboxes.length > 0) {
+                            switch (event.target.name) {
+                                case "adult":
+                                    movieData.adult = event.target.value;
+                                    break;
+                                case "youth":
+                                    movieData.youth = event.target.value;
+                                    break;
+                                case "special":
+                                    movieData.special = event.target.value;
+                            }
+                        } else {
+                            movieData[key] = 0;
+                        }
+                        if ((movieData.adult + movieData.youth + movieData.special) == 0) {
+                            selectPeopleBtn.classList.add("disalbledBtn");
+                        } else {
+                            selectPeopleBtn.classList.remove("disalbledBtn");
+                        }
+                        console.log(movieData)
+                    });
+                });
             }
-
-
-            document.getElementById("popupContent").addEventListener("click", (event) => {
-                switch (event.target.name) {
-                    case "adult":
-                        movieData.adult = event.target.value;
-                        break;
-                    case "youth":
-                        movieData.youth = event.target.value;
-                        break;
-                    case "special":
-                        movieData.special = event.target.value;
-                }
-                // console.log(movieData)
-            });
-
-            selectPeopleBtn.addEventListener("click", () => {
-                if ((movieData.adult + movieData.youth + movieData.special) == 0) {
-                    alert("인원을 선택해주세요!");
-                } else {
-                    window.location.href = "/select_seat";
-                }
-            });
 
             // inputBox DOM ID 할당 //
             for (let key in headCounterDom) {
@@ -302,88 +307,22 @@
                 }
             }
 
-            // === 자료평탄화 ===
-            // ^Queue
-            class Queue {
-                constructor(id) {
-                    this.id = id;
-                    this.storage = [];
-                }
-                pushItem(item) { this.storage.push(item); }
-                shiftItem() { return this.storage.shift(); }
-                getAllItems() { return this.storage; }
-            }//$Queue
-
-            // ^Flatten
-            class Flatten {
-                constructor(id) {
-                    this.id = id;
-                    this.queue = new Queue('queue');
-                }//
-                flattening(value) {
-                    if (value && typeof value === "object") {
-                        if (Array.isArray(value)) {
-                            value.forEach((item) => {
-                                this.flattening(item);
-                            });
-                        } else if (!(value instanceof HTMLElement)) {
-                            // ** HTMLElement 체크하여 무한 순회 방지 **
-                            for (let key in value) {
-                                this.flattening(value[key]);
-                            }
-                        } else {
-                            // ** DOM 요소는 바로 Queue에 추가 **
-                            this.queue.pushItem(value);
-                        }
-                    } else {
-                        this.queue.pushItem(value);
-                    }
-                }
-                getFlattenedItems() {
-                    return this.queue.getAllItems();
-                }
-            }//$Flatten
-
-            const flatten = new Flatten("flatten")
-            flatten.flattening({ ...headCounterDom });
-
-            const domIdFlatten = [...flatten.getFlattenedItems()]
-
-            const confirmCheckType = () => {
-                let isChecked = false;
-                for (let i = 0; i < domIdFlatten.length; i++) {
-                    if (domIdFlatten[i].checked == true) {
-                        isChecked = true;
-                        break;
-                    }
-                }
-                return isChecked;
-            }
-
             // 체크박스를 -> 라디오 버튼 기능처럼 사용 //
             for (let key in headCounterDom) {
                 headCounterDom[key].forEach((item) => {
                     item.addEventListener("click", (event) => {
-                        selectPeopleBtn.classList.remove("disalbledBtn")
                         headCounterDom[key].forEach((item) => {
                             if (item != document.getElementById(event.target.id)) {
                                 item.checked = false;
                             }
-                            confirmCheckType();
-                            if (confirmCheckType() == false) {
-                                selectPeopleBtn.classList.add("disalbledBtn");
-                                movieData = {
-                                    adult: 0,
-                                    youth: 0,
-                                    special: 0
-                                }
-                            }
-
                         })
                     })
                 })
             }
 
+            selectPeopleBtn.addEventListener("click", () => {
+                window.location.href = "/select_seat";
+            });
 
 
 

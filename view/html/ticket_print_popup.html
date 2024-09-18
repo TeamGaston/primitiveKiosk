@@ -12,7 +12,7 @@
     <script src="https://kit.fontawesome.com/611c1b2c45.js" crossorigin="anonymous"></script>
     <!-- css -->
     <link rel="stylesheet" href="style.css">
-    <title>ticket_print_popup_yj</title>
+    <title>ticket_print_popup</title>
     <style>
         .popupContent {
             text-align: center;
@@ -155,6 +155,85 @@
             background-color: #a71d2a;
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
         }
+
+        /* print*/
+        @media print {
+            * {
+                font-size: 6px;
+            }
+
+            body * {
+                visibility: hidden;
+                /* 전체 페이지를 숨김 */
+            }
+
+            #ticketArea,
+            #ticketArea * {
+                visibility: visible;
+                /* ticketArea 영역만 보임 */
+            }
+
+            #ticketArea {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%);
+                width: 100%;
+                height: 100rem;
+            }
+
+            .ticketDetail,
+            .ticketTitle,
+            .ticketDetailValue,
+            #random4Num,
+            #random3Num,
+            #random5Num,
+            .barCodeNumber {
+                font-size: 5rem;
+            }
+
+            .ticketHeader {
+                height: 10rem;
+            }
+
+            .seatInfo {
+                height: 10rem;
+                width: 90rem;
+                font-size: 2rem;
+            }
+
+            .seatNum {
+                width: 10rem;
+                height: 7rem;
+                line-height: 7rem;
+                background: #868686;
+                text-align: center;
+                margin: 0.2rem;
+                border-radius: 0.3rem;
+                color: #fff;
+                font-size: 6rem;
+            }
+
+            .ticketInfo {
+                width: 50%;
+                height: 3.9rem;
+                text-align: center;
+                line-height: 3.9rem;
+                border-radius: 3rem;
+                position: absolute;
+                left: 50%;
+                top: 100%;
+                transform: translate(-50%, -50%);
+                background: #e03e49;
+                color: #fff;
+                font-size: 3.05rem;
+            }
+
+            .barCode {
+                width: 83rem;
+                height: 80;
+            }
+        }
     </style>
 </head>
 
@@ -270,15 +349,15 @@
                 randomDigitDom[key][0].innerText = getRandomDigitNumber([...randomDigitDom[key][1]])
             }
 
-            /// [미완성] 티켓출력 버튼 ///
-            const printTicketBtn = document.getElementById("printTicketBtn");
-            const ticketArea = document.getElementById("ticketArea");
-
             /// 페이지 이동 ///
+            
+            const printTicketBtn = document.getElementById("printTicketBtn");
             printTicketBtn.addEventListener("click", () => {
                 window.print();
                 window.location.href = "/complete";
             });
+
+
 
         </script>
 </body>
