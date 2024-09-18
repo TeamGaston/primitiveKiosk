@@ -5,25 +5,7 @@
 </section>
 <!-- 키패드 영역 -->
 <section class="keypadBoxArea">
-    <section class="keypadArea">
-        <p class="bookingNumberText">
-            예매 티켓 조회
-        </p>
-        <div type="number" class="phoneNumber"></div>
-        <button class="key">1</button>
-        <button class="key">2</button>
-        <button class="key">3</button>
-        <button class="key">4</button>
-        <button class="key">5</button>
-        <button class="key">6</button>
-        <button class="key">7</button>
-        <button class="key">8</button>
-        <button class="key">9</button>
-        <button class="key delete"><i class="fa-solid fa-delete-left"></i></button>
-        <button class="key">0</button>
-        <button class="key">재입력</button>
-        <button class="check">확인</button>
-    </section>
+    <%- include("keypadFrame", { title: "예매 티켓 조회" } ) %>
 </section>
 
 <script>

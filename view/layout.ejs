@@ -32,7 +32,7 @@
             
             <!-- 팝업 영역 -->
             <% if ( popup !== "") { %>
-                <%- include( popup ) %>
+                <%- include( "popup_layout", { popupContent: popup} ) %>
             <% } %>
         </section>
         <!-- ===하단바 영역=== -->

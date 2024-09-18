@@ -4,7 +4,7 @@
     <article class="barButtonsArea">
         <button class="barButtons staffCallButton">직원호출</button>
         <button id="homeButton" class="barButtons"><i class="bottomBarIcon fa-solid fa-house"></i></button>
-        <button class="barButtons"><i class="bottomBarIcon fa-solid fa-backward"></i></button>
+        <button id="backButton" class="barButtons"><i class="bottomBarIcon fa-solid fa-backward"></i></button>
     </article>
     <img class="logoImg" src="images/logo.png" alt="로고이미지">
     <article class="clockArea"><i class="bottomBarIcon fa-regular fa-clock"></i><span id="touchPageClock" class="timeDisplay">00:00</span>
@@ -28,5 +28,27 @@
     const homeButton = document.getElementById("homeButton");
     homeButton.addEventListener( "click", () => {
         window.location.href = "/home";
+    } );
+
+    const backButton = document.getElementById("backButton");
+    backButton.addEventListener( "click", () => {
+        history.back();
+    } );
+
+    const currentLocation = new URL( location.href ).pathname;
+
+    backButton.disabled = ( currentLocation === "/home" );
+
+    document.addEventListener( "DOMContentLoaded", () => {
+        const returnTouchPageSecond = 30;
+
+        for ( let i=0; i<returnTouchPageSecond; i++ ) {
+            setTimeout( ()=>{
+                console.log( `${returnTouchPageSecond - i}초 뒤에 터치 화면으로 돌아갑니다.` );
+                if (i === returnTouchPageSecond - 1) {
+                    window.location.href = "/";
+                }
+            }, i * 1000);
+        }
     } );
 </script>

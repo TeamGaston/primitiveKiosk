@@ -1,3 +1,4 @@
+import { log } from "console";
 import express from "express";
 import mysql from "mysql";
 import path from "path";
@@ -34,12 +35,20 @@ app.get("/movie_selection", (req, res) => {
 
 // 상영시간선택
 app.get("/select_movie_time_popup", (req, res) => {
-    res.render("select_movie_time_popup");
+    res.render("layout", { content: "content_movie_selection", sideBar: "sideBarFrame", popup: "popup_select_movie_time", bottomBar: "bottomBarFrame" });
 });
+
+// app.get("/popup/:popupId", (req, res) => {
+//     const popupId = req.params.popupId; // URL에서 경로 매개변수 'popupId'를 가져옵니다.
+//     console.log(popupId);
+    
+//     res.render( "popup_layout", { popupContent: popupId } );
+// });
+
 
 // 관람 인원 설정
 app.get("/select_headcount", (req, res) => {
-    res.render("select_headcount_popup"); // 임시
+    res.render("layout", { content: "content_movie_selection", sideBar: "sideBarFrame", popup: "popup_select_headcount", bottomBar: "bottomBarFrame" });
 });
 
 // 좌석선택
@@ -56,47 +65,43 @@ app.get("/payment", (req, res) => {
 
 // 회원번호 입력
 app.get("/user_verification", (req, res) => {
-    res.render("user_verification_popup");
+    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_user_verification", bottomBar: "bottomBarFrame" });
 });
 
 // 사용 포인트 입력
 app.get("/point_confirmation", (req, res) => {
-    res.render("point_confirmation_popup");
+    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_point_confirmation", bottomBar: "bottomBarFrame" });
 });
 
 // ## 카드 결제 ## 
+// 포인트를 적랍하시겠습니까?
 app.get("/earn_point", (req, res) => {
-    res.render("payment_point_selection_popup"); 
+    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_payment_point_selection", bottomBar: "bottomBarFrame" });
 });
 
 // 포인트 적립을 위한 번호 넣기
-app.get("/inputPoint", (req, res) => {
-    res.render("payment_point_accumulation_popup"); 
+app.get("/input_point", (req, res) => {
+    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_payment_point_accumulation", bottomBar: "bottomBarFrame" });
 });
 
 // === 결제 공통 ===
 
  // 카드 입력 대기 [setTimeout]
 app.get("/buying", (req, res) => {
-    res.render("payment_card_input_popup");
+    res.render("layout", { content: "", sideBar: "", popup: "popup_payment_card_input", bottomBar: "bottomBarFrame" });
 });
 
 // 결제가 완료되었습니다 [setTimeout]
 app.get("/show_payment", (req, res) => { 
-    res.render("payment_summary_popup");
+    res.render("layout", { content: "", sideBar: "", popup: "popup_payment_summary", bottomBar: "bottomBarFrame" });
 });
 
 // 티켓 출력 
 app.get("/printTicket", (req, res) => {
-    res.render("ticket_print_popup"); 
+    res.render("layout", { content: "", sideBar: "", popup: "popup_ticket_print", bottomBar: "bottomBarFrame" });
 });
 
 // 결제완료 [setTimeout]
 app.get("/complete", (req, res) => {
-    res.render("complete");
-});
-
-// test
-app.get("/test", (req, res) => {
-    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame" });
+    res.render("layout", { content: "", sideBar: "", popup: "popup_complete", bottomBar: "bottomBarFrame" });
 });

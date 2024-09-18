@@ -78,11 +78,7 @@
     </section>
 
 </section>
-
-<section id="popup" class="popupArea">
-    
-</section>
-
+<section id="popupPos"></section>
 <script>
 
     class SelectionSwitcher {
@@ -146,18 +142,27 @@
     selectionSwitcher.control();
 
     const posters = document.querySelectorAll(".posterItem");
-    const popup = document.getElementById("popup");
     posters.forEach((poster) => {
         poster.addEventListener("click", () => {
-            //window.location.href = "/select_movie_time_popup";
-            popup.innerHTML = `<%- include("popup_select_movie_time") %>`;
+            // fetch(`/popup/popup_select_movie_time`)
+            //     .then(response => response.text())
+            //     .then(html => {
+            //         const container = document.getElementById("popupPos")
+            //         container.innerHTML = html;
 
+            //         // 동적으로 로드된 스크립트 태그 실행
+            //         const scripts = container.querySelectorAll("script");
+            //         scripts.forEach(script => {
+            //             const newScript = document.createElement("script");
+            //             newScript.text = script.text;
+            //             container.appendChild(newScript);
+            //         });
+            //         document.getElementById("popupArea").style.display = "block";
+            //     });
+            window.location.href = "/select_movie_time_popup";
         });
+        
     });
-
-    
-
-
 
 </script>
 
