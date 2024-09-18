@@ -4,7 +4,7 @@
     <article class="barButtonsArea">
         <button class="barButtons staffCallButton">직원호출</button>
         <button id="homeButton" class="barButtons"><i class="bottomBarIcon fa-solid fa-house"></i></button>
-        <button class="barButtons"><i class="bottomBarIcon fa-solid fa-backward"></i></button>
+        <button id="backButton" class="barButtons"><i class="bottomBarIcon fa-solid fa-backward"></i></button>
     </article>
     <img class="logoImg" src="images/logo.png" alt="로고이미지">
     <article class="clockArea"><i class="bottomBarIcon fa-regular fa-clock"></i><span id="touchPageClock" class="timeDisplay">00:00</span>
@@ -29,4 +29,9 @@
     homeButton.addEventListener( "click", () => {
         window.location.href = "/home";
     } );
+
+    const backButton = document.getElementById("backButton");
+    backButton.addEventListener( "click", () => {
+        history.back();
+    } )
 </script>
