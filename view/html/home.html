@@ -94,24 +94,24 @@
             </section>
             <!-- 키패드 영역 -->
             <section class="keypadBoxArea">
-                <section class="keypadArea">
+                <section id="keypadFrame" class="keypadArea">
                     <p class="bookingNumberText">
                         예매 티켓 조회
                     </p>
-                    <div type="number" class="phoneNumber"></div>
-                    <button class="key">1</button>
-                    <button class="key">2</button>
-                    <button class="key">3</button>
-                    <button class="key">4</button>
-                    <button class="key">5</button>
-                    <button class="key">6</button>
-                    <button class="key">7</button>
-                    <button class="key">8</button>
-                    <button class="key">9</button>
-                    <button class="key delete"><i class="fa-solid fa-delete-left"></i></button>
-                    <button class="key">0</button>
-                    <button class="key">재입력</button>
-                    <button class="check">확인</button>
+                    <div id="displayNumber" type="number" class="phoneNumber"></div>
+                    <button class="key" value="1">1</button>
+                    <button class="key" value="2">2</button>
+                    <button class="key" value="3">3</button>
+                    <button class="key" value="4">4</button>
+                    <button class="key" value="5">5</button>
+                    <button class="key" value="6">6</button>
+                    <button class="key" value="7">7</button>
+                    <button class="key" value="8">8</button>
+                    <button class="key" value="9">9</button>
+                    <button class="key delete" value="delete"><i class="fa-solid fa-delete-left"></i></button>
+                    <button class="key" value="0">0</button>
+                    <button class="key" value="reset">재입력</button>
+                    <button id="checkBtn" class="check" disabled>확인</button>
                 </section>
             </section>
 
@@ -136,6 +136,86 @@
         ticketBookingTouchArea.addEventListener("click", () => {
             window.location.href = "/movie_selection";
         });
+
+    class Keypad {
+        constructor(id) {
+            this.id = id;
+        }
+        inputNumber() {
+            class Deque {
+                constructor(id) {
+                    this.id = id;
+                    this.storage = [];
+                    this.length = 0;
+                }
+                pushData(data) {
+                    this.storage.push(data);
+                }
+                unshiftData(data) {
+                    this.storage.unshift(data);
+                }
+                popData() {
+                    return this.storage.pop();
+                }
+                shiftData() {
+                    return this.storage.shift();
+                }
+                getLength() {
+                    this.length = this.storage.length;
+                    return this.storage.length;
+                }
+                copyStorage() {
+                    return [...this.storage];
+                }
+            }
+
+            const checkBtn = document.getElementById("checkBtn");
+            const keypad = document.getElementById("keypadFrame");
+
+            const numberDeque = new Deque(`${this.id}Deque`);
+
+            keypad.addEventListener("click", (e) => {
+                const keyValue = e.target.value;
+                if (keyValue) {
+                    //console.log(keyValue);
+                    switch (keyValue) {
+                        case "delete":
+                            numberDeque.popData();
+                            break;
+                        case "reset":
+                            while (numberDeque.getLength() > 0) {
+                                numberDeque.popData();
+                            }
+                            break;
+                        default:
+                            numberDeque.pushData(keyValue);
+                    }
+                }
+                
+                this.showNumber( numberDeque );
+
+                checkBtn.disabled = (numberDeque.getLength() < 10);
+            });
+        }
+
+        showNumber(deque) {
+            const displayNumber = document.getElementById("displayNumber");
+            let displayStr = "";
+            ///console.log( deque.copyStorage() );
+            deque.copyStorage().forEach( number => {
+                displayStr += number;
+            });
+            
+            displayNumber.innerText = displayStr;
+        }
+
+        runKeypad() {
+            this.inputNumber();
+        }
+    }
+
+    const keypad = new Keypad("keypad");
+    keypad.runKeypad();
     </script>
 </body>
 
