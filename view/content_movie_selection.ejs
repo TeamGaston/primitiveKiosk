@@ -10,12 +10,12 @@
 <section class="mainPosterContainer">
     <!-- #영화별선택# -->
     <article id="posterGallery" class="posterGallery">
-        
+
     </article>
 
     <!-- #시간대별선택# -->
     <section id="scheduleGalleryWrap" class="scheduleGalleryWrap">
-        
+
     </section>
 
 </section>
@@ -88,7 +88,7 @@
     const posterGallery = document.getElementById("posterGallery");
 
     posterMovieData.forEach((movie) => {
-        posterGallery.innerHTML += `<div class="posterItem" style="font-size: 3rem;">${movie["title"]}</div>`;
+        posterGallery.innerHTML += `<div id="poster_${movie["movie_id"]}" class="posterItem" style="font-size: 3rem;">${movie["title"]}</div>`;
     });
 
     const scheduleMovieData = [
@@ -115,34 +115,34 @@
 
     const scheduleMovieObj = {};
 
-    scheduleMovieData.forEach( ( movie ) => {
-        if ( !( movie["movie_id"] in scheduleMovieObj ) ) {
-            scheduleMovieObj[ movie["movie_id"] ] = {
+    scheduleMovieData.forEach((movie) => {
+        if (movie["movie_id"] in scheduleMovieObj) {
+            scheduleMovieObj[movie["movie_id"]]["showtime"].push(movie["showtime"]);
+        } else {
+            scheduleMovieObj[movie["movie_id"]] = {
                 title: movie["title"],
                 poster: movie["title"],
-                showtime: [ movie["showtime"] ]
+                showtime: [movie["showtime"]]
             }
-        } else {
-            scheduleMovieObj[ movie["movie_id"] ][ "showtime" ].push( movie["showtime"] );
         }
     });
 
     const scheduleGalleryWrap = document.getElementById("scheduleGalleryWrap");
-    console.log( scheduleMovieObj );
-    
-    for ( const movie_id in scheduleMovieObj ) {
+    console.log(scheduleMovieObj);
+
+    for (const movie_id in scheduleMovieObj) {
         const movieTitle = scheduleMovieObj[movie_id]["title"];
         const moviePoster = scheduleMovieObj[movie_id]["poster"];
         let movieTimes = "";
-        scheduleMovieObj[movie_id]["showtime"].forEach( (showtime) => {
-            movieTimes += `<div class="timeSlot">${showtime}</div>`;
-        } );
+        scheduleMovieObj[movie_id]["showtime"].forEach((showtime, index) => {
+            movieTimes += `<div id="showtime_${movie_id}_${index}" class="timeSlot">${showtime}</div>`;
+        });
         scheduleGalleryWrap.innerHTML += `
             <section class="scheduleGallery">
                 <div class="schedulePoster">${moviePoster}</div>
                 <article class="scheduleSection">
                     <h2 class="movietitle">${movieTitle}</h2>
-                    <div class="timeContainer">
+                    <div id="time_${movie_id}" class="timeContainer">
                         ${movieTimes}
                     </div>
                 </article>
@@ -175,6 +175,13 @@
             window.location.href = "/select_movie_time_popup";
         });
     });
+
+    const timeSlots = document.querySelectorAll(".timeSlot");
+    timeSlots.forEach((timeSlot) => {
+        timeSlot.addEventListener("click", () => {
+            window.location.href = "/select_movie_time_popup";
+        });
+    })
 
 </script>
 

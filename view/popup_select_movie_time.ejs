@@ -11,9 +11,12 @@
     .posterImg {
         width: 25rem;
         height: 35rem;
-        background-image: url("images/베테랑.png");
+        /* background-image: url("images/베테랑.png"); */
         background-size: cover;
         /*border: 1px solid blue;*/
+        /* 임시 */
+        font-size: 3rem;
+        background-color: wheat;
     }
 
     .posterInformation {
@@ -137,7 +140,7 @@
 
 <article class="popupBar">
     <p class="popupTitle popupBarTextCommon">영화 시간을 선택해주세요.</p>
-    <i class="popupBarTextCommon fa-solid fa-x"></i>
+    <div id="closePopup"><i class="popupBarTextCommon fa-solid fa-x"></i></div>
 </article>
 <section class="popupContent">
     <!-- ~여기에 작성~ -->
@@ -146,7 +149,7 @@
     <div class="timePopupAll">
         <div class="posterBasicInformation">
 
-            <div class="posterImg"></div>
+            <div id="posterImg" class="posterImg"></div>
             <ul class="allMvTime" id="allMvTime">
                 <!-- 1 -->
                 <li class="mvTimeList" id="list01">
@@ -204,19 +207,59 @@
 <script>
     const mvTimeList = document.querySelectorAll(".mvTimeList");
     const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
+    //const mvTime = document.getElementById("mvTime");
+
+    const movieData = [
+        { "movie_id": 1, "duration": "01:50", "title": "플립", showtime: '11:00', theather: 'A관', img_path: 'images/플립.png' },
+        { "movie_id": 1, "duration": "01:50", "title": "플립", showtime: '12:00', theather: 'B관', img_path: 'images/플립.png' },
+        { "movie_id": 1, "duration": "01:50", "title": "플립", showtime: '13:00', theather: 'C관', img_path: 'images/플립.png' },
+        { "movie_id": 1, "duration": "01:50", "title": "플립", showtime: '14:00', theather: 'D관', img_path: 'images/플립.png' },
+        { "movie_id": 1, "duration": "01:50", "title": "플립", showtime: '15:00', theather: 'A관', img_path: 'images/플립.png' }
+    ];
+    const movieDataObj = {};
+
+    movieData.forEach((movie) => {
+        if ("slot" in movieDataObj) {
+            movieDataObj["slot"].push({
+                "theather": movie["theather"],
+                "showtime": movie["showtime"]
+            });
+        } else {
+            movieDataObj["movie_id"] = movie["movie_id"];
+            movieDataObj["title"] = movie["title"];
+            movieDataObj["duration"] = movie["duration"];
+            movieDataObj["poster"] = movie["title"]; //movie["img_path"];
+            movieDataObj["slot"] = [{
+                "theather": movie["theather"],
+                "showtime": movie["showtime"]
+            }];
+        }
+    });
+    console.log(movieDataObj);
+    const allMvTime = document.getElementById("allMvTime");
+    const posterImg = document.getElementById("posterImg");
+    const mvName = document.getElementById("mvName");
     const mvTime = document.getElementById("mvTime");
+    
+    posterImg.innerHTML = movieDataObj["poster"];
+    mvName.innerText = movieDataObj["title"];
+    mvTime.innerText = movieDataObj["duration"];
+    allMvTime.innerHTML = "";
+    //let movieTimeList = "";
+    movieDataObj["slot"].forEach( ( slot, index ) => {
+        allMvTime.innerHTML += `
+            <li class="mvTimeList" id="list01">
+                <p class="theather">${slot["theather"]}</p>
+                <p class="startAndEndTime">${slot["showtime"]}</p>
+                <p class="startAndEndTime">~12시00분</p>
+            </li>
+        `;
+    });
 
     function objectToQueryString(obj) {
         return Object.keys(obj)
-            .map(key => { return `${key}=${obj[key]}`})
+            .map(key => { return `${key}=${obj[key]}` })
             .join('&');
-    }
-
-    const movieData = {
-        name: "",
-        theater: "",
-        startTime: "", //시작시간
-        endTime: "" //끝시간
     }
 
     movieData.name = document.getElementById("mvName").innerHTML;
@@ -243,7 +286,7 @@
     // 클릭시 query+페이지 이동 //
     timeSelectionBtn.addEventListener("click", (event) => {
         const query = objectToQueryString(movieData);
-        location.href = `/select_headcount_popup?${query}`;
+        location.href = `/select_headcount?${query}`;
     });
 
 </script>
