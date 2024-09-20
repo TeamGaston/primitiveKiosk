@@ -102,38 +102,51 @@
 
             posterImg.innerHTML = movieDataObj["poster"];
             mvName.innerText = movieDataObj["title"];
-            mvTime.innerText = movieDataObj["duration"];
+            const [durationHour, druationMinute] = this.minuteToHour(movieDataObj["duration"]).split(":");
+            mvTime.innerText = `${durationHour}시간 ${druationMinute}분`;
             allMvTime.innerHTML = "";
-            //let movieTimeList = "";
+
             movieDataObj["slot"].forEach((slot, index) => {
                 allMvTime.innerHTML += `
                     <li class="mvTimeList" id="list0${index + 1}">
                         <p class="theater">${slot["theater"]}</p>
                         <p class="startAndEndTime">${slot["showtime"]}</p>
-                        <p class="startAndEndTime">~12시00분</p>
+                        <p class="startAndEndTime">~${ this.getEndtime( slot["showtime"], movieDataObj["duration"] ) }</p>
                     </li>
                 `;
             });
+        }
+
+        minuteToHour ( minute ) {
+            return [ Math.floor( minute / 60 ), minute%60 ].join(":");
+        }
+
+        getEndtime(showtime, duration) {
+            const [hour, minute] = showtime.split(":");
+            const endtimeMinute = 60 * Number(hour) + Number(minute) + duration;
+
+            const endtime = this.minuteToHour( endtimeMinute );
+            return endtime;
         }
 
         timeButtonEvent() {
             const mvTimeList = document.querySelectorAll(".mvTimeList");
             const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
 
-            const movieData = {
-                theater: "",
-                startTime: "",
-                endTime: "",
-            };
-            movieData.name = document.getElementById("mvName").innerHTML;
+            const movieData = {};
+            
 
             mvTimeList.forEach((item) => {
                 // click event : 클릭된 item -> movieData 값 할당 //
                 item.addEventListener("click", (event) => {
                     const paragraphs = event.target.getElementsByTagName("p");
-                    movieData.theater = paragraphs[0].innerHTML;
-                    movieData.startTime = paragraphs[1].innerHTML;
-                    movieData.endTime = paragraphs[2].innerHTML.slice(1);
+                    
+                    const [theaterInfo, startTimeInfo, endTimeInfo] = paragraphs;
+
+                    movieData["name"] = document.getElementById("mvName").innerText;
+                    movieData["theater"] = theaterInfo.innerText;
+                    movieData["startTime"] = startTimeInfo.innerText;
+                    movieData["endTime"] = endTimeInfo.innerText.slice(1);
                     console.log(movieData);
 
                     // 라디오 버튼 처럼 기능 구현 //
@@ -145,10 +158,10 @@
                 });
             });
 
-            this.goSelectSeat(movieData);
+            this.goWithQuery(movieData);
         }
 
-        goSelectSeat(movieData) {
+        goWithQuery(movieData) {
             const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
             timeSelectionBtn.addEventListener("click", (event) => {
                 const query = Object.keys(movieData).map(key => `${key}=${movieData[key]}`).join("&");
@@ -157,17 +170,18 @@
         }
 
         controler(movieTimeData) {
-            this.displayMovieTime(this.processData( movieTimeData ));
+            const movieDataObj = this.processData( movieTimeData )
+            this.displayMovieTime(movieDataObj);
             this.timeButtonEvent();
         }
     }
 
     const movieTimeData = [
-        { "movie_id": 1, "duration": "01:50", "title": "플립", showtime: '11:00', theater: 'A관', img_path: 'images/플립.png' },
-        { "movie_id": 1, "duration": "01:50", "title": "플립", showtime: '12:00', theater: 'B관', img_path: 'images/플립.png' },
-        { "movie_id": 1, "duration": "01:50", "title": "플립", showtime: '13:00', theater: 'C관', img_path: 'images/플립.png' },
-        { "movie_id": 1, "duration": "01:50", "title": "플립", showtime: '14:00', theater: 'D관', img_path: 'images/플립.png' },
-        { "movie_id": 1, "duration": "01:50", "title": "플립", showtime: '15:00', theater: 'A관', img_path: 'images/플립.png' }
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '11:00', theater: 'A관', img_path: 'images/플립.png' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '12:00', theater: 'B관', img_path: 'images/플립.png' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '13:00', theater: 'C관', img_path: 'images/플립.png' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '14:00', theater: 'D관', img_path: 'images/플립.png' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '15:00', theater: 'A관', img_path: 'images/플립.png' }
     ];
 
     const page = new Select_movie_Time("select_movie_time_popup");
