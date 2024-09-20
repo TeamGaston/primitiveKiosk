@@ -78,7 +78,6 @@
     </section>
 
 </section>
-<section id="popupPos"></section>
 <script>
 
     class SelectionSwitcher {
@@ -137,6 +136,81 @@
         }//
     }//$SelectionSwitcher
 
+    const posterMovieData = [
+        { movie_id: 1, duration: '2시간10분', title: '플립' },
+        { movie_id: 2, duration: '2시간10분', title: '아바타2' },
+        { movie_id: 3, duration: '2시간10분', title: '블라인드' },
+        { movie_id: 4, duration: '2시간10분', title: '나 홀로 집에1' },
+        { movie_id: 5, duration: '2시간10분', title: '1917' },
+    ];
+
+    const posterGallery = document.getElementById("posterGallery");
+
+    posterGallery.innerHTML = "";
+    posterMovieData.forEach((movie) => {
+        posterGallery.innerHTML += `<div class="posterItem" style="font-size: 3rem;">${movie["title"]}</div>`;
+    });
+
+    const scheduleMovieData = [
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '11:00' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '12:00' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '13:00' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '14:00' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '15:00' },
+
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2", showtime: '11:00' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2", showtime: '12:00' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2", showtime: '13:00' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2", showtime: '14:00' },
+
+        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '11:00' },
+        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '12:00' },
+        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '13:00' },
+
+        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '11:00' },
+        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '12:00' },
+
+        { "movie_id": 5, "duration": "1시간50분", "title": "1917", showtime: '11:00' },
+    ];
+
+    const scheduleMovieObj = {};
+
+    scheduleMovieData.forEach( ( movie ) => {
+        if ( !( movie["movie_id"] in scheduleMovieObj ) ) {
+            scheduleMovieObj[ movie["movie_id"] ] = {
+                title: movie["title"],
+                poster: movie["title"],
+                showtime: [ movie["showtime"] ]
+            }
+        } else {
+            scheduleMovieObj[ movie["movie_id"] ][ "showtime" ].push( movie["showtime"] );
+        }
+    });
+
+    const scheduleGalleryWrap = document.getElementById("scheduleGalleryWrap");
+    scheduleGalleryWrap.innerHTML = "";
+    console.log( scheduleMovieObj );
+    
+    for ( const movie_id in scheduleMovieObj ) {
+        const movieTitle = scheduleMovieObj[movie_id]["title"];
+        const moviePoster = scheduleMovieObj[movie_id]["poster"];
+        let movieTimes = "";
+        scheduleMovieObj[movie_id]["showtime"].forEach( (showtime) => {
+            movieTimes += `<div class="timeSlot">${showtime}</div>`;
+        } );
+        scheduleGalleryWrap.innerHTML += `
+            <section class="scheduleGallery">
+                <div class="schedulePoster">${moviePoster}</div>
+                <article class="scheduleSection">
+                    <h2 class="movietitle">${movieTitle}</h2>
+                    <div class="timeContainer">
+                        ${movieTimes}
+                    </div>
+                </article>
+            </section>
+        `;
+    }
+
     // 클래스 객체 생성
     const selectionSwitcher = new SelectionSwitcher('selectionSwitcher');
     selectionSwitcher.control();
@@ -161,7 +235,6 @@
             //     });
             window.location.href = "/select_movie_time_popup";
         });
-        
     });
 
 </script>
@@ -251,8 +324,11 @@
         width: 16rem;
         height: 100%;
         background: #ddd;
-        background: url("images/베테랑.png") no-repeat;
+        /* background: url("images/베테랑.png") no-repeat; */
         background-size: contain;
+
+        /* 임시 */
+        font-size: 3rem;
     }
 
     .scheduleSection {

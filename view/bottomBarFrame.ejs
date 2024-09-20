@@ -38,17 +38,4 @@
     const currentLocation = new URL( location.href ).pathname;
 
     backButton.disabled = ( currentLocation === "/home" );
-
-    document.addEventListener( "DOMContentLoaded", () => {
-        const returnTouchPageSecond = 30;
-
-        for ( let i=0; i<returnTouchPageSecond; i++ ) {
-            setTimeout( ()=>{
-                console.log( `${returnTouchPageSecond - i}초 뒤에 터치 화면으로 돌아갑니다.` );
-                if (i === returnTouchPageSecond - 1) {
-                    window.location.href = "/";
-                }
-            }, i * 1000);
-        }
-    } );
 </script>
