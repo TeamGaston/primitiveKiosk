@@ -66,12 +66,101 @@
 <!-- ==script== -->
 <script>
     //const mvTime = document.getElementById("mvTime");
+    class Select_movie_Time {
+        constructor(id) {
+            this.id = id;
+        }
 
-    const movieData = {
-        theater: "",
-        startTime: "",
-        endTime: "",
-    };
+        processData(movieTimeData = []) {
+            const movieDataObj = {};
+            movieTimeData.forEach((movie) => {
+                if ("slot" in movieDataObj) {
+                    movieDataObj["slot"].push({
+                        "theater": movie["theater"],
+                        "showtime": movie["showtime"]
+                    });
+                } else {
+                    movieDataObj["movie_id"] = movie["movie_id"];
+                    movieDataObj["title"] = movie["title"];
+                    movieDataObj["duration"] = movie["duration"];
+                    movieDataObj["poster"] = movie["title"]; //movie["img_path"];
+                    movieDataObj["slot"] = [{
+                        "theater": movie["theater"],
+                        "showtime": movie["showtime"]
+                    }];
+                }
+            });
+
+            return movieDataObj;
+        }
+
+        displayMovieTime(movieDataObj) {
+            const allMvTime = document.getElementById("allMvTime");
+            const posterImg = document.getElementById("posterImg");
+            const mvName = document.getElementById("mvName");
+            const mvTime = document.getElementById("mvTime");
+
+            posterImg.innerHTML = movieDataObj["poster"];
+            mvName.innerText = movieDataObj["title"];
+            mvTime.innerText = movieDataObj["duration"];
+            allMvTime.innerHTML = "";
+            //let movieTimeList = "";
+            movieDataObj["slot"].forEach((slot, index) => {
+                allMvTime.innerHTML += `
+                    <li class="mvTimeList" id="list0${index + 1}">
+                        <p class="theater">${slot["theater"]}</p>
+                        <p class="startAndEndTime">${slot["showtime"]}</p>
+                        <p class="startAndEndTime">~12시00분</p>
+                    </li>
+                `;
+            });
+        }
+
+        timeButtonEvent() {
+            const mvTimeList = document.querySelectorAll(".mvTimeList");
+            const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
+
+            const movieData = {
+                theater: "",
+                startTime: "",
+                endTime: "",
+            };
+            movieData.name = document.getElementById("mvName").innerHTML;
+
+            mvTimeList.forEach((item) => {
+                // click event : 클릭된 item -> movieData 값 할당 //
+                item.addEventListener("click", (event) => {
+                    const paragraphs = event.target.getElementsByTagName("p");
+                    movieData.theater = paragraphs[0].innerHTML;
+                    movieData.startTime = paragraphs[1].innerHTML;
+                    movieData.endTime = paragraphs[2].innerHTML.slice(1);
+                    console.log(movieData);
+
+                    // 라디오 버튼 처럼 기능 구현 //
+                    mvTimeList.forEach((listItem) => {
+                        listItem.classList.remove("activeMvTime");
+                    });
+                    item.classList.add("activeMvTime");
+                    timeSelectionBtn.classList.remove("disalbledBtn");
+                });
+            });
+
+            this.goSelectSeat(movieData);
+        }
+
+        goSelectSeat(movieData) {
+            const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
+            timeSelectionBtn.addEventListener("click", (event) => {
+                const query = Object.keys(movieData).map(key => `${key}=${movieData[key]}`).join("&");
+                location.href = `/select_headcount?${query}`;
+            });
+        }
+
+        controler(movieTimeData) {
+            this.displayMovieTime(this.processData( movieTimeData ));
+            this.timeButtonEvent();
+        }
+    }
 
     const movieTimeData = [
         { "movie_id": 1, "duration": "01:50", "title": "플립", showtime: '11:00', theater: 'A관', img_path: 'images/플립.png' },
@@ -80,81 +169,9 @@
         { "movie_id": 1, "duration": "01:50", "title": "플립", showtime: '14:00', theater: 'D관', img_path: 'images/플립.png' },
         { "movie_id": 1, "duration": "01:50", "title": "플립", showtime: '15:00', theater: 'A관', img_path: 'images/플립.png' }
     ];
-    const movieDataObj = {
-    };
 
-    movieTimeData.forEach((movie) => {
-        if ("slot" in movieDataObj) {
-            movieDataObj["slot"].push({
-                "theater": movie["theater"],
-                "showtime": movie["showtime"]
-            });
-        } else {
-            movieDataObj["movie_id"] = movie["movie_id"];
-            movieDataObj["title"] = movie["title"];
-            movieDataObj["duration"] = movie["duration"];
-            movieDataObj["poster"] = movie["title"]; //movie["img_path"];
-            movieDataObj["slot"] = [{
-                "theater": movie["theater"],
-                "showtime": movie["showtime"]
-            }];
-        }
-    });
-    console.log(movieDataObj);
-    const allMvTime = document.getElementById("allMvTime");
-    const posterImg = document.getElementById("posterImg");
-    const mvName = document.getElementById("mvName");
-    const mvTime = document.getElementById("mvTime");
-    
-    posterImg.innerHTML = movieDataObj["poster"];
-    mvName.innerText = movieDataObj["title"];
-    mvTime.innerText = movieDataObj["duration"];
-    allMvTime.innerHTML = "";
-    //let movieTimeList = "";
-    movieDataObj["slot"].forEach( ( slot, index ) => {
-        allMvTime.innerHTML += `
-            <li class="mvTimeList" id="list0${index+1}">
-                <p class="theater">${slot["theater"]}</p>
-                <p class="startAndEndTime">${slot["showtime"]}</p>
-                <p class="startAndEndTime">~12시00분</p>
-            </li>
-        `;
-    });
-
-    const mvTimeList = document.querySelectorAll(".mvTimeList");
-    const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
-
-    function objectToQueryString(obj) {
-        return Object.keys(obj)
-            .map(key => { return `${key}=${obj[key]}` })
-            .join('&');
-    }
-
-    movieData.name = document.getElementById("mvName").innerHTML;
-
-    mvTimeList.forEach((item) => {
-        // click event : 클릭된 item -> movieData 값 할당 //
-        item.addEventListener("click", (event) => {
-            const paragraphs = event.target.getElementsByTagName("p");
-            movieData.theater = paragraphs[0].innerHTML;
-            movieData.startTime = paragraphs[1].innerHTML;
-            movieData.endTime = paragraphs[2].innerHTML.slice(1);
-            console.log(movieData);
-
-            // 라디오 버튼 처럼 기능 구현 //
-            mvTimeList.forEach((listItem) => {
-                listItem.classList.remove("activeMvTime");
-            });
-            item.classList.add("activeMvTime");
-            timeSelectionBtn.classList.remove("disalbledBtn");
-        });
-    });
-
-    // 클릭시 query+페이지 이동 //
-    timeSelectionBtn.addEventListener("click", (event) => {
-        const query = objectToQueryString(movieData);
-        location.href = `/select_headcount?${query}`;
-    });
+    const page = new Select_movie_Time("select_movie_time_popup");
+    page.controler( movieTimeData );
 
 </script>
 
