@@ -10,71 +10,12 @@
 <section class="mainPosterContainer">
     <!-- #영화별선택# -->
     <article id="posterGallery" class="posterGallery">
-        <div class="posterItem">포스터영역</div>
-        <div class="posterItem">포스터영역</div>
-        <div class="posterItem">포스터영역</div>
-        <div class="posterItem">포스터영역</div>
-        <div class="posterItem">포스터영역</div>
-        <div class="posterItem">포스터영역</div>
-        <div class="posterItem">포스터영역</div>
-        <div class="posterItem">포스터영역</div>
+        
     </article>
 
     <!-- #시간대별선택# -->
     <section id="scheduleGalleryWrap" class="scheduleGalleryWrap">
-        <section class="scheduleGallery">
-            <div class="schedulePoster"></div>
-            <article class="scheduleSection">
-                <h2 class="movietitle">영화제목</h2>
-                <div class="timeContainer">
-                    <div class="timeSlot">11:00</div>
-                    <div class="timeSlot">12:00</div>
-                    <div class="timeSlot">13:00</div>
-                    <div class="timeSlot">14:00</div>
-                    <div class="timeSlot">15:00</div>
-                    <div class="timeSlot">16:00</div>
-                    <div class="timeSlot">17:00</div>
-                    <div class="timeSlot">18:00</div>
-                    <div class="timeSlot">19:00</div>
-                </div>
-            </article>
-        </section>
-        <!-- 2 -->
-        <section class="scheduleGallery">
-            <div class="schedulePoster"></div>
-            <article class="scheduleSection">
-                <h2 class="movietitle">영화제목</h2>
-                <div class="timeContainer">
-                    <div class="timeSlot">11:00</div>
-                    <div class="timeSlot">12:00</div>
-                    <div class="timeSlot">13:00</div>
-                    <div class="timeSlot">14:00</div>
-                    <div class="timeSlot">15:00</div>
-                    <div class="timeSlot">16:00</div>
-                    <div class="timeSlot">17:00</div>
-                    <div class="timeSlot">18:00</div>
-                    <div class="timeSlot">19:00</div>
-                </div>
-            </article>
-        </section>
-        <!-- 3 -->
-        <section class="scheduleGallery">
-            <div class="schedulePoster"></div>
-            <article class="scheduleSection">
-                <h2 class="movietitle">영화제목</h2>
-                <div class="timeContainer">
-                    <div class="timeSlot">11:00</div>
-                    <div class="timeSlot">12:00</div>
-                    <div class="timeSlot">13:00</div>
-                    <div class="timeSlot">14:00</div>
-                    <div class="timeSlot">15:00</div>
-                    <div class="timeSlot">16:00</div>
-                    <div class="timeSlot">17:00</div>
-                    <div class="timeSlot">18:00</div>
-                    <div class="timeSlot">19:00</div>
-                </div>
-            </article>
-        </section>
+        
     </section>
 
 </section>
@@ -146,7 +87,6 @@
 
     const posterGallery = document.getElementById("posterGallery");
 
-    posterGallery.innerHTML = "";
     posterMovieData.forEach((movie) => {
         posterGallery.innerHTML += `<div class="posterItem" style="font-size: 3rem;">${movie["title"]}</div>`;
     });
@@ -188,7 +128,6 @@
     });
 
     const scheduleGalleryWrap = document.getElementById("scheduleGalleryWrap");
-    scheduleGalleryWrap.innerHTML = "";
     console.log( scheduleMovieObj );
     
     for ( const movie_id in scheduleMovieObj ) {
