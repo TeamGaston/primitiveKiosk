@@ -71,7 +71,7 @@
             this.id = id;
         }
 
-        processData(movieTimeData = []) {
+        processData(movieTimeData = []) { // DB데이터 가공
             const movieDataObj = {};
             movieTimeData.forEach((movie) => {
                 if ("slot" in movieDataObj) {
@@ -94,7 +94,7 @@
             return movieDataObj;
         }
 
-        displayMovieTime(movieDataObj) {
+        displayMovieTime(movieDataObj) { // 동적으로 화면에 정보 표시
             const allMvTime = document.getElementById("allMvTime");
             const posterImg = document.getElementById("posterImg");
             const mvName = document.getElementById("mvName");
@@ -117,11 +117,11 @@
             });
         }
 
-        minuteToHour ( minute ) {
+        minuteToHour ( minute ) { // 분을 시간으로
             return [ Math.floor( minute / 60 ), minute%60 ].join(":");
         }
 
-        getEndtime(showtime, duration) {
+        getEndtime(showtime, duration) { // 종료 시간 구하는 메서드
             const [hour, minute] = showtime.split(":");
             const endtimeMinute = 60 * Number(hour) + Number(minute) + duration;
 
@@ -129,12 +129,11 @@
             return endtime;
         }
 
-        timeButtonEvent() {
+        timeButtonEvent() { // 시간을 선택할 때
             const mvTimeList = document.querySelectorAll(".mvTimeList");
             const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
 
             const movieData = {};
-            
 
             mvTimeList.forEach((item) => {
                 // click event : 클릭된 item -> movieData 값 할당 //
@@ -161,7 +160,7 @@
             this.goWithQuery(movieData);
         }
 
-        goWithQuery(movieData) {
+        goWithQuery(movieData) { // 화면 넘김
             const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
             timeSelectionBtn.addEventListener("click", (event) => {
                 const query = Object.keys(movieData).map(key => `${key}=${movieData[key]}`).join("&");
