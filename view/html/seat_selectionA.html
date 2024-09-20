@@ -145,7 +145,7 @@
         }
 
         /* 선택된 좌석 */
-        input[type="checkbox"]:checked+label {
+        .sectionBottom input[type="checkbox"]:checked+label {
             background-color: #ff9933;
         }
 
@@ -156,14 +156,15 @@
             width: 13rem;
             height: 4.5rem;
             font-size: 1.6rem;
-            background-color: #3B3B44;
-            color: #F0F0F0;
+            /* background-color: #3B3B44; */
+            /* color: #F0F0F0; */
             cursor: pointer;
             border: none;
             border-radius: 0.5rem;
-            cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #DE1E2D;
+            color: #ffffff;
         }
 
         .chosenBtn:hover {
@@ -173,6 +174,12 @@
         .chosenBtn:active {
             background-color: #2F2F3B;
             transform: scale(0.98);
+        }
+
+        .disalbledBtn {
+            background-color: #3b3b3b;
+            color: #9d9d9d;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -185,10 +192,13 @@
 
             <!-- ~여기에 작성~ -->
             <section class="sectionTop">
-                <div class="ticketCountArea">
-                    <button>+</button>성인<span>0</span><button>-</button>
-                    <button>+</button>청소년<span>0</span><button>-</button>
-                    <button>+</button>우대<span>0</span><button>-</button>
+                <div id="ticketCountArea" class="ticketCountArea">
+                    <button id="adultCountPlusBtn">+</button>성인<span id="adultCount">0</span><button
+                        id="adultCountMinusBtn">-</button>
+                    <button id="youthCountPlusBtn">+</button>청소년<span id="youthCount">0</span><button
+                        id="youthCountMinusBtn">-</button>
+                    <button id="specialCountPlusBtn">+</button>우대<span id="specialCount">0</span><button
+                        id="specialCountMinusBtn">-</button>
                 </div>
 
             </section>
@@ -197,148 +207,148 @@
                 <p class="screen">screen</p>
             </section>
 
-            <section class="sectionBottom">
+            <section id="sectionBottom" class="sectionBottom">
                 <div class="seatsArea">
                     <empty></empty>
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat1">A1</label>
+                    <input id="seat-A1" type="checkbox" class="seat-checkbox">
+                    <label for="seat-A1">A1</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat2">A2</label>
+                    <input id="seat-A2" type="checkbox" class="seat-checkbox">
+                    <label for="seat-A2">A2</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat3">A3</label>
+                    <input id="seat-A3" type="checkbox" class="seat-checkbox">
+                    <label for="seat-A3">A3</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat4">A4</label>
+                    <input id="seat-A4" type="checkbox" class="seat-checkbox">
+                    <label for="seat-A4">A4</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat5">A5</label>
+                    <input id="seat-A5" type="checkbox" class="seat-checkbox">
+                    <label for="seat-A5">A5</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat6">A6</label>
+                    <input id="seat-A6" type="checkbox" class="seat-checkbox">
+                    <label for="seat-A6">A6</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat7">A7</label>
+                    <input id="seat-A7" type="checkbox" class="seat-checkbox">
+                    <label for="seat-A7">A7</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat8">A8</label>
+                    <input id="seat-A8" type="checkbox" class="seat-checkbox">
+                    <label for="seat-A8">A8</label>
                     <empty></empty>
 
                 </div>
                 <div class="seatsArea">
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat1">B1</label>
+                    <input id="seat-B1" type="checkbox" class="seat-checkbox">
+                    <label for="seat-B1">B1</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat2">B2</label>
+                    <input id="seat-B2" type="checkbox" class="seat-checkbox">
+                    <label for="seat-B2">B2</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat3">B3</label>
+                    <input id="seat-B3" type="checkbox" class="seat-checkbox">
+                    <label for="seat-B3">B3</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat4">B4</label>
+                    <input id="seat-B4" type="checkbox" class="seat-checkbox">
+                    <label for="seat-B4">B4</label>
                     <empty></empty>
                     <empty></empty>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat5">B5</label>
+                    <input id="seat-B5" type="checkbox" class="seat-checkbox">
+                    <label for="seat-B5" for="seat5">B5</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat6">B6</label>
+                    <input id="seat-B6" type="checkbox" class="seat-checkbox">
+                    <label for="seat-B6">B6</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat7">B7</label>
+                    <input id="seat-B7" type="checkbox" class="seat-checkbox">
+                    <label for="seat-B7">B7</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat8">B8</label>
+                    <input id="seat-B8" type="checkbox" class="seat-checkbox">
+                    <label for="seat-B8">B8</label>
 
                 </div>
                 <div class="seatsArea">
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat1">C1</label>
+                    <input id="seat-C1" type="checkbox" class="seat-checkbox">
+                    <label for="seat-C1">C1</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat2">C2</label>
+                    <input id="seat-C2" type="checkbox" class="seat-checkbox">
+                    <label for="seat-C2">C2</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat3">C3</label>
+                    <input id="seat-C3" type="checkbox" class="seat-checkbox">
+                    <label for="seat-C3">C3</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat4">C4</label>
+                    <input id="seat-C4" type="checkbox" class="seat-checkbox">
+                    <label for="seat-C4">C4</label>
                     <empty></empty>
                     <empty></empty>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat5">C5</label>
+                    <input id="seat-C5" type="checkbox" class="seat-checkbox">
+                    <label for="seat-C5">C5</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat6">C6</label>
+                    <input id="seat-C6" type="checkbox" class="seat-checkbox">
+                    <label for="seat-C6">C6</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat7">C7</label>
+                    <input id="seat-C7" type="checkbox" class="seat-checkbox">
+                    <label for="seat-C7">C7</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat8">C8</label>
+                    <input id="seat-C8" type="checkbox" class="seat-checkbox">
+                    <label for="seat-C8">C8</label>
 
                 </div>
                 <div class="seatsArea">
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat1">D1</label>
+                    <input id="seat-D1" type="checkbox" class="seat-checkbox">
+                    <label for="seat-D1">D1</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat2">D2</label>
+                    <input id="seat-D2" type="checkbox" class="seat-checkbox">
+                    <label for="seat-D2">D2</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat3">D3</label>
+                    <input id="seat-D3" type="checkbox" class="seat-checkbox">
+                    <label for="seat-D3">D3</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat4">D4</label>
+                    <input id="seat-D4" type="checkbox" class="seat-checkbox">
+                    <label for="seat-D4">D4</label>
                     <empty></empty>
                     <empty></empty>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat5">D5</label>
+                    <input id="seat-D5" type="checkbox" class="seat-checkbox">
+                    <label for="seat-D5">D5</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat6">D6</label>
+                    <input id="seat-D6" type="checkbox" class="seat-checkbox">
+                    <label for="seat-D6">D6</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat7">D7</label>
+                    <input id="seat-D7" type="checkbox" class="seat-checkbox">
+                    <label for="seat-D7">D7</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat8">D8</label>
+                    <input id="seat-D8" type="checkbox" class="seat-checkbox">
+                    <label for="seat-D8">D8</label>
 
                 </div>
                 <div class="seatsArea">
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat1">E1</label>
+                    <input id="seat-E1" type="checkbox" class="seat-checkbox">
+                    <label for="seat-E1">E1</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat2">E2</label>
+                    <input id="seat-E2" type="checkbox" class="seat-checkbox">
+                    <label for="seat-E2">E2</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat3">E3</label>
+                    <input id="seat-E3" type="checkbox" class="seat-checkbox">
+                    <label for="seat-E3">E3</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat4">E4</label>
+                    <input id="seat-E4" type="checkbox" class="seat-checkbox">
+                    <label for="seat-E4">E4</label>
                     <empty></empty>
                     <empty></empty>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat5">E5</label>
+                    <input id="seat-E5" type="checkbox" class="seat-checkbox">
+                    <label for="seat-E5">E5</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat6">E6</label>
+                    <input id="seat-E6" type="checkbox" class="seat-checkbox">
+                    <label for="seat-E6">E6</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat7">E7</label>
+                    <input id="seat-E7" type="checkbox" class="seat-checkbox">
+                    <label for="seat-E7">E7</label>
 
-                    <input type="checkbox" class="seat-checkbox">
-                    <label for="seat8">E8</label>
+                    <input id="seat-E8" type="checkbox" class="seat-checkbox">
+                    <label for="seat-E8">E8</label>
 
                 </div>
-                <button id="choosenSeat" class="chosenBtn">선택완료</button>
+                <button id="choosenSeat" class="chosenBtn disalbledBtn">선택완료</button>
             </section>
             <!-- ===사이드바 영역=== -->
             <section class="progressSidebar">
@@ -364,11 +374,94 @@
     </div>
     <!-- ==script== -->
     <script>
-        const choosenSeat = document.getElementById("choosenSeat");
 
-        choosenSeat.addEventListener("click", () => {
-            window.location.href = "/payment";
-        });
+        const headCount = {
+            adult: 0,
+            youth: 0,
+            special: 0,
+            seatCount: 0
+        }
+
+        const countDom = {} // dom id 객체
+
+        // countDom < dom id 동적 할당
+        for (let key in headCount) {
+            if (document.getElementById(`${key}Count`)) {
+                countDom[`${key}Count`] = document.getElementById(`${key}Count`);
+            }
+        }
+        const { adultCount, youthCount, specialCount } = countDom;
+
+        // 버튼 예외처리
+        const disalbledBtnFunc = () => {
+            const totalCount = (headCount.adult + headCount.youth + headCount.special);
+            if (totalCount == headCount.seatCount) {
+                document.getElementById("choosenSeat").classList.remove("disalbledBtn");
+            } else {
+                document.getElementById("choosenSeat").classList.add("disalbledBtn");
+            }
+        }
+
+        // 발생한 event가 plus인지 아닌지(minus) 검사 후 코드 실행
+        document.getElementById("ticketCountArea").addEventListener("click", (event) => {
+            if (event.target.id != null && event.target.id != "ticketCountArea") {
+                const isPlus = /.*Plus.*/.test(event.target.id);
+                if (isPlus) {
+                    // plus 
+                    if (Number(adultCount.innerText) + Number(youthCount.innerText) + Number(specialCount.innerText) == 8) {
+                        adultCount.innerText = headCount.adult;
+                        youthCount.innerText = headCount.youth;
+                        specialCount.innerText = headCount.special;
+                        disalbledBtnFunc();
+
+                    } else {
+                        const idTotalLen = Number(event.target.id.length);
+                        const targetId = event.target.id.slice(0, (idTotalLen - 12));
+                        const targetDOM = document.getElementById(`${targetId}Count`);
+                        const currentValue = Number(targetDOM.innerHTML);
+                        headCount[targetId] = Number(currentValue + 1);
+                        targetDOM.innerHTML = Number(currentValue + 1);
+                        disalbledBtnFunc();
+                    }
+
+                } else {
+                    // minus 
+                    const idTotalLen = Number(event.target.id.length);
+                    const targetId = event.target.id.slice(0, (idTotalLen - 13));
+                    const targetDOM = document.getElementById(`${targetId}Count`);
+                    if (Number(targetDOM.innerHTML) == 0) {
+                        targetDOM.innerHTML = 0;
+                        disalbledBtnFunc();
+
+                    } else {
+                        const currentValue = Number(targetDOM.innerHTML);
+                        headCount[targetId] = Number(currentValue - 1);
+                        targetDOM.innerHTML = Number(currentValue - 1);
+                        disalbledBtnFunc();
+                    }
+                }
+            }
+        })
+
+        // 좌석
+        document.getElementById("sectionBottom").addEventListener("change", (event) => {
+            const totalCount = (headCount.adult + headCount.youth + headCount.special);
+            if (document.getElementById(event.target.id).checked) {
+                if (totalCount > headCount.seatCount) {
+                    headCount.seatCount++;
+                    disalbledBtnFunc();
+
+                }else{
+                    document.getElementById(event.target.id).checked = false;
+                }
+            } else {
+                    headCount.seatCount--;
+                    disalbledBtnFunc();
+            }
+        })
+
+
+
     </script>
 </body>
 
