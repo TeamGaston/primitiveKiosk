@@ -26,16 +26,21 @@
     }, 5000);
 
     const homeButton = document.getElementById("homeButton");
-    homeButton.addEventListener( "click", () => {
-        window.location.href = "/home";
+    homeButton.addEventListener( "click", (e) => {
+        if (currentLocation === "/home" ) {
+            e.preventDefault();
+        } else {
+            window.location.href = "/home";
+        }
     } );
 
     const backButton = document.getElementById("backButton");
     backButton.addEventListener( "click", () => {
+        if (currentLocation === "/home" ) {
+            e.preventDefault();
+        }
         history.back();
     } );
 
     const currentLocation = new URL( location.href ).pathname;
-
-    backButton.disabled = ( currentLocation === "/home" );
 </script>
