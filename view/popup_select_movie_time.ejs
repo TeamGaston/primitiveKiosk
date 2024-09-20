@@ -11,48 +11,7 @@
 
             <div id="posterImg" class="posterImg"></div>
             <ul class="allMvTime" id="allMvTime">
-                <!-- 1 -->
-                <li class="mvTimeList" id="list01">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">11시00분</p>
-                    <p class="startAndEndTime">~12시00분</p>
-                </li>
-                <!-- 2 -->
-                <li class="mvTimeList" id="list02">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">12시00분</p>
-                    <p class="startAndEndTime">~13시00분</p>
-                </li>
-                <!-- 3 -->
-                <li class="mvTimeList" id="list03">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">13시00분</p>
-                    <p class="startAndEndTime">~14시00분</p>
-                </li>
-                <!-- 4 -->
-                <li class="mvTimeList" id="list04">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">14시00분</p>
-                    <p class="startAndEndTime">~15시00분</p>
-                </li>
-                <!-- 5 -->
-                <li class="mvTimeList" id="list05">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">15시00분</p>
-                    <p class="startAndEndTime">~16시00분</p>
-                </li>
-                <!-- 6 -->
-                <li class="mvTimeList" id="list06">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">16시00분</p>
-                    <p class="startAndEndTime">~17시00분</p>
-                </li>
-                <!-- 7 -->
-                <li class="mvTimeList" id="list07">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">17시00분</p>
-                    <p class="startAndEndTime">~18시00분</p>
-                </li>
+                
             </ul>
         </div>
         <div class="posterInformation">
@@ -104,7 +63,6 @@
             mvName.innerText = movieDataObj["title"];
             const [durationHour, druationMinute] = this.minuteToHour(movieDataObj["duration"]).split(":");
             mvTime.innerText = `${durationHour}시간 ${druationMinute}분`;
-            allMvTime.innerHTML = "";
 
             movieDataObj["slot"].forEach((slot, index) => {
                 allMvTime.innerHTML += `
