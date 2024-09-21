@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 });
 
 // adminBtn 눌렀을 경우
-app.get("//admin_password", (req, res) => {
+app.get("/admin_password", (req, res) => {
     res.render("/admin_password");
 });
 
