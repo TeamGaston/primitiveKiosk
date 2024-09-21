@@ -166,7 +166,6 @@
 
     </section>
 </section>
-    <button id="choosenSeat" class="chosenBtn disalbledBtn">선택완료</button>
 
     <script>
         // 임시 데이터
@@ -275,7 +274,12 @@
                 }
                 console.log(headCount);
             }
-        })
+        });
+
+        const choosenSeat = document.getElementById("choosenSeat");
+        choosenSeat.addEventListener( "click", () => {
+            location.href = "/payment";
+        });
     </script>
     
     <style>
