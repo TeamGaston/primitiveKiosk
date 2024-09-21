@@ -1,12 +1,9 @@
 <section class="seatSelectArea">
     <section class="sectionTop">
         <div id="ticketCountArea" class="ticketCountArea">
-            <button id="adultCountPlusBtn">+</button>성인<span id="adultCount">0</span><button
-                id="adultCountMinusBtn">-</button>
-            <button id="youthCountPlusBtn">+</button>청소년<span id="youthCount">0</span><button
-                id="youthCountMinusBtn">-</button>
-            <button id="specialCountPlusBtn">+</button>우대<span id="specialCount">0</span><button
-                id="specialCountMinusBtn">-</button>
+            <button id="adultCountMinusBtn">-</button>성인<span id="adultCount">0</span><button id="adultCountPlusBtn">+</button>
+            <button id="youthCountMinusBtn">-</button>청소년<span id="youthCount">0</span><button id="youthCountPlusBtn">+</button>
+            <button id="specialCountMinusBtn">-</button>우대<span id="specialCount">0</span><button id="specialCountPlusBtn">+</button>
         </div>
 
     </section>
@@ -278,12 +275,21 @@
                 }
                 console.log(headCount);
             }
+<<<<<<< HEAD
         })
 
         choosenSeat.addEventListener("click", () => {
                 window.location.href = "/payment";
         });
 
+=======
+        });
+
+        const choosenSeat = document.getElementById("choosenSeat");
+        choosenSeat.addEventListener( "click", () => {
+            location.href = "/payment";
+        });
+>>>>>>> 3f1eb9db4a2dd7cb6940f0630bc83dfbaa63adcc
     </script>
     
     <style>

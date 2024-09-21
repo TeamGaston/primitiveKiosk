@@ -14,10 +14,12 @@
     <link rel="stylesheet" href="style.css">
     <title>seat_selectionD</title>
     <style>
-        .layoutArea {
+        .seatSelectArea {
             display: flex;
             align-items: center;
             flex-direction: column;
+            width: 100%;
+            height: 100%;
         }
 
         .sectionTop {
@@ -220,188 +222,185 @@
     <div class="wrap">
         <!-- ===레이아웃 영역=== -->
         <section class="layoutArea">
+            <section class="seatSelectArea">
+                <section class="sectionTop">
+                    <div id="ticketCountArea" class="ticketCountArea">
+                        <button id="adultCountPlusBtn">+</button>성인<span id="adultCount">0</span><button
+                            id="adultCountMinusBtn">-</button>
+                        <button id="youthCountPlusBtn">+</button>청소년<span id="youthCount">0</span><button
+                            id="youthCountMinusBtn">-</button>
+                        <button id="specialCountPlusBtn">+</button>우대<span id="specialCount">0</span><button
+                            id="specialCountMinusBtn">-</button>
+                    </div>
 
-            <!-- ~여기에 작성~ -->
-            <section>
-                <div class="">예약된좌석</div>
-                <div class=""></div>
+                </section>
+
+                <section class="sectionMiddle">
+                    <p class="screen">screen</p>
+                </section>
+
+                <section id="sectionBottom" class="sectionBottom">
+                    <div class="seatsArea">
+                        <input id="A1" type="checkbox" class="seat-checkbox">
+                        <label for="A1">A1</label>
+
+                        <input id="A2" type="checkbox" class="seat-checkbox">
+                        <label for="A2">A2</label>
+                        <empty></empty>
+                        <empty></empty>
+                        <input id="A3" type="checkbox" class="seat-checkbox">
+                        <label for="A3">A3</label>
+
+                        <input id="A4" type="checkbox" class="seat-checkbox">
+                        <label for="A4">A4</label>
+
+                        <input id="A5" type="checkbox" class="seat-checkbox">
+                        <label for="A5">A5</label>
+
+                        <input id="A6" type="checkbox" class="seat-checkbox">
+                        <label for="A6">A6</label>
+                        <empty></empty>
+                        <empty></empty>
+                        <input id="A7" type="checkbox" class="seat-checkbox">
+                        <label for="A7">A7</label>
+
+                        <input id="A8" type="checkbox" class="seat-checkbox">
+                        <label for="A8">A8</label>
+
+
+                    </div>
+                    <div class="seatsArea">
+                        <input id="B1" type="checkbox" class="seat-checkbox">
+                        <label for="B1">B1</label>
+
+                        <input id="B2" type="checkbox" class="seat-checkbox">
+                        <label for="B2">B2</label>
+                        <empty></empty>
+                        <empty></empty>
+                        <input id="B3" type="checkbox" class="seat-checkbox">
+                        <label for="B3">B3</label>
+
+                        <input id="B4" type="checkbox" class="seat-checkbox">
+                        <label for="B4">B4</label>
+
+
+
+                        <input id="B5" type="checkbox" class="seat-checkbox">
+                        <label for="seat-B5" for="seat5">B5</label>
+
+                        <input id="B6" type="checkbox" class="seat-checkbox">
+                        <label for="B6">B6</label>
+                        <empty></empty>
+                        <empty></empty>
+                        <input id="B7" type="checkbox" class="seat-checkbox">
+                        <label for="B7">B7</label>
+
+                        <input id="B8" type="checkbox" class="seat-checkbox">
+                        <label for="B8">B8</label>
+
+                    </div>
+                    <div class="seatsArea">
+                        <input id="C1" type="checkbox" class="seat-checkbox">
+                        <label for="C1">C1</label>
+
+                        <input id="C2" type="checkbox" class="seat-checkbox">
+                        <label for="C2">C2</label>
+                        <empty></empty>
+                        <empty></empty>
+                        <input id="C3" type="checkbox" class="seat-checkbox">
+                        <label for="C3">C3</label>
+
+                        <input id="C4" type="checkbox" class="seat-checkbox">
+                        <label for="C4">C4</label>
+
+
+
+                        <input id="C5" type="checkbox" class="seat-checkbox">
+                        <label for="C5">C5</label>
+
+                        <input id="C6" type="checkbox" class="seat-checkbox">
+                        <label for="C6">C6</label>
+                        <empty></empty>
+                        <empty></empty>
+                        <input id="C7" type="checkbox" class="seat-checkbox">
+                        <label for="C7">C7</label>
+
+                        <input id="C8" type="checkbox" class="seat-checkbox">
+                        <label for="C8">C8</label>
+
+                    </div>
+                    <div class="seatsArea">
+                        <input id="D1" type="checkbox" class="seat-checkbox">
+                        <label for="D1">D1</label>
+
+                        <input id="D2" type="checkbox" class="seat-checkbox">
+                        <label for="D2">D2</label>
+                        <empty></empty>
+                        <empty></empty>
+                        <input id="D3" type="checkbox" class="seat-checkbox">
+                        <label for="D3">D3</label>
+
+                        <input id="D4" type="checkbox" class="seat-checkbox">
+                        <label for="D4">D4</label>
+
+
+
+                        <input id="D5" type="checkbox" class="seat-checkbox">
+                        <label for="D5">D5</label>
+
+                        <input id="D6" type="checkbox" class="seat-checkbox">
+                        <label for="D6">D6</label>
+                        <empty></empty>
+                        <empty></empty>
+                        <input id="D7" type="checkbox" class="seat-checkbox">
+                        <label for="D7">D7</label>
+
+                        <input id="D8" type="checkbox" class="seat-checkbox">
+                        <label for="D8">D8</label>
+
+                    </div>
+                    <div class="seatsArea">
+                        <input id="E1" type="checkbox" class="seat-checkbox">
+                        <label for="E1">E1</label>
+
+                        <input id="E2" type="checkbox" class="seat-checkbox">
+                        <label for="E2">E2</label>
+                        <empty></empty>
+                        <empty></empty>
+                        <input id="E3" type="checkbox" class="seat-checkbox">
+                        <label for="E3">E3</label>
+
+                        <input id="E4" type="checkbox" class="seat-checkbox">
+                        <label for="E4">E4</label>
+
+                        <input id="E5" type="checkbox" class="seat-checkbox">
+                        <label for="E5">E5</label>
+
+                        <input id="E6" type="checkbox" class="seat-checkbox">
+                        <label for="E6">E6</label>
+                        <empty></empty>
+                        <empty></empty>
+                        <input id="E7" type="checkbox" class="seat-checkbox">
+                        <label for="E7">E7</label>
+
+                        <input id="E8" type="checkbox" class="seat-checkbox">
+                        <label for="E8">E8</label>
+                    </div>
+
+                    <div class="seatImgBoxAll">
+                        <div class="seatImgBox selectedSeat"></div>
+                        <p>선택좌석</p>
+                        <div class="seatImgBox selectable"></div>
+                        <p>선택가능</p>
+                        <div class="seatImgBox notSelectable"></div>
+                        <p>선택불가</p>
+                    </div>
+
+                    <button id="choosenSeat" class="chosenBtn disalbledBtn">선택완료</button>
+
+                </section>
             </section>
-            <section class="sectionTop">
-                <div id="ticketCountArea" class="ticketCountArea">
-                    <button id="adultCountPlusBtn">+</button>성인<span id="adultCount">0</span><button
-                        id="adultCountMinusBtn">-</button>
-                    <button id="youthCountPlusBtn">+</button>청소년<span id="youthCount">0</span><button
-                        id="youthCountMinusBtn">-</button>
-                    <button id="specialCountPlusBtn">+</button>우대<span id="specialCount">0</span><button
-                        id="specialCountMinusBtn">-</button>
-                </div>
 
-            </section>
-
-            <section class="sectionMiddle">
-                <p class="screen">screen</p>
-            </section>
-
-            <section id="sectionBottom" class="sectionBottom">
-                <div class="seatsArea">
-                    <input id="A1" type="checkbox" class="seat-checkbox">
-                    <label for="A1">A1</label>
-
-                    <input id="A2" type="checkbox" class="seat-checkbox">
-                    <label for="A2">A2</label>
-                    <empty></empty>
-                    <empty></empty>
-                    <input id="A3" type="checkbox" class="seat-checkbox">
-                    <label for="A3">A3</label>
-
-                    <input id="A4" type="checkbox" class="seat-checkbox">
-                    <label for="A4">A4</label>
-
-                    <input id="A5" type="checkbox" class="seat-checkbox">
-                    <label for="A5">A5</label>
-
-                    <input id="A6" type="checkbox" class="seat-checkbox">
-                    <label for="A6">A6</label>
-                    <empty></empty>
-                    <empty></empty>
-                    <input id="A7" type="checkbox" class="seat-checkbox">
-                    <label for="A7">A7</label>
-
-                    <input id="A8" type="checkbox" class="seat-checkbox">
-                    <label for="A8">A8</label>
-
-
-                </div>
-                <div class="seatsArea">
-                    <input id="B1" type="checkbox" class="seat-checkbox">
-                    <label for="B1">B1</label>
-
-                    <input id="B2" type="checkbox" class="seat-checkbox">
-                    <label for="B2">B2</label>
-                    <empty></empty>
-                    <empty></empty>
-                    <input id="B3" type="checkbox" class="seat-checkbox">
-                    <label for="B3">B3</label>
-
-                    <input id="B4" type="checkbox" class="seat-checkbox">
-                    <label for="B4">B4</label>
-
-
-
-                    <input id="B5" type="checkbox" class="seat-checkbox">
-                    <label for="seat-B5" for="seat5">B5</label>
-
-                    <input id="B6" type="checkbox" class="seat-checkbox">
-                    <label for="B6">B6</label>
-                    <empty></empty>
-                    <empty></empty>
-                    <input id="B7" type="checkbox" class="seat-checkbox">
-                    <label for="B7">B7</label>
-
-                    <input id="B8" type="checkbox" class="seat-checkbox">
-                    <label for="B8">B8</label>
-
-                </div>
-                <div class="seatsArea">
-                    <input id="C1" type="checkbox" class="seat-checkbox">
-                    <label for="C1">C1</label>
-
-                    <input id="C2" type="checkbox" class="seat-checkbox">
-                    <label for="C2">C2</label>
-                    <empty></empty>
-                    <empty></empty>
-                    <input id="C3" type="checkbox" class="seat-checkbox">
-                    <label for="C3">C3</label>
-
-                    <input id="C4" type="checkbox" class="seat-checkbox">
-                    <label for="C4">C4</label>
-
-
-
-                    <input id="C5" type="checkbox" class="seat-checkbox">
-                    <label for="C5">C5</label>
-
-                    <input id="C6" type="checkbox" class="seat-checkbox">
-                    <label for="C6">C6</label>
-                    <empty></empty>
-                    <empty></empty>
-                    <input id="C7" type="checkbox" class="seat-checkbox">
-                    <label for="C7">C7</label>
-
-                    <input id="C8" type="checkbox" class="seat-checkbox">
-                    <label for="C8">C8</label>
-
-                </div>
-                <div class="seatsArea">
-                    <input id="D1" type="checkbox" class="seat-checkbox">
-                    <label for="D1">D1</label>
-
-                    <input id="D2" type="checkbox" class="seat-checkbox">
-                    <label for="D2">D2</label>
-                    <empty></empty>
-                    <empty></empty>
-                    <input id="D3" type="checkbox" class="seat-checkbox">
-                    <label for="D3">D3</label>
-
-                    <input id="D4" type="checkbox" class="seat-checkbox">
-                    <label for="D4">D4</label>
-
-
-
-                    <input id="D5" type="checkbox" class="seat-checkbox">
-                    <label for="D5">D5</label>
-
-                    <input id="D6" type="checkbox" class="seat-checkbox">
-                    <label for="D6">D6</label>
-                    <empty></empty>
-                    <empty></empty>
-                    <input id="D7" type="checkbox" class="seat-checkbox">
-                    <label for="D7">D7</label>
-
-                    <input id="D8" type="checkbox" class="seat-checkbox">
-                    <label for="D8">D8</label>
-
-                </div>
-                <div class="seatsArea">
-                    <input id="E1" type="checkbox" class="seat-checkbox">
-                    <label for="E1">E1</label>
-
-                    <input id="E2" type="checkbox" class="seat-checkbox">
-                    <label for="E2">E2</label>
-                    <empty></empty>
-                    <empty></empty>
-                    <input id="E3" type="checkbox" class="seat-checkbox">
-                    <label for="E3">E3</label>
-
-                    <input id="E4" type="checkbox" class="seat-checkbox">
-                    <label for="E4">E4</label>
-
-                    <input id="E5" type="checkbox" class="seat-checkbox">
-                    <label for="E5">E5</label>
-
-                    <input id="E6" type="checkbox" class="seat-checkbox">
-                    <label for="E6">E6</label>
-                    <empty></empty>
-                    <empty></empty>
-                    <input id="E7" type="checkbox" class="seat-checkbox">
-                    <label for="E7">E7</label>
-
-                    <input id="E8" type="checkbox" class="seat-checkbox">
-                    <label for="E8">E8</label>
-                </div>
-
-                <div class="seatImgBoxAll">
-                    <div class="seatImgBox selectedSeat"></div>
-                    <p>선택좌석</p>
-                    <div class="seatImgBox selectable"></div>
-                    <p>선택가능</p>
-                    <div class="seatImgBox notSelectable"></div>
-                    <p>선택불가</p>
-                </div>
-
-                <button id="choosenSeat" class="chosenBtn disalbledBtn">선택완료</button>
-
-            </section>
             <!-- ===사이드바 영역=== -->
             <section class="progressSidebar">
                 <div class="progressSettings completedStep"><span class="stepLabel">영화<br>선택</span></div>
@@ -532,7 +531,12 @@
                 }
                 console.log(headCount);
             }
-        })
+        });
+
+
+        choosenSeat.addEventListener("click", () => {
+            window.location.href = "/payment";
+        });
     </script>
 </body>
 
