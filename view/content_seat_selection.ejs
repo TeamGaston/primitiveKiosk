@@ -169,7 +169,6 @@
 
     </section>
 </section>
-    <button id="choosenSeat" class="chosenBtn disalbledBtn">선택완료</button>
 
     <script>
         // 임시 데이터
@@ -178,6 +177,7 @@
             { showtime: '11:00', theather: 'A관', seat_name: 'B1', reservation_status: true },
             { showtime: '11:00', theather: 'A관', seat_name: 'C1', reservation_status: true },
             { showtime: '11:00', theather: 'A관', seat_name: 'D1', reservation_status: true },
+            { showtime: '11:00', theather: 'A관', seat_name: 'E1', reservation_status: true },
         ]
 
         // 예약된 자석 확인
@@ -279,6 +279,11 @@
                 console.log(headCount);
             }
         })
+
+        choosenSeat.addEventListener("click", () => {
+                window.location.href = "/payment";
+        });
+
     </script>
     
     <style>
