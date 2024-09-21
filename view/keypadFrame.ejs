@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="keypad.css">
 <section id="keypadFrame" class="keypadArea">
-    <p class="bookingNumberText">
+    <p class="keypadTitle">
         <%= title %>
     </p>
     <input id="phoneNumber" class="phoneNumber" type="text" placeholder="010-1111-2222">
@@ -82,7 +82,7 @@
         }
 
         showNumber(deque) {
-            const displayNumber = document.getElementById("displayNumber");
+            const displayNumber = document.getElementById("phoneNumber");
             let displayStr = "";
             ///console.log( deque.copyStorage() );
             deque.copyStorage().forEach( number => {
