@@ -12,10 +12,33 @@
   <script src="https://kit.fontawesome.com/611c1b2c45.js" crossorigin="anonymous"></script>
   <!-- css -->
   <link rel="stylesheet" href="style.css">
-  <title>Welcome</title>
+  <title>touch_page</title>
   <style>
+    .adminModeBtn {
+      position: relative;
+      width: 4rem;
+      height: 4rem;
+      background-color: #353742a2;
+      color: #cacfd1;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+      margin-left: -3.5rem;
+      z-index: 1100;
+    }
+    
+    .adminModeIcon{
+      pointer-events: none;
+    }
+
+    .fa-solid {
+      font-size: 1.6rem;
+    }
+
     .logoImg {
-      padding-left: 47.7rem;
+      padding-left: 20rem;
     }
 
     .topBar {
@@ -80,6 +103,7 @@
     <section class="layoutArea">
       <!--#상단바#-->
       <section class="topBar">
+        <button id="adminModeBtn" class="adminModeBtn"><i class="adminModeIcon fa-solid fa-screwdriver-wrench"></i></button>
         <img class="logoImg" src="images/logo.png" alt="로고이미지">
         <article class="clockArea"><i class="bottomBarIcon fa-regular fa-clock"></i><span class="timeDisplay"
             id="touchPageClock">12:00</span>
@@ -106,6 +130,23 @@
       window.location.href = "/home";
     });
 
+    const clock = document.getElementById("touchPageClock");
+
+    const updateClock = () => {
+      const time = new Date();
+      const [hour, minute] = [time.getHours().toString().padStart(2, "0"), time.getMinutes().toString().padStart(2, "0")];
+      clock.innerText = `${hour}:${minute}`;
+    }
+
+    updateClock();
+    setInterval(() => {
+      updateClock();
+    }, 5000);
+
+    const adminModeBtn = document.getElementById("adminModeBtn");
+    adminModeBtn.addEventListener("click", () => {
+      window.location.href = "/admin_password";
+    });
   </script>
 </body>
 

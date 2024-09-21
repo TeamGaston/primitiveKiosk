@@ -23,6 +23,11 @@ app.get("/", (req, res) => {
     res.render("touch_page");
 });
 
+// 관리자 > 비밀번호 화면
+app.get("/admin_password", (req, res) => {
+    res.render("admin_password");
+});
+
 // home (현장예매, 예매티켓조회)
 app.get("/home", (req, res) => {
     res.render("layout", { content: "content_home", sideBar: "", popup: "", bottomBar: "bottomBarFrame" });
