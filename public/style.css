@@ -8,13 +8,6 @@
   font-size: 10px;
 }
 
-body {
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none;
-}
-
 /* ===최상위 컨테이너=== */
 .wrap {
   position: relative;

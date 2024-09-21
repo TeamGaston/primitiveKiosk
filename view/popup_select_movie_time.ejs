@@ -9,69 +9,141 @@
     <div class="timePopupAll">
         <div class="posterBasicInformation">
 
-            <div class="posterImg"></div>
+            <div id="posterImg" class="posterImg"></div>
             <ul class="allMvTime" id="allMvTime">
-                <!-- 1 -->
-                <li class="mvTimeList">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                </li>
-                <!-- 2 -->
-                <li class="mvTimeList">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                </li>
-                <!-- 3 -->
-                <li class="mvTimeList">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                </li>
-                <!-- 4 -->
-                <li class="mvTimeList">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                </li>
-                <!-- 5 -->
-                <li class="mvTimeList">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                </li>
-                <!-- 6 -->
-                <li class="mvTimeList">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                </li>
-                <!-- 7 -->
-                <li class="mvTimeList">
-                    <p class="theather">A관</p>
-                    <p class="startAndEndTime">09시00분<br>~12시00분</p>
-                </li>
+                
             </ul>
         </div>
         <div class="posterInformation">
             <p id="mvName" class="mvName">영화명</p>
-            <p id="mvTime" class="mvTime">시간</p>
+            <p id="mvTime" class="mvTime"></p>
         </div>
-        <button id="timeSelectionCompleteBtn" class="timeSelectionBtn">선택 완료</button>
+        <button id="timeSelectionCompleteBtn" class="timeSelectionBtn disalbledBtn">선택 완료</button>
+    </div>
 </section>
 
+<!-- ==script== -->
 <script>
-    // YJ
-    const mvTimeList = document.querySelectorAll(".mvTimeList");
-    const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
-    mvTimeList.forEach((item) => {
-        item.addEventListener("click", (event) => {
-            mvTimeList.forEach((listItem) => {
-                listItem.classList.remove("activeMvTime");
-            });
-            item.classList.add("activeMvTime");
-            timeSelectionBtn.style.display = "block";
-        });
-    });
+    //const mvTime = document.getElementById("mvTime");
+    class Select_movie_Time {
+        constructor(id) {
+            this.id = id;
+        }
 
-    timeSelectionBtn.addEventListener("click", () => {
-        window.location.href = "/select_headcount";
-    });
+        processData(movieTimeData = []) { // DB데이터 가공
+            const movieDataObj = {};
+            movieTimeData.forEach((movie) => {
+                if ("slot" in movieDataObj) {
+                    movieDataObj["slot"].push({
+                        "theater": movie["theater"],
+                        "showtime": movie["showtime"]
+                    });
+                } else {
+                    movieDataObj["movie_id"] = movie["movie_id"];
+                    movieDataObj["title"] = movie["title"];
+                    movieDataObj["duration"] = movie["duration"];
+                    movieDataObj["poster"] = movie["title"]; //movie["img_path"];
+                    movieDataObj["slot"] = [{
+                        "theater": movie["theater"],
+                        "showtime": movie["showtime"]
+                    }];
+                }
+            });
+
+            return movieDataObj;
+        }
+
+        displayMovieTime(movieDataObj) { // 동적으로 화면에 정보 표시
+            const allMvTime = document.getElementById("allMvTime");
+            const posterImg = document.getElementById("posterImg");
+            const mvName = document.getElementById("mvName");
+            const mvTime = document.getElementById("mvTime");
+
+            posterImg.innerHTML = movieDataObj["poster"];
+            mvName.innerText = movieDataObj["title"];
+            const [durationHour, druationMinute] = this.minuteToHour(movieDataObj["duration"]).split(":");
+            mvTime.innerText = `${durationHour}시간 ${druationMinute}분`;
+
+            movieDataObj["slot"].forEach((slot, index) => {
+                allMvTime.innerHTML += `
+                    <li class="mvTimeList" id="list0${index + 1}">
+                        <p class="theater">${slot["theater"]}</p>
+                        <p class="startAndEndTime">${slot["showtime"]}</p>
+                        <p class="startAndEndTime">~${ this.getEndtime( slot["showtime"], movieDataObj["duration"] ) }</p>
+                    </li>
+                `;
+            });
+        }
+
+        minuteToHour ( minute ) { // 분을 시간으로
+            return [ Math.floor( minute / 60 ), minute%60 ].join(":");
+        }
+
+        getEndtime(showtime, duration) { // 종료 시간 구하는 메서드
+            const [hour, minute] = showtime.split(":");
+            const endtimeMinute = 60 * Number(hour) + Number(minute) + duration;
+
+            const endtime = this.minuteToHour( endtimeMinute );
+            return endtime;
+        }
+
+        timeButtonEvent() { // 시간을 선택할 때
+            const mvTimeList = document.querySelectorAll(".mvTimeList");
+            const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
+
+            const movieData = {};
+
+            mvTimeList.forEach((item) => {
+                // click event : 클릭된 item -> movieData 값 할당 //
+                item.addEventListener("click", (event) => {
+                    const paragraphs = event.target.getElementsByTagName("p");
+                    
+                    const [theaterInfo, startTimeInfo, endTimeInfo] = paragraphs;
+
+                    movieData["name"] = document.getElementById("mvName").innerText;
+                    movieData["theater"] = theaterInfo.innerText;
+                    movieData["startTime"] = startTimeInfo.innerText;
+                    movieData["endTime"] = endTimeInfo.innerText.slice(1);
+                    console.log(movieData);
+
+                    // 라디오 버튼 처럼 기능 구현 //
+                    mvTimeList.forEach((listItem) => {
+                        listItem.classList.remove("activeMvTime");
+                    });
+                    item.classList.add("activeMvTime");
+                    timeSelectionBtn.classList.remove("disalbledBtn");
+                });
+            });
+
+            this.goWithQuery(movieData);
+        }
+
+        goWithQuery(movieData) { // 화면 넘김
+            const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
+            timeSelectionBtn.addEventListener("click", (event) => {
+                const query = Object.keys(movieData).map(key => `${key}=${movieData[key]}`).join("&");
+                location.href = `/select_headcount?${query}`;
+            });
+        }
+
+        controler(movieTimeData) {
+            const movieDataObj = this.processData( movieTimeData )
+            this.displayMovieTime(movieDataObj);
+            this.timeButtonEvent();
+        }
+    }
+
+    const movieTimeData = [
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '11:00', theater: 'A관', img_path: 'images/플립.png' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '12:00', theater: 'B관', img_path: 'images/플립.png' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '13:00', theater: 'C관', img_path: 'images/플립.png' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '14:00', theater: 'D관', img_path: 'images/플립.png' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '15:00', theater: 'A관', img_path: 'images/플립.png' }
+    ];
+
+    const page = new Select_movie_Time("select_movie_time_popup");
+    page.controler( movieTimeData );
+
 </script>
 
 <style>
@@ -87,9 +159,12 @@
     .posterImg {
         width: 25rem;
         height: 35rem;
-        background-image: url("images/베테랑.png");
+        /* background-image: url("images/베테랑.png"); */
         background-size: cover;
         /*border: 1px solid blue;*/
+        /* 임시 */
+        font-size: 3rem;
+        background-color: wheat;
     }
 
     .posterInformation {
@@ -187,7 +262,6 @@
         font-weight: bold;
         cursor: pointer;
         transition: background-color 0.2s, box-shadow 0.2s;
-        display: none;
     }
 
     .timeSelectionBtn:hover {
@@ -198,5 +272,15 @@
     .timeSelectionBtn:active {
         background-color: #b41c2b;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .disalbledBtn {
+        background-color: #3b3b3b;
+        color: #9d9d9d;
+        pointer-events: none;
+    }
+
+    p {
+        pointer-events: none;
     }
 </style>
