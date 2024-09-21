@@ -1,4 +1,4 @@
-<div class="paymentPoster">
+<div id="paymentPoster" class="paymentPoster">
     <!-- 영화포스터 -->
 </div>
 <!-- #결제/포인트사용 Box# -->
@@ -22,6 +22,9 @@
 </section>
 
 <script>
+    const [selectedMovieData] = [
+        { movie_id: 1, title: '플립', img_path: 'images/플립.png' }
+    ];
     const paymentCard = document.getElementById("cardPaymentTouchArea");
     const pointsUsage = document.getElementById("pointsUsageTouchArea");
     // 카드 결제
@@ -32,6 +35,10 @@
     pointsUsage.addEventListener("click", () => {
         window.location.href = "/user_verification";
     });
+    const paymentPoster = document.getElementById("paymentPoster");
+    paymentPoster.style.backgroundImage = selectedMovieData["img_path"];
+    
+
 </script>
 
 <style>
@@ -153,7 +160,9 @@
         left: 26%;
         top: 50%;
         transform: translate(-50%, -50%);
-        background: url("images/베테랑.png") no-repeat;
+        /* background-image: url("images/베테랑.png"); */
+        background-color: wheat;
+        background-repeat: no-repeat;
         background-size: cover;
     }
 </style>
