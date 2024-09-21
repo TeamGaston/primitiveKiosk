@@ -12,7 +12,7 @@
     <script src="https://kit.fontawesome.com/611c1b2c45.js" crossorigin="anonymous"></script>
     <!-- css -->
     <link rel="stylesheet" href="style.css">
-    <title>seat_selectionA</title>
+    <title>seat_selectionD</title>
     <style>
         .layoutArea {
             display: flex;
@@ -32,33 +32,12 @@
 
         .ticketCountArea {
             width: 60rem;
-            height: 6rem;
-            color: #E0E0E0;
+            height: 5.5rem;
+            color: white;
             font-size: 2.4rem;
-            line-height: 6rem;
+            line-height: 5.5rem;
             text-align: center;
-            background-color: #3B3B44;
-            border-radius: .5rem;
-            padding: 0.5rem;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-
-        .ticketCountArea button {
-            font-size: 2.4rem;
-            width: 3rem;
-            height: 3rem;
-            background-color: #4A4A5A;
-            border: none;
-            border-radius: 0.5rem;
-            color: #E0E0E0;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .ticketCountArea button:hover {
-            background-color: #6A6A7A;
+            margin: 0 2rem 0 2rem;
         }
 
         .ticketCountArea span {
@@ -66,8 +45,15 @@
             margin: 0 0.5rem 0 0.5rem;
         }
 
+        .ticketCountArea button {
+            font-size: 2.4rem;
+            margin: 0 0.5rem 0 0.5rem;
+            width: 4rem;
+            height: 4rem;
+        }
+
         .sectionMiddle {
-            width: 60rem;
+            width: 71rem;
             height: 10rem;
             display: flex;
             align-items: center;
@@ -77,14 +63,13 @@
         }
 
         .screen {
-            width: 60rem;
+            width: 100%;
             height: 3rem;
             line-height: 3rem;
             font-size: 1.8rem;
             background-color: #939393;
             text-align: center;
             letter-spacing: .5rem;
-            border-radius: 0.2rem;
         }
 
         .sectionBottom {
@@ -96,7 +81,7 @@
 
         .seatsArea {
             display: grid;
-            grid-template-columns: repeat(10, 1fr);
+            grid-template-columns: repeat(12, 1fr);
             /* 좌석 8개 한 줄 */
             justify-items: center;
             /* 좌석들 각자의 중앙 정렬 */
@@ -142,6 +127,11 @@
             cursor: pointer;
             border-radius: 5px;
             text-align: center;
+        }
+
+        /* 선택된 좌석 */
+        input[type="checkbox"]:checked+label {
+            background-color: #ff9933;
         }
 
         /* 선택된 좌석 */
@@ -193,7 +183,7 @@
         /* 선택좌석 선택가능 선택불가 좌석 라인 css  */
         .seatImgBoxAll {
             margin-top: 2rem;
-            margin-left: 33rem;
+            margin-left: 27rem;
             display: flex;
             align-items: center;
             gap: 5rem;
@@ -232,6 +222,10 @@
         <section class="layoutArea">
 
             <!-- ~여기에 작성~ -->
+            <section>
+                <div class="">예약된좌석</div>
+                <div class=""></div>
+            </section>
             <section class="sectionTop">
                 <div id="ticketCountArea" class="ticketCountArea">
                     <button id="adultCountPlusBtn">+</button>성인<span id="adultCount">0</span><button
@@ -250,13 +244,13 @@
 
             <section id="sectionBottom" class="sectionBottom">
                 <div class="seatsArea">
-                    <empty></empty>
                     <input id="A1" type="checkbox" class="seat-checkbox">
                     <label for="A1">A1</label>
 
                     <input id="A2" type="checkbox" class="seat-checkbox">
                     <label for="A2">A2</label>
-
+                    <empty></empty>
+                    <empty></empty>
                     <input id="A3" type="checkbox" class="seat-checkbox">
                     <label for="A3">A3</label>
 
@@ -268,13 +262,14 @@
 
                     <input id="A6" type="checkbox" class="seat-checkbox">
                     <label for="A6">A6</label>
-
+                    <empty></empty>
+                    <empty></empty>
                     <input id="A7" type="checkbox" class="seat-checkbox">
                     <label for="A7">A7</label>
 
                     <input id="A8" type="checkbox" class="seat-checkbox">
                     <label for="A8">A8</label>
-                    <empty></empty>
+
 
                 </div>
                 <div class="seatsArea">
@@ -283,21 +278,23 @@
 
                     <input id="B2" type="checkbox" class="seat-checkbox">
                     <label for="B2">B2</label>
-
+                    <empty></empty>
+                    <empty></empty>
                     <input id="B3" type="checkbox" class="seat-checkbox">
                     <label for="B3">B3</label>
 
                     <input id="B4" type="checkbox" class="seat-checkbox">
                     <label for="B4">B4</label>
-                    <empty></empty>
-                    <empty></empty>
+
+
 
                     <input id="B5" type="checkbox" class="seat-checkbox">
                     <label for="seat-B5" for="seat5">B5</label>
 
                     <input id="B6" type="checkbox" class="seat-checkbox">
                     <label for="B6">B6</label>
-
+                    <empty></empty>
+                    <empty></empty>
                     <input id="B7" type="checkbox" class="seat-checkbox">
                     <label for="B7">B7</label>
 
@@ -311,21 +308,23 @@
 
                     <input id="C2" type="checkbox" class="seat-checkbox">
                     <label for="C2">C2</label>
-
+                    <empty></empty>
+                    <empty></empty>
                     <input id="C3" type="checkbox" class="seat-checkbox">
                     <label for="C3">C3</label>
 
                     <input id="C4" type="checkbox" class="seat-checkbox">
                     <label for="C4">C4</label>
-                    <empty></empty>
-                    <empty></empty>
+
+
 
                     <input id="C5" type="checkbox" class="seat-checkbox">
                     <label for="C5">C5</label>
 
                     <input id="C6" type="checkbox" class="seat-checkbox">
                     <label for="C6">C6</label>
-
+                    <empty></empty>
+                    <empty></empty>
                     <input id="C7" type="checkbox" class="seat-checkbox">
                     <label for="C7">C7</label>
 
@@ -339,21 +338,23 @@
 
                     <input id="D2" type="checkbox" class="seat-checkbox">
                     <label for="D2">D2</label>
-
+                    <empty></empty>
+                    <empty></empty>
                     <input id="D3" type="checkbox" class="seat-checkbox">
                     <label for="D3">D3</label>
 
                     <input id="D4" type="checkbox" class="seat-checkbox">
                     <label for="D4">D4</label>
-                    <empty></empty>
-                    <empty></empty>
+
+
 
                     <input id="D5" type="checkbox" class="seat-checkbox">
                     <label for="D5">D5</label>
 
                     <input id="D6" type="checkbox" class="seat-checkbox">
                     <label for="D6">D6</label>
-
+                    <empty></empty>
+                    <empty></empty>
                     <input id="D7" type="checkbox" class="seat-checkbox">
                     <label for="D7">D7</label>
 
@@ -367,21 +368,21 @@
 
                     <input id="E2" type="checkbox" class="seat-checkbox">
                     <label for="E2">E2</label>
-
+                    <empty></empty>
+                    <empty></empty>
                     <input id="E3" type="checkbox" class="seat-checkbox">
                     <label for="E3">E3</label>
 
                     <input id="E4" type="checkbox" class="seat-checkbox">
                     <label for="E4">E4</label>
-                    <empty></empty>
-                    <empty></empty>
 
                     <input id="E5" type="checkbox" class="seat-checkbox">
                     <label for="E5">E5</label>
 
                     <input id="E6" type="checkbox" class="seat-checkbox">
                     <label for="E6">E6</label>
-
+                    <empty></empty>
+                    <empty></empty>
                     <input id="E7" type="checkbox" class="seat-checkbox">
                     <label for="E7">E7</label>
 

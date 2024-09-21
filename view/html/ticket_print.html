@@ -37,9 +37,10 @@
         }
 
         /* 정보영역 */
-        .movieInformation{
+        .movieInformation {
             margin-top: 0.7rem;
         }
+
         .movieTitle {
             margin: 1rem 6rem;
             font-size: 2.4rem;
@@ -62,7 +63,7 @@
             line-height: 5.5rem;
         }
 
-        .informationDetail{
+        .informationDetail {
             font-size: 1.6rem;
             color: #eeeeee;
         }
@@ -94,6 +95,12 @@
             background-color: #C8102E;
             transform: scale(0.99);
         }
+        .gapElement{
+            padding-left: 1rem;
+        }
+        .letterSpacing{
+            letter-spacing: 0.1rem;
+        }
     </style>
 </head>
 
@@ -109,12 +116,8 @@
                     <!-- 영화 정보 영역 -->
                     <section class="movieInformation">
                         <p class="movieTitle">베테랑</p>
-                        <ul class="listArea">
-                            <li class="informationList">일시/시간 &nbsp;&nbsp;&nbsp;<span class="informationDetail"  id="dateAndTime">베테랑</span></li>
-                            <li class="informationList">상영일자 &nbsp;&nbsp;&nbsp;<span class="informationDetail" id="memberInfo">2024-09-15</span></li>
-                            <li class="informationList">상영시간 &nbsp;&nbsp;&nbsp;<span class="informationDetail" id="runningTime">21:09</span></li>
-                            <li class="informationList">티켓매수 &nbsp;&nbsp;&nbsp;<span class="informationDetail" id="ticketCount">2매</span></li>
-                            <li class="informationList">좌석정보 &nbsp;&nbsp;&nbsp;<span class="informationDetail" id="seatInfo">D09, D10</span></li>
+                        <ul id="listArea" class="listArea">
+
                         </ul>
                     </section>
                 </section>
@@ -138,6 +141,43 @@
         </section>
 
     </div>
+    <script>
+        const movieData = [
+            {   movie_id: 1,
+                showtime: '11:00',
+                duration: '2시간 10분',
+                title: '플립',
+                ticket_count: 2,
+                seats: ['D09', 'D10'],
+                today: '2024-09-20',
+                img_path:
+                    'images/베테랑.png'
+            }
+        ];
 
+        const [{showtime,duration,title,ticket_count,seats,today}] = movieData;
+        const html = 
+        `
+    <li class="informationList">일시/시간<span class="gapElement"></span>
+    <span class="informationDetail letterSpacing" id="moiveDate">${title}</span>&nbsp;
+    (&nbsp;<span class="informationDetail" id="startTime">${showtime}</span>&nbsp;)</li>
+
+    <li class="informationList letterSpacing">상영일자<span class="gapElement">
+        <span class="informationDetail" id="memberInfo">${today}</span></li>
+
+    <li class="informationList letterSpacing">상영시간<span class="gapElement">
+        <span class="informationDetail" id="runningTime">${duration}</span></li>
+
+    <li class="informationList letterSpacing">티켓매수<span class="gapElement">
+        <span class="informationDetail" id="ticketCount">${ticket_count}</span></li>
+
+    <li class="informationList letterSpacing">좌석정보<span class="gapElement">
+        <span class="informationDetail" id="seatInfo">${showtime}</span></li>
+        `
+document.getElementById('listArea').innerHTML = html;
+
+
+
+    </script>
 
 </html>

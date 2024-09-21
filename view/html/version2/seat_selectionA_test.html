@@ -149,7 +149,6 @@
             background-color: #ff9933;
 
         }
-
         /* 예약된 좌석 */
         label.reservationSeat {
             background-color: #646464;
@@ -189,39 +188,6 @@
             color: #9d9d9d;
             pointer-events: none;
         }
-
-        /* 선택좌석 선택가능 선택불가 좌석 라인 css  */
-        .seatImgBoxAll {
-            margin-top: 2rem;
-            margin-left: 33rem;
-            display: flex;
-            align-items: center;
-            gap: 5rem;
-        }
-
-        .seatImgBox {
-            width: 17px;
-            height: 17px;
-        }
-
-        .selectedSeat {
-            background-color: #FF9933;
-        }
-
-        .selectable {
-            background-color: #D9D9D9;
-        }
-
-        .notSelectable {
-            background-color: #646464;
-        }
-
-        /* p 태그의 기본 마진 제거 */
-        .seatImgBoxAll p {
-            margin-left: -4rem;
-            font-size: 15px;
-            color: #ccc;
-        }
     </style>
 </head>
 
@@ -232,6 +198,10 @@
         <section class="layoutArea">
 
             <!-- ~여기에 작성~ -->
+             <section>
+                <div class="">예약된좌석</div>
+                <div class=""></div>
+             </section>
             <section class="sectionTop">
                 <div id="ticketCountArea" class="ticketCountArea">
                     <button id="adultCountPlusBtn">+</button>성인<span id="adultCount">0</span><button
@@ -387,19 +357,9 @@
 
                     <input id="E8" type="checkbox" class="seat-checkbox">
                     <label for="E8">E8</label>
-                </div>
 
-                <div class="seatImgBoxAll">
-                    <div class="seatImgBox selectedSeat"></div>
-                    <p>선택좌석</p>
-                    <div class="seatImgBox selectable"></div>
-                    <p>선택가능</p>
-                    <div class="seatImgBox notSelectable"></div>
-                    <p>선택불가</p>
                 </div>
-
                 <button id="choosenSeat" class="chosenBtn disalbledBtn">선택완료</button>
-
             </section>
             <!-- ===사이드바 영역=== -->
             <section class="progressSidebar">
@@ -516,22 +476,18 @@
                 if (totalCount > headCount.seatCount) {
                     headCount.seatCount++;
                     disalbledBtnFunc();
-                    headCount.reservationSeat.push(event.target.id);
+
                 } else {
                     document.getElementById(event.target.id).checked = false;
                 }
-                console.log(headCount);
             } else {
                 headCount.seatCount--;
                 disalbledBtnFunc();
-                // 배열에서 값 제거
-                const index = headCount.reservationSeat.indexOf(event.target.id);
-                if (index > -1) {
-                    headCount.reservationSeat.splice(index, 1);
-                }
-                console.log(headCount);
             }
         })
+
+
+
     </script>
 </body>
 

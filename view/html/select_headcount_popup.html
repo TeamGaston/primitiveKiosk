@@ -345,7 +345,7 @@
                             movieData[key] = 0;
                         }
                         const headCountValue = Number(movieData.adult + movieData.youth + movieData.special);
-                        if (headCountValue == 0 || headCountValue > 8) {
+                        if (headCountValue > 8) {
                             selectPeopleBtn.classList.add("disalbledBtn");
                             headcountCurrent.classList.add("valueFalse");
                         } else {
