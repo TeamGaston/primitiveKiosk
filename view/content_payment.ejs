@@ -23,7 +23,7 @@
 
 <script>
     const [selectedMovieData] = [
-        { movie_id: 1, title: '플립', img_path: 'images/플립.png' }
+        { movie_id: 1, title: '플립', img_path: 'images/플립.jpg' }
     ];
     const paymentCard = document.getElementById("cardPaymentTouchArea");
     const pointsUsage = document.getElementById("pointsUsageTouchArea");
@@ -36,7 +36,7 @@
         window.location.href = "/user_verification";
     });
     const paymentPoster = document.getElementById("paymentPoster");
-    paymentPoster.style.backgroundImage = selectedMovieData["img_path"];
+    paymentPoster.style.backgroundImage = `url("${selectedMovieData["img_path"]}")`;
     
 
 </script>
@@ -161,7 +161,7 @@
         top: 50%;
         transform: translate(-50%, -50%);
         /* background-image: url("images/베테랑.png"); */
-        background-color: wheat;
+        /* background-color: wheat; */
         background-repeat: no-repeat;
         background-size: cover;
     }

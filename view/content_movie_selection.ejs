@@ -78,39 +78,40 @@
     }//$SelectionSwitcher
 
     const posterMovieData = [
-        { movie_id: 1, duration: '2시간10분', title: '플립' },
-        { movie_id: 2, duration: '2시간10분', title: '아바타2' },
-        { movie_id: 3, duration: '2시간10분', title: '블라인드' },
-        { movie_id: 4, duration: '2시간10분', title: '나 홀로 집에1' },
-        { movie_id: 5, duration: '2시간10분', title: '1917' },
+        { movie_id: 1, duration: '2시간10분', title: '플립', "poster":'images/플립.jpg' },
+        { movie_id: 2, duration: '2시간10분', title: '아바타2', "poster":'images/아바타물의길.jpg' },
+        { movie_id: 3, duration: '2시간10분', title: '블라인드', "poster":'images/블라인드.jpg' },
+        { movie_id: 4, duration: '2시간10분', title: '나 홀로 집에1', "poster":'images/나홀로집에.jpg' },
+        { movie_id: 5, duration: '2시간10분', title: '1917', "poster":'images/1917.jpg' },
     ];
 
     const posterGallery = document.getElementById("posterGallery");
 
     posterMovieData.forEach((movie) => {
-        posterGallery.innerHTML += `<div id="poster_${movie["movie_id"]}" class="posterItem" style="font-size: 3rem;">${movie["title"]}</div>`;
+        posterGallery.innerHTML += `<div id="poster_${movie["movie_id"]}" class="posterItem" style="font-size: 3rem;" style="background-image: url(${movie["poster"]});"></div>`;
+        document.getElementById(`poster_${movie["movie_id"]}`).style.backgroundImage = `url("${movie["poster"]}")`;
     });
 
     const scheduleMovieData = [
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '11:00' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '12:00' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '13:00' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '14:00' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '15:00' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '11:00', "poster":'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '12:00', "poster":'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '13:00', "poster":'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '14:00', "poster":'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '15:00', "poster":'images/플립.jpg' },
 
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2", showtime: '11:00' },
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2", showtime: '12:00' },
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2", showtime: '13:00' },
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2", showtime: '14:00' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '11:00', "poster":'images/아바타물의길.jpg' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '12:00', "poster":'images/아바타물의길.jpg' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '13:00', "poster":'images/아바타물의길.jpg' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '14:00', "poster":'images/아바타물의길.jpg' },
 
-        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '11:00' },
-        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '12:00' },
-        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '13:00' },
+        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '11:00', "poster":'images/블라인드.jpg' },
+        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '12:00', "poster":'images/블라인드.jpg' },
+        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '13:00', "poster":'images/블라인드.jpg' },
 
-        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '11:00' },
-        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '12:00' },
+        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '11:00', "poster":'images/나홀로집에.jpg' },
+        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '12:00', "poster":'images/나홀로집에.jpg' },
 
-        { "movie_id": 5, "duration": "1시간50분", "title": "1917", showtime: '11:00' },
+        { "movie_id": 5, "duration": "1시간50분", "title": "1917", showtime: '11:00', "poster":'images/1917.jpg' },
     ];
 
     const scheduleMovieObj = {};
@@ -121,7 +122,7 @@
         } else {
             scheduleMovieObj[movie["movie_id"]] = {
                 title: movie["title"],
-                poster: movie["title"],
+                poster: movie["poster"],
                 showtime: [movie["showtime"]]
             }
         }
@@ -139,7 +140,7 @@
         });
         scheduleGalleryWrap.innerHTML += `
             <section class="scheduleGallery">
-                <div class="schedulePoster">${moviePoster}</div>
+                <div class="schedulePoster" style="background-image: url(${moviePoster});"></div>
                 <article class="scheduleSection">
                     <h2 class="movietitle">${movieTitle}</h2>
                     <div id="time_${movie_id}" class="timeContainer">
@@ -249,6 +250,10 @@
         margin-top: 3rem;
         margin: 2rem;
         cursor: pointer;
+
+        
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     /* #시간대별선택# */
@@ -271,7 +276,8 @@
         height: 100%;
         background: #ddd;
         /* background: url("images/베테랑.png") no-repeat; */
-        background-size: contain;
+        background-repeat: no-repeat;
+        background-size: cover;
 
         /* 임시 */
         font-size: 3rem;
