@@ -467,14 +467,15 @@
             }
         }
         const { adultCount, youthCount, specialCount } = countDom;
+        const choosenSeat = document.getElementById("choosenSeat");
 
         // 버튼 예외처리
         const disalbledBtnFunc = () => {
             const totalCount = (headCount.adult + headCount.youth + headCount.special);
             if (totalCount == headCount.seatCount) {
-                document.getElementById("choosenSeat").classList.remove("disalbledBtn");
+                choosenSeat.classList.remove("disalbledBtn");
             } else {
-                document.getElementById("choosenSeat").classList.add("disalbledBtn");
+                choosenSeat.classList.add("disalbledBtn");
             }
         }
 
