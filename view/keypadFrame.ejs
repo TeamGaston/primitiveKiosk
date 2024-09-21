@@ -3,7 +3,7 @@
     <p class="bookingNumberText">
         <%= title %>
     </p>
-    <div id="displayNumber" type="number" class="phoneNumber"></div>
+    <input id="phoneNumber" class="phoneNumber" type="text" placeholder="010-1111-2222">
     <button class="key" value="1">1</button>
     <button class="key" value="2">2</button>
     <button class="key" value="3">3</button>
@@ -89,7 +89,7 @@
                 displayStr += number;
             });
             
-            displayNumber.innerText = displayStr;
+            displayNumber.value = displayStr;
         }
 
         runKeypad() {
