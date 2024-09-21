@@ -38,8 +38,8 @@
             border-radius: 0.5rem;
         }
 
-   
         .phoneNumber {
+            display: block;
             width: 26.5rem;
             height: 4.5rem;
             margin: 0.4rem;
@@ -50,13 +50,17 @@
             color: #EDEDED;
             border-radius: 0.5rem;
             margin-left: 2rem;
-
+            text-align: center;
+            color: #292929;
             box-shadow:
                 inset 0 1px 1px rgba(49, 49, 49, 0.51),
                 inset 0 2px 2px rgba(53, 53, 53, 0.53);
-
         }    
-
+        
+        .phoneNumber::placeholder {
+            color: rgb(141, 141, 141);
+        }
+        
         .popupContent {
             padding-top: 4rem;
             /* text-align: center; */
