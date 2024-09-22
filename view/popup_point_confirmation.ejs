@@ -10,7 +10,7 @@
                 <div class="pointInfoBox howManyPointLeft"><span class="inputArea">보유 포인트: <input type="text"
                             id="heldPoint" class="inputTextArea" readonly> </span></div>
                 <div class="pointInfoBox howManyPointUse"><span class="inputArea">사용 포인트: <input type="text"
-                            class="inputTextArea" readonly> </span></div>
+                            id="usePoint" class="inputTextArea" readonly> </span></div>
                 <div class="pointInfoBox howManyLeft"><span class="inputArea">결제 할 금액: <input type="text"
                             class="inputTextArea" readonly> </span></div>
             </section>
@@ -32,8 +32,14 @@
             this.id = id;
         }
 
+        
+
         goToNextPage() {
             const checkBtn = document.getElementById("checkBtn");
+            const usePointArea = document.getElementById("usePoint");
+
+            checkBtn.disabled = !(Number(usePointArea.value) >= 1000);
+
             checkBtn.addEventListener("click", () => {
                 window.location.href = "/buying";
             });
@@ -45,11 +51,22 @@
         }
 
         displayUsePoint(pointData) {
-            const phoneNumberInput = document.getElementById("phoneNumber");
+            const keypad = document.getElementById("keypadFrame");
+            const displayNumber = document.getElementById("phoneNumber");
 
-            // phoneNumber의 값이 바뀔 때마다 실행되는 이벤트 리스너
-            phoneNumberInput.addEventListener("input", () => {
-                
+            const usePointArea = document.getElementById("usePoint");
+
+            keypad.addEventListener("click", (e) => {
+                const keyValue = e.target.value;
+                if (keyValue) {
+                    console.log(displayNumber.value)
+                    usePointArea.value = displayNumber.value;
+
+                    if (Number(usePointArea.value) > pointData["point"]) {
+                        usePointArea.value = pointData["point"];
+                        displayNumber.value = pointData["point"];
+                    }
+                }
             });
         }
 
