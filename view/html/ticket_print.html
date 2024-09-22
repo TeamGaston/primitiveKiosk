@@ -95,10 +95,12 @@
             background-color: #C8102E;
             transform: scale(0.99);
         }
-        .gapElement{
+
+        .gapElement {
             padding-left: 1rem;
         }
-        .letterSpacing{
+
+        .letterSpacing {
             letter-spacing: 0.05rem;
         }
     </style>
@@ -143,7 +145,8 @@
     </div>
     <script>
         const movieData = [
-            {   movie_id: 1,
+            {
+                movie_id: 1,
                 showtime: '11:00',
                 duration: '2시간 10분',
                 title: '플립',
@@ -155,9 +158,9 @@
             }
         ];
 
-        const [{showtime,duration,title,ticket_count,seats,today}] = movieData;
-        const html = 
-        `
+        const [{ showtime, duration, title, ticket_count, seats, today }] = movieData;
+        const html =
+            `
     <li class="informationList">일시/시간<span class="gapElement"></span>
     <span class="informationDetail letterSpacing" id="moiveDate">${title}</span>&nbsp;
     (&nbsp;<span class="informationDetail" id="startTime">${showtime}</span>&nbsp;)</li>
@@ -174,10 +177,12 @@
     <li class="informationList letterSpacing">좌석정보<span class="gapElement">
         <span class="informationDetail" id="seatInfo">${showtime}</span></li>
         `
-document.getElementById('listArea').innerHTML = html;
+        document.getElementById('listArea').innerHTML = html;
 
 
 
     </script>
+
+</body>
 
 </html>

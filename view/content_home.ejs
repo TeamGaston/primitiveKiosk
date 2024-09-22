@@ -10,9 +10,13 @@
 
 <script>
     const ticketBookingTouchArea = document.getElementById("ticketBookingTouchArea");
-
+    const checkBtn = document.getElementById("checkBtn");
     ticketBookingTouchArea.addEventListener("click", () => {
         window.location.href = "/movie_selection";
+    });
+
+    checkBtn.addEventListener("click", () => {
+        window.location.href = "/ticket_info";
     });
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -75,7 +79,6 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        transition: 0.3s;
         border-radius: 1rem;
         box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.455);
     }

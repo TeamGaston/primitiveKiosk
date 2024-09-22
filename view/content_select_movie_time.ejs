@@ -1,26 +1,17 @@
-<article class="popupBar">
-    <p class="popupTitle popupBarTextCommon">영화 시간을 선택해주세요.</p>
-    <div id="closePopup"><i class="popupBarTextCommon fa-solid fa-x"></i></div>
-</article>
-<section class="popupContent">
-    <!-- ~여기에 작성~ -->
+<div class="timePopupAll">
+    <div class="posterBasicInformation">
 
-    <!-- 시간선택팝업 -->
-    <div class="timePopupAll">
-        <div class="posterBasicInformation">
+        <div id="posterImg" class="posterImg"></div>
+        <ul class="allMvTime" id="allMvTime">
 
-            <div id="posterImg" class="posterImg"></div>
-            <ul class="allMvTime" id="allMvTime">
-                
-            </ul>
-        </div>
-        <div class="posterInformation">
-            <p id="mvName" class="mvName">영화명</p>
-            <p id="mvTime" class="mvTime"></p>
-        </div>
-        <button id="timeSelectionCompleteBtn" class="timeSelectionBtn disalbledBtn">선택 완료</button>
+        </ul>
     </div>
-</section>
+    <div class="posterInformation">
+        <p id="mvName" class="mvName">영화명</p>
+        <p id="mvTime" class="mvTime"></p>
+    </div>
+    <button id="timeSelectionCompleteBtn" class="timeSelectionBtn disalbledBtn">선택 완료</button>
+</div>
 
 <!-- ==script== -->
 <script>
@@ -69,21 +60,21 @@
                     <li class="mvTimeList" id="list0${index + 1}">
                         <p class="theater">${slot["theater"]}</p>
                         <p class="startAndEndTime">${slot["showtime"]}</p>
-                        <p class="startAndEndTime">~${ this.getEndtime( slot["showtime"], movieDataObj["duration"] ) }</p>
+                        <p class="startAndEndTime">~${this.getEndtime(slot["showtime"], movieDataObj["duration"])}</p>
                     </li>
                 `;
             });
         }
 
-        minuteToHour ( minute ) { // 분을 시간으로
-            return [ Math.floor( minute / 60 ), minute%60 ].join(":");
+        minuteToHour(minute) { // 분을 시간으로
+            return [Math.floor(minute / 60), minute % 60].join(":");
         }
 
         getEndtime(showtime, duration) { // 종료 시간 구하는 메서드
             const [hour, minute] = showtime.split(":");
             const endtimeMinute = 60 * Number(hour) + Number(minute) + duration;
 
-            const endtime = this.minuteToHour( endtimeMinute );
+            const endtime = this.minuteToHour(endtimeMinute);
             return endtime;
         }
 
@@ -97,7 +88,7 @@
                 // click event : 클릭된 item -> movieData 값 할당 //
                 item.addEventListener("click", (event) => {
                     const paragraphs = event.target.getElementsByTagName("p");
-                    
+
                     const [theaterInfo, startTimeInfo, endTimeInfo] = paragraphs;
 
                     movieData["name"] = document.getElementById("mvName").innerText;
@@ -127,7 +118,7 @@
         }
 
         controler(movieTimeData) {
-            const movieDataObj = this.processData( movieTimeData )
+            const movieDataObj = this.processData(movieTimeData)
             this.displayMovieTime(movieDataObj);
             this.timeButtonEvent();
         }
@@ -142,35 +133,31 @@
     ];
 
     const page = new Select_movie_Time("select_movie_time_popup");
-    page.controler( movieTimeData );
+    page.controler(movieTimeData);
 
 </script>
 
 <style>
-    /* 시간선택팝업 */
     .posterBasicInformation {
         width: 100%;
         display: flex;
-        padding-top: 5.5rem;
+        padding-top: 10.5rem;
         position: relative;
         justify-content: center;
     }
 
     .posterImg {
-        width: 25rem;
-        height: 35rem;
-        /* background-image: url("images/베테랑.png"); */
+        width: 30rem;
+        height: 43rem;
+        background-image: url("images/베테랑.png");
         background-size: cover;
         /*border: 1px solid blue;*/
-        /* 임시 */
-        font-size: 3rem;
-        background-color: wheat;
     }
 
     .posterInformation {
         width: 25rem;
         height: 5rem;
-        margin-left: 6.5rem;
+        margin-left: 27.5rem;
         margin-top: .5rem;
         text-align: center;
         line-height: 5rem;
@@ -196,7 +183,7 @@
         width: 39.2rem;
         height: 30rem;
         flex-wrap: wrap;
-        margin-left: 4rem;
+        margin-left: 6rem;
         margin-right: -1.3rem;
         margin-top: 3rem;
         gap: 2rem;
@@ -242,13 +229,9 @@
 
     /* 확인 버튼 스타일 */
 
-    .popupContent {
-        position: relative;
-    }
-
     .timeSelectionBtn {
         position: absolute;
-        right: 5%;
+        right: 3.3%;
         bottom: 5%;
         height: 4rem;
         width: 11rem;

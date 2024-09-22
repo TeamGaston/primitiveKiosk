@@ -30,6 +30,7 @@
             color: #EDEDED;
         }
 
+ 
         .keypadArea {
             width: 35rem;
             height: 35rem;
@@ -91,3 +92,5 @@
                         0 4px 4px rgba(0,0,0,0.16), 
                         0 8px 8px rgba(0,0,0,0.20);
         }
+
+    
