@@ -42,7 +42,7 @@
                     movieDataObj["movie_id"] = movie["movie_id"];
                     movieDataObj["title"] = movie["title"];
                     movieDataObj["duration"] = movie["duration"];
-                    movieDataObj["poster"] = movie["title"]; //movie["img_path"];
+                    movieDataObj["poster"] = movie["img_path"];
                     movieDataObj["slot"] = [{
                         "theater": movie["theater"],
                         "showtime": movie["showtime"]
@@ -59,7 +59,7 @@
             const mvName = document.getElementById("mvName");
             const mvTime = document.getElementById("mvTime");
 
-            posterImg.innerHTML = movieDataObj["poster"];
+            posterImg.style.backgroundImage = `url(${movieDataObj["poster"]})`;
             mvName.innerText = movieDataObj["title"];
             const [durationHour, druationMinute] = this.minuteToHour(movieDataObj["duration"]).split(":");
             mvTime.innerText = `${durationHour}시간 ${druationMinute}분`;
@@ -134,11 +134,11 @@
     }
 
     const movieTimeData = [
-        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '11:00', theater: 'A관', img_path: 'images/플립.png' },
-        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '12:00', theater: 'B관', img_path: 'images/플립.png' },
-        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '13:00', theater: 'C관', img_path: 'images/플립.png' },
-        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '14:00', theater: 'D관', img_path: 'images/플립.png' },
-        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '15:00', theater: 'A관', img_path: 'images/플립.png' }
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '11:00', theater: 'A관', img_path: 'images/플립.jpg' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '12:00', theater: 'B관', img_path: 'images/플립.jpg' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '13:00', theater: 'C관', img_path: 'images/플립.jpg' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '14:00', theater: 'D관', img_path: 'images/플립.jpg' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '15:00', theater: 'A관', img_path: 'images/플립.jpg' }
     ];
 
     const page = new Select_movie_Time("select_movie_time_popup");
@@ -160,11 +160,8 @@
         width: 25rem;
         height: 35rem;
         /* background-image: url("images/베테랑.png"); */
+        background-repeat: no-repeat;
         background-size: cover;
-        /*border: 1px solid blue;*/
-        /* 임시 */
-        font-size: 3rem;
-        background-color: wheat;
     }
 
     .posterInformation {

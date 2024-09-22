@@ -64,6 +64,8 @@ body {
   border: 1px solid #323440;
   border-radius: 0.2rem;
   transition: all 0.2s;
+
+  cursor: pointer;
 }
 
 .barButtons:hover {
