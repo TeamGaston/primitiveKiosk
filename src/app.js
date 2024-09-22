@@ -45,6 +45,7 @@ app.get("/select_movie_time", (req, res) => {
     res.render("layout", { content: "content_select_movie_time", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame" });
 });
 
+
 // === 2. 예매티켓조회 ===
 // [content_ticket_info] 티켓정보
 app.get("/ticket_info", (req, res) => {
@@ -62,7 +63,11 @@ app.get("/ticket_info", (req, res) => {
 
 // [popup_select_headcount] 관람 인원 설정
 app.get("/select_headcount", (req, res) => {
+<<<<<<< HEAD
     res.render("layout", { content: "", sideBar: "sideBarFrame", popup: "popup_select_headcount", bottomBar: "bottomBarFrame" });
+=======
+    res.render("layout", { content: "content_movie_time_selectionn", sideBar: "sideBarFrame", popup: "popup_select_headcount", bottomBar: "bottomBarFrame" });
+>>>>>>> 86cd189ba3d2f0bbc0104eea83fe2c2dedec8f85
 });
 
 // [content_seat_selection] 좌석선택
