@@ -63,11 +63,7 @@ app.get("/ticket_info", (req, res) => {
 
 // [popup_select_headcount] 관람 인원 설정
 app.get("/select_headcount", (req, res) => {
-<<<<<<< HEAD
     res.render("layout", { content: "", sideBar: "sideBarFrame", popup: "popup_select_headcount", bottomBar: "bottomBarFrame" });
-=======
-    res.render("layout", { content: "content_movie_time_selectionn", sideBar: "sideBarFrame", popup: "popup_select_headcount", bottomBar: "bottomBarFrame" });
->>>>>>> 86cd189ba3d2f0bbc0104eea83fe2c2dedec8f85
 });
 
 // [content_seat_selection] 좌석선택
