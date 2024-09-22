@@ -8,24 +8,60 @@
         <section class="allOfPointArea">
             <section class="pointArea">
                 <div class="pointInfoBox howManyPointLeft"><span class="inputArea">보유 포인트: <input type="text"
-                            class="inputTextArea"> </span></div>
+                            id="heldPoint" class="inputTextArea" readonly> </span></div>
                 <div class="pointInfoBox howManyPointUse"><span class="inputArea">사용 포인트: <input type="text"
-                            class="inputTextArea"> </span></div>
+                            class="inputTextArea" readonly> </span></div>
                 <div class="pointInfoBox howManyLeft"><span class="inputArea">결제 할 금액: <input type="text"
-                            class="inputTextArea"> </span></div>
+                            class="inputTextArea" readonly> </span></div>
             </section>
             <section class="pointinputArea">
-                <%- include("keypadFrame", {title: "사용할 포인트를 입력하세요."}) %>
+                <h2 class="popupTitleText">사용하실 포인트를 입력해주세요.</h2>
+                <%- include("keypadFrame", {title: "" }) %>
             </section>
         </section>
     </section>
 </section>
 
 <script>
-    const checkBtn = document.getElementById("checkBtn");
-    checkBtn.addEventListener("click", () => {
-        window.location.href = "/buying";
-    });
+    const [pointData] = [
+        { user_id: 1, phone_number: "01011112222", point: 3750 }
+    ];
+
+    class PointUse {
+        constructor(id) {
+            this.id = id;
+        }
+
+        goToNextPage() {
+            const checkBtn = document.getElementById("checkBtn");
+            checkBtn.addEventListener("click", () => {
+                window.location.href = "/buying";
+            });
+        }
+
+        displayMyPoint(pointData) {
+            const heldPointArea = document.getElementById("heldPoint");
+            heldPointArea.value = `${pointData["point"]}`;
+        }
+
+        displayUsePoint(pointData) {
+            const phoneNumberInput = document.getElementById("phoneNumber");
+
+            // phoneNumber의 값이 바뀔 때마다 실행되는 이벤트 리스너
+            phoneNumberInput.addEventListener("input", () => {
+                
+            });
+        }
+
+        runPage(pointData) {
+            this.displayMyPoint(pointData);
+            this.displayUsePoint(pointData);
+            this.goToNextPage();
+        }
+    }
+
+    const page = new PointUse("point_confirmation");
+    page.runPage(pointData);
 </script>
 
 <style>
@@ -61,10 +97,16 @@
     .inputTextArea {
         margin-left: 3rem;
         margin-top: 10rem;
+        padding-left: 1rem;
+
         border: none;
+        outline: none;
         background: none;
         border-bottom: 0.1rem solid #444444;
-        font-size: 1.5rem;
+
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: white;
     }
 
     /* 오른쪽 영역 박스 */
@@ -83,12 +125,21 @@
         letter-spacing: 1px;
     }
 
+    .popupTitleText {
+        font-size: 2rem;
+        letter-spacing: 1px;
+        color: #FFFFFF;
+        padding-bottom: 2.5rem;
 
-    .keypadArea {
-        /* *********************************************************임시 방편 */
+        text-align: center;
+        padding-top: 4rem;
+    }
+
+    /* .keypadArea {
+        
         margin-top: 6rem;
         height: 38rem;
-    }
+    } */
 
     /* 포인트를 얼만큼 사용 하실 건가요?  를 넣는 박스*/
     .pointText {
