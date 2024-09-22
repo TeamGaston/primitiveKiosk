@@ -39,8 +39,8 @@ app.get("/movie_selection", (req, res) => {
 });
 
 // 상영시간선택
-app.get("/select_movie_time_popup", (req, res) => {
-    res.render("layout", { content: "content_movie_selection", sideBar: "sideBarFrame", popup: "popup_select_movie_time", bottomBar: "bottomBarFrame" });
+app.get("/select_movie_time", (req, res) => {
+    res.render("layout", { content: "content_movie_time_selectionn", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame" });
 });
 
 // app.get("/popup/:popupId", (req, res) => {
@@ -53,7 +53,7 @@ app.get("/select_movie_time_popup", (req, res) => {
 
 // 관람 인원 설정
 app.get("/select_headcount", (req, res) => {
-    res.render("layout", { content: "content_movie_selection", sideBar: "sideBarFrame", popup: "popup_select_headcount", bottomBar: "bottomBarFrame" });
+    res.render("layout", { content: "content_movie_time_selectionn", sideBar: "sideBarFrame", popup: "popup_select_headcount", bottomBar: "bottomBarFrame" });
 });
 
 // 좌석선택
