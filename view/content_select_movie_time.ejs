@@ -27,7 +27,8 @@
                 if ("slot" in movieDataObj) {
                     movieDataObj["slot"].push({
                         "theater": movie["theater"],
-                        "showtime": movie["showtime"]
+                        "showtime": movie["showtime"],
+                        "reservable": ( this.hourToMinute(movie["showtime"]) > this.hourToMinute( this.updateClock() ) )
                     });
                 } else {
                     movieDataObj["movie_id"] = movie["movie_id"];
@@ -36,10 +37,14 @@
                     movieDataObj["poster"] = movie["img_path"];
                     movieDataObj["slot"] = [{
                         "theater": movie["theater"],
-                        "showtime": movie["showtime"]
+                        "showtime": movie["showtime"],
+                        "reservable": ( this.hourToMinute(movie["showtime"]) > this.hourToMinute( this.updateClock() ) )
                     }];
                 }
             });
+
+            console.log(movieDataObj);
+            
 
             return movieDataObj;
         }
@@ -56,23 +61,39 @@
             mvTime.innerText = `${durationHour}시간 ${druationMinute}분`;
 
             movieDataObj["slot"].forEach((slot, index) => {
-                allMvTime.innerHTML += `
-                    <li class="mvTimeList" id="list0${index + 1}">
-                        <p class="theater">${slot["theater"]}</p>
-                        <p class="startAndEndTime">${slot["showtime"]}</p>
-                        <p class="startAndEndTime">~${this.getEndtime(slot["showtime"], movieDataObj["duration"])}</p>
-                    </li>
-                `;
+                allMvTime.innerHTML += slot["reservable"] ? `
+                        <li class="mvTimeList" id="list0${index + 1}">
+                            <p class="theater">${slot["theater"]}</p>
+                            <p class="startAndEndTime">${slot["showtime"]}</p>
+                            <p class="startAndEndTime">~${this.getEndtime(slot["showtime"], movieDataObj["duration"])}</p>
+                        </li>
+                    ` : `
+                        <li class="mvTimeList blockClick" id="list0${index + 1}">
+                            <p class="theater">${slot["theater"]}</p>
+                            <p class="startAndEndTime">${slot["showtime"]}</p>
+                            <p class="startAndEndTime">~${this.getEndtime(slot["showtime"], movieDataObj["duration"])}</p>
+                        </li>
+                    `;
             });
         }
+
+        updateClock() {
+        const time = new Date();
+        const [hour, minute] = [time.getHours().toString().padStart(2, "0"), time.getMinutes().toString().padStart(2, "0")];
+        return `${hour}:${minute}`;
+    }
 
         minuteToHour(minute) { // 분을 시간으로
             return [Math.floor(minute / 60), minute % 60].join(":");
         }
 
+        hourToMinute(time) {
+            const [hour, minute] = time.split(":");
+            return 60 * Number(hour) + Number(minute);
+        }
+
         getEndtime(showtime, duration) { // 종료 시간 구하는 메서드
-            const [hour, minute] = showtime.split(":");
-            const endtimeMinute = 60 * Number(hour) + Number(minute) + duration;
+            const endtimeMinute = this.hourToMinute(showtime) + duration;
 
             const endtime = this.minuteToHour(endtimeMinute);
             return endtime;
@@ -129,7 +150,10 @@
         { "movie_id": 1, "duration": 110, "title": "플립", showtime: '12:00', theater: 'B관', img_path: 'images/플립.jpg' },
         { "movie_id": 1, "duration": 110, "title": "플립", showtime: '13:00', theater: 'C관', img_path: 'images/플립.jpg' },
         { "movie_id": 1, "duration": 110, "title": "플립", showtime: '14:00', theater: 'D관', img_path: 'images/플립.jpg' },
-        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '15:00', theater: 'A관', img_path: 'images/플립.jpg' }
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '15:00', theater: 'A관', img_path: 'images/플립.jpg' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '20:00', theater: 'B관', img_path: 'images/플립.jpg' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '21:00', theater: 'C관', img_path: 'images/플립.jpg' },
+        { "movie_id": 1, "duration": 110, "title": "플립", showtime: '22:00', theater: 'D관', img_path: 'images/플립.jpg' }
     ];
 
     const page = new Select_movie_Time("select_movie_time_popup");
@@ -207,6 +231,10 @@
     .mvTimeList:hover {
         background-color: #1F1F1F;
         border-color: #FFDD00;
+    }
+
+    .blockClick {
+        background-color: yellow;
     }
 
     .activeMvTime {
