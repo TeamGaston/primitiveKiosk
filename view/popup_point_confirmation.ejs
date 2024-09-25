@@ -23,6 +23,9 @@
 </section>
 
 <script>
+    // placeholder수정
+    document.getElementById('phoneNumber').placeholder = '1000원부터 사용가능';
+
     const [pointData] = [
         { user_id: 1, phone_number: "01011112222", point: 3750 }
     ];
@@ -33,7 +36,7 @@
             this.ownedPoint = 0;
         }
 
-        setPoint( pointData ) {
+        setPoint(pointData) {
             this.ownedPoint = pointData["point"];
         }
 
@@ -43,32 +46,29 @@
         }
 
         updatePoint() {
-            const keypad = document.getElementById("keypadArea");
+            const keypad = document.getElementById("keypadFrame");
             const checkBtn = document.getElementById("checkBtn");
-
             const usePointArea = document.getElementById("usePoint");
 
-            keypad.addEventListener("click", (e) => {
-                const keyValue = e.target.value;
+            keypad.addEventListener("click", (event) => {
+                const keyValue = event.target.value;
                 if (keyValue) {
-                    this.displayUsePoint( usePointArea );
+                    this.displayUsePoint(usePointArea);
 
                     checkBtn.disabled = ((Number(usePointArea.value) < 1000));
                 }
             });
         }
 
-        displayUsePoint( usePointArea ) {
+        displayUsePoint(usePointArea) {
             const displayNumber = document.getElementById("phoneNumber");
-
             usePointArea.value = displayNumber.value;
-
             if (Number(usePointArea.value) > this.ownedPoint) {
                 usePointArea.value = this.ownedPoint;
-                displayNumber.value = this.ownedPoint;
+                document.getElementById("phoneNumber").value = this.ownedPoint;
             }
         }
-        
+
         goToNextPage() {
             const checkBtn = document.getElementById("checkBtn");
             checkBtn.addEventListener("click", () => {
@@ -78,7 +78,7 @@
         }
 
         runPage(pointData) {
-            this.setPoint( pointData );
+            this.setPoint(pointData);
             this.displayOwnedPoint();
             this.updatePoint();
             this.goToNextPage();
@@ -87,9 +87,24 @@
 
     const page = new PointUse("point_confirmation");
     page.runPage(pointData);
+
+
+
 </script>
 
 <style>
+    .keypadArea {
+        width: 35rem;
+        height: 35rem;
+        text-align: center;
+        padding: 2rem;
+        border-radius: 0.5rem;
+    }
+
+    .bookingNumberText {
+        margin-bottom: 0rem;
+    }
+
     /* 포인트 정보 영역 */
     .popupContent {
         padding-top: 0rem;
@@ -179,7 +194,6 @@
         color: #EDEDED;
         border-radius: 0.5rem;
         margin-left: 2rem;
-
         box-shadow:
             inset 0 1px 1px rgba(49, 49, 49, 0.51),
             inset 0 2px 2px rgba(53, 53, 53, 0.53);

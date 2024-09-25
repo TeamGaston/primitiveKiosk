@@ -104,3 +104,9 @@
             color: #FFFFFF;
             padding-bottom: 2rem;
         }
+
+        .bookingNumberText{
+            font-size: 2.4rem;
+            color: #fff;
+            margin-bottom: 2rem;
+        }

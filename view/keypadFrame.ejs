@@ -47,15 +47,34 @@
                     this.length = this.storage.length;
                     return this.storage.length;
                 }
+                refreshData() { this.storage = []; } //변경
                 copyStorage() {
                     return [...this.storage];
                 }
+
             }
+
 
             const checkBtn = document.getElementById("checkBtn");
             const keypad = document.getElementById("keypadFrame");
 
             const numberDeque = new Deque(`${this.id}Deque`);
+
+            // 변경
+            const confirmData = () => {
+                const currentNumber = String(document.getElementById('phoneNumber').value);
+                let DequeData = '';
+                numberDeque.copyStorage().forEach((item) => {
+                    DequeData += item;
+                });
+
+                if (DequeData !== currentNumber) {
+                    numberDeque.refreshData();
+                    for (let i = 0; i < currentNumber.length; i++) {
+                        numberDeque.pushData(currentNumber[i]);
+                    }
+                }
+            }
 
             keypad.addEventListener("click", (e) => {
                 const keyValue = e.target.value;
@@ -63,6 +82,7 @@
                     //console.log(keyValue);
                     switch (keyValue) {
                         case "delete":
+                            confirmData();
                             numberDeque.popData();
                             break;
                         case "reset":
@@ -74,9 +94,8 @@
                             numberDeque.pushData(keyValue);
                     }
                 }
-                
-                this.showNumber( numberDeque );
 
+                this.showNumber(numberDeque);
                 checkBtn.disabled = (numberDeque.getLength() < 10);
             });
         }
@@ -85,10 +104,10 @@
             const displayNumber = document.getElementById("phoneNumber");
             let displayStr = "";
             ///console.log( deque.copyStorage() );
-            deque.copyStorage().forEach( number => {
+            deque.copyStorage().forEach(number => {
                 displayStr += number;
             });
-            
+
             displayNumber.value = displayStr;
         }
 
