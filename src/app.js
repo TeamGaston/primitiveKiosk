@@ -14,6 +14,10 @@ app.listen(3000, () => {
     console.log("3000 Port is ready");
 });
 
+// data 저장
+const queryData = {test: "test Dummy"};
+let movieQueryData = {} // 오직 주환이만 씀 // Dont use this Object only can use Juhwan
+
 /// ===페이지 이동=== ///
 
 // EX) data = { content: "", sideBar: "", popup: "", bottomBar: "" }
@@ -37,12 +41,13 @@ app.get("/home", (req, res) => {
 // === 1. 현장예매 ===
 // [content_movie_selection] 영화별/시간대별 선택
 app.get("/movie_selection", (req, res) => {
-    res.render("layout", { content: "content_movie_selection", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame" });
+    res.render("layout", { content: "content_movie_selection", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame", queryData: queryData });
 });
 
 // [content_select_movie_time] 상영시간선택
 app.get("/select_movie_time", (req, res) => {
-    res.render("layout", { content: "content_select_movie_time", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame" });
+    const queryData = req.query;
+    res.render("layout", { content: "content_select_movie_time", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame", queryData: queryData });
 });
 
 
@@ -63,17 +68,21 @@ app.get("/ticket_info", (req, res) => {
 
 // [popup_select_headcount] 관람 인원 설정
 app.get("/select_headcount", (req, res) => {
-    res.render("layout", { content: "", sideBar: "sideBarFrame", popup: "popup_select_headcount", bottomBar: "bottomBarFrame" });
+    const queryData = req.query;
+    res.render("layout", { content: "", sideBar: "sideBarFrame", popup: "popup_select_headcount", bottomBar: "bottomBarFrame", queryData: queryData });
 });
 
 // [content_seat_selection] 좌석선택
 app.get("/select_seat", (req, res) => {
-    res.render("layout", { content: "content_seat_selection", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame" });
+    const queryData = req.query;
+    res.render("layout", { content: "content_seat_selection", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame", queryData: queryData });
 });
 
 // [content_payment] 결제창
 app.get("/payment", (req, res) => {
-    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame" });
+    const queryData = req.query;
+    movieQueryData = {...queryData};
+    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame", queryData: queryData});
 });
 
 // ## 포인트 사용 ##
@@ -91,7 +100,9 @@ app.get("/point_confirmation", (req, res) => {
 // ## 카드 결제 ## 
 // [popup_payment_point_selection] 포인트를 적랍하시겠습니까?
 app.get("/earn_point", (req, res) => {
-    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_payment_point_selection", bottomBar: "bottomBarFrame" });
+    console.log("this is payment page", movieQueryData);
+    //res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_payment_point_selection", bottomBar: "bottomBarFrame", queryData: queryData });
+    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_payment_point_selection", bottomBar: "bottomBarFrame", queryData: movieQueryData });
 });
 
 // [popup_payment_point_accumulation] 포인트 적립 번호 입력

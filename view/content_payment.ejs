@@ -25,12 +25,20 @@
     const [selectedMovieData] = [
         { movie_id: 1, title: '플립', img_path: 'images/플립.jpg' }
     ];
+
+    const queryData = <%- JSON.stringify(queryData) %>;
+    console.log(queryData)
     const paymentCard = document.getElementById("cardPaymentTouchArea");
     const pointsUsage = document.getElementById("pointsUsageTouchArea");
     // 카드 결제
     paymentCard.addEventListener("click", () => {
         window.location.href = "/earn_point";
     });
+
+    const makeQuery = () => {
+
+    }
+
     // 포인트 사용
     pointsUsage.addEventListener("click", () => {
         window.location.href = "/user_verification";

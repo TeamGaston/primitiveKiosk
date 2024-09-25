@@ -78,40 +78,40 @@
     }//$SelectionSwitcher
 
     const posterMovieData = [
-        { movie_id: 1, duration: '2시간10분', title: '플립', "poster":'images/플립.jpg' },
-        { movie_id: 2, duration: '2시간10분', title: '아바타2', "poster":'images/아바타물의길.jpg' },
-        { movie_id: 3, duration: '2시간10분', title: '블라인드', "poster":'images/블라인드.jpg' },
-        { movie_id: 4, duration: '2시간10분', title: '나 홀로 집에1', "poster":'images/나홀로집에.jpg' },
-        { movie_id: 5, duration: '2시간10분', title: '1917', "poster":'images/1917.jpg' },
+        { movie_id: 1, duration: '2시간10분', title: '플립', "poster": 'images/플립.jpg' },
+        { movie_id: 2, duration: '2시간10분', title: '아바타2', "poster": 'images/아바타물의길.jpg' },
+        { movie_id: 3, duration: '2시간10분', title: '블라인드', "poster": 'images/블라인드.jpg' },
+        { movie_id: 4, duration: '2시간10분', title: '나 홀로 집에1', "poster": 'images/나홀로집에.jpg' },
+        { movie_id: 5, duration: '2시간10분', title: '1917', "poster": 'images/1917.jpg' },
     ];
 
     const posterGallery = document.getElementById("posterGallery");
 
     posterMovieData.forEach((movie) => {
-        posterGallery.innerHTML += `<div id="poster_${movie["movie_id"]}" class="posterItem" style="font-size: 3rem;" style="background-image: url(${movie["poster"]});"></div>`;
+        posterGallery.innerHTML += `<div id="poster_${movie["movie_id"]}" value="${movie["title"]}" class="posterItem" style="font-size: 3rem;" style="background-image: url(${movie["poster"]});"></div>`;
         document.getElementById(`poster_${movie["movie_id"]}`).style.backgroundImage = `url("${movie["poster"]}")`;
     });
 
     const scheduleMovieData = [
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '11:00', "poster":'images/플립.jpg' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '12:00', "poster":'images/플립.jpg' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '13:00', "poster":'images/플립.jpg' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '14:00', "poster":'images/플립.jpg' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '15:00', "poster":'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '11:00', "poster": 'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '12:00', "poster": 'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '13:00', "poster": 'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '14:00', "poster": 'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '15:00', "poster": 'images/플립.jpg' },
 
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '11:00', "poster":'images/아바타물의길.jpg' },
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '12:00', "poster":'images/아바타물의길.jpg' },
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '13:00', "poster":'images/아바타물의길.jpg' },
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '14:00', "poster":'images/아바타물의길.jpg' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '11:00', "poster": 'images/아바타물의길.jpg' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '12:00', "poster": 'images/아바타물의길.jpg' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '13:00', "poster": 'images/아바타물의길.jpg' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '14:00', "poster": 'images/아바타물의길.jpg' },
 
-        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '11:00', "poster":'images/블라인드.jpg' },
-        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '12:00', "poster":'images/블라인드.jpg' },
-        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '13:00', "poster":'images/블라인드.jpg' },
+        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '11:00', "poster": 'images/블라인드.jpg' },
+        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '12:00', "poster": 'images/블라인드.jpg' },
+        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '13:00', "poster": 'images/블라인드.jpg' },
 
-        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '11:00', "poster":'images/나홀로집에.jpg' },
-        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '12:00', "poster":'images/나홀로집에.jpg' },
+        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '11:00', "poster": 'images/나홀로집에.jpg' },
+        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '12:00', "poster": 'images/나홀로집에.jpg' },
 
-        { "movie_id": 5, "duration": "1시간50분", "title": "1917", showtime: '11:00', "poster":'images/1917.jpg' },
+        { "movie_id": 5, "duration": "1시간50분", "title": "1917", showtime: '11:00', "poster": 'images/1917.jpg' },
     ];
 
     const scheduleMovieObj = {};
@@ -136,7 +136,7 @@
         const moviePoster = scheduleMovieObj[movie_id]["poster"];
         let movieTimes = "";
         scheduleMovieObj[movie_id]["showtime"].forEach((showtime, index) => {
-            movieTimes += `<div id="showtime_${movie_id}_${index}" class="timeSlot">${showtime}</div>`;
+            movieTimes += `<div id="showtime_${movie_id}_${index}" value=${movieTitle} class="timeSlot">${showtime}</div>`;
         });
         scheduleGalleryWrap.innerHTML += `
             <section class="scheduleGallery">
@@ -155,35 +155,42 @@
     const selectionSwitcher = new SelectionSwitcher('selectionSwitcher');
     selectionSwitcher.control();
 
+    const makeQuery = (title) => {
+        return `title=${title}`;
+    }
+
     const posters = document.querySelectorAll(".posterItem");
     posters.forEach((poster) => {
         poster.addEventListener("click", () => {
-            // fetch(`/popup/popup_select_movie_time`)
-            //     .then(response => response.text())
-            //     .then(html => {
-            //         const container = document.getElementById("popupPos")
-            //         container.innerHTML = html;
-
-            //         // 동적으로 로드된 스크립트 태그 실행
-            //         const scripts = container.querySelectorAll("script");
-            //         scripts.forEach(script => {
-            //             const newScript = document.createElement("script");
-            //             newScript.text = script.text;
-            //             container.appendChild(newScript);
-            //         });
-            //         document.getElementById("popupArea").style.display = "block";
-            //     });
-            window.location.href = "/select_movie_time";
+            const query = makeQuery(poster.getAttribute("value"));
+            window.location.href = `/select_movie_time?${query}`;
         });
     });
 
     const timeSlots = document.querySelectorAll(".timeSlot");
     timeSlots.forEach((timeSlot) => {
         timeSlot.addEventListener("click", () => {
-            window.location.href = "/select_movie_time";
+            const query = makeQuery(timeSlot.getAttribute("value"));
+            window.location.href = `/select_movie_time?${query}`;
         });
     })
 
+
+    // fetch(`/popup/popup_select_movie_time`)
+    //     .then(response => response.text())
+    //     .then(html => {
+    //         const container = document.getElementById("popupPos")
+    //         container.innerHTML = html;
+
+    //         // 동적으로 로드된 스크립트 태그 실행
+    //         const scripts = container.querySelectorAll("script");
+    //         scripts.forEach(script => {
+    //             const newScript = document.createElement("script");
+    //             newScript.text = script.text;
+    //             container.appendChild(newScript);
+    //         });
+    //         document.getElementById("popupArea").style.display = "block";
+    //     });
 </script>
 
 <style>
@@ -251,7 +258,7 @@
         margin: 2rem;
         cursor: pointer;
 
-        
+
         background-repeat: no-repeat;
         background-size: cover;
     }

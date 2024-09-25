@@ -19,6 +19,15 @@
     class Select_movie_Time {
         constructor(id) {
             this.id = id;
+            this.queryData = null;
+            this.DBData = null;
+        }
+
+        getData() {
+            this.queryData = <%- JSON.stringify(queryData) %>;
+            this.DBData = {};
+            //console.log(this.queryData);
+            
         }
 
         processData(movieTimeData = []) { // DB데이터 가공
@@ -43,7 +52,7 @@
                 }
             });
 
-            console.log(movieDataObj);
+            //console.log(movieDataObj);
             
 
             return movieDataObj;
@@ -103,7 +112,7 @@
             const mvTimeList = document.querySelectorAll(".mvTimeList");
             const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
 
-            const movieData = {};
+            //const movieData = {};
 
             mvTimeList.forEach((item) => {
                 // click event : 클릭된 item -> movieData 값 할당 //
@@ -112,11 +121,14 @@
 
                     const [theaterInfo, startTimeInfo, endTimeInfo] = paragraphs;
 
-                    movieData["name"] = document.getElementById("mvName").innerText;
-                    movieData["theater"] = theaterInfo.innerText;
-                    movieData["startTime"] = startTimeInfo.innerText;
-                    movieData["endTime"] = endTimeInfo.innerText.slice(1);
-                    console.log(movieData);
+                    // movieData["name"] = document.getElementById("mvName").innerText;
+                    // movieData["theater"] = theaterInfo.innerText;
+                    // movieData["startTime"] = startTimeInfo.innerText;
+                    // movieData["endTime"] = endTimeInfo.innerText.slice(1);
+                    // console.log(movieData);
+                    this.queryData["theater"] = theaterInfo.innerText;
+                    this.queryData["startTime"] = startTimeInfo.innerText;
+                    this.queryData["endTime"] = endTimeInfo.innerText.slice(1);
 
                     // 라디오 버튼 처럼 기능 구현 //
                     mvTimeList.forEach((listItem) => {
@@ -127,18 +139,31 @@
                 });
             });
 
-            this.goWithQuery(movieData);
+            //this.goWithQuery(movieData);
+            this.goWithQuery(this.queryData);
+        }
+
+        makeQuery() {
+            let query = "";
+            for ( const queryKey in this.queryData ) {
+                query += `${queryKey}=${this.queryData[queryKey]}&`;
+            }
+            return query;
         }
 
         goWithQuery(movieData) { // 화면 넘김
             const timeSelectionBtn = document.getElementById("timeSelectionCompleteBtn");
             timeSelectionBtn.addEventListener("click", (event) => {
-                const query = Object.keys(movieData).map(key => `${key}=${movieData[key]}`).join("&");
-                location.href = `/select_headcount?${query}`;
+                const query = this.makeQuery();
+                console.log(query);
+                
+                location.href = `/select_headcount?${query}`; // 이건 살리고
+                //console.log(this.queryData);
             });
         }
 
         controler(movieTimeData) {
+            this.getData();
             const movieDataObj = this.processData(movieTimeData)
             this.displayMovieTime(movieDataObj);
             this.timeButtonEvent();
