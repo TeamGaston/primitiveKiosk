@@ -78,40 +78,45 @@
     }//$SelectionSwitcher
 
     const posterMovieData = [
-        { movie_id: 1, duration: '2시간10분', title: '플립', "poster": 'images/플립.jpg' },
-        { movie_id: 2, duration: '2시간10분', title: '아바타2', "poster": 'images/아바타물의길.jpg' },
-        { movie_id: 3, duration: '2시간10분', title: '블라인드', "poster": 'images/블라인드.jpg' },
-        { movie_id: 4, duration: '2시간10분', title: '나 홀로 집에1', "poster": 'images/나홀로집에.jpg' },
-        { movie_id: 5, duration: '2시간10분', title: '1917', "poster": 'images/1917.jpg' },
+        { movie_id: 1, duration: '2시간10분', title: '플립', "img_path": 'images/플립.jpg' },
+        { movie_id: 2, duration: '2시간10분', title: '아바타2', "img_path": 'images/아바타물의길.jpg' },
+        { movie_id: 3, duration: '2시간10분', title: '블라인드', "img_path": 'images/블라인드.jpg' },
+        { movie_id: 4, duration: '2시간10분', title: '나 홀로 집에1', "img_path": 'images/나홀로집에.jpg' },
+        { movie_id: 5, duration: '2시간10분', title: '1917', "img_path": 'images/1917.jpg' },
+        { movie_id: 6, duration: '2시간10분', title: '반지의 제왕', "img_path": 'images/반지의제왕.jpg' },
     ];
 
     const posterGallery = document.getElementById("posterGallery");
 
     posterMovieData.forEach((movie) => {
         posterGallery.innerHTML += `<div id="poster_${movie["movie_id"]}" value="${movie["title"]}" class="posterItem" style="font-size: 3rem;" style="background-image: url(${movie["poster"]});"></div>`;
-        document.getElementById(`poster_${movie["movie_id"]}`).style.backgroundImage = `url("${movie["poster"]}")`;
+        document.getElementById(`poster_${movie["movie_id"]}`).style.backgroundImage = `url("${movie["img_path"]}")`;
     });
 
     const scheduleMovieData = [
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '11:00', "poster": 'images/플립.jpg' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '12:00', "poster": 'images/플립.jpg' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '13:00', "poster": 'images/플립.jpg' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '14:00', "poster": 'images/플립.jpg' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '15:00', "poster": 'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '11:00', "img_path": 'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '12:00', "img_path": 'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '13:00', "img_path": 'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '14:00', "img_path": 'images/플립.jpg' },
+        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '15:00', "img_path": 'images/플립.jpg' },
 
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '11:00', "poster": 'images/아바타물의길.jpg' },
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '12:00', "poster": 'images/아바타물의길.jpg' },
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '13:00', "poster": 'images/아바타물의길.jpg' },
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '14:00', "poster": 'images/아바타물의길.jpg' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '11:00', "img_path": 'images/아바타물의길.jpg' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '12:00', "img_path": 'images/아바타물의길.jpg' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '13:00', "img_path": 'images/아바타물의길.jpg' },
+        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '14:00', "img_path": 'images/아바타물의길.jpg' },
 
-        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '11:00', "poster": 'images/블라인드.jpg' },
-        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '12:00', "poster": 'images/블라인드.jpg' },
-        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '13:00', "poster": 'images/블라인드.jpg' },
+        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '11:00', "img_path": 'images/블라인드.jpg' },
+        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '12:00', "img_path": 'images/블라인드.jpg' },
+        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '13:00', "img_path": 'images/블라인드.jpg' },
 
-        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '11:00', "poster": 'images/나홀로집에.jpg' },
-        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '12:00', "poster": 'images/나홀로집에.jpg' },
+        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '11:00', "img_path": 'images/나홀로집에.jpg' },
+        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '12:00', "img_path": 'images/나홀로집에.jpg' },
 
-        { "movie_id": 5, "duration": "1시간50분", "title": "1917", showtime: '11:00', "poster": 'images/1917.jpg' },
+        { "movie_id": 5, "duration": "1시간50분", "title": "1917", showtime: '11:00', "img_path": 'images/1917.jpg' },
+
+        { "movie_id": 6, "duration": "1시간50분", "title": "반지의 제왕", showtime: '11:00', "img_path": 'images/반지의제왕.jpg' },
+        { "movie_id": 6, "duration": "1시간50분", "title": "반지의 제왕", showtime: '11:00', "img_path": 'images/반지의제왕.jpg' },
+        { "movie_id": 6, "duration": "1시간50분", "title": "반지의 제왕", showtime: '11:00', "img_path": 'images/반지의제왕.jpg' },
     ];
 
     const scheduleMovieObj = {};
@@ -122,9 +127,9 @@
         } else {
             scheduleMovieObj[movie["movie_id"]] = {
                 title: movie["title"],
-                poster: movie["poster"],
+                poster: movie["img_path"],
                 showtime: [movie["showtime"]]
-            }
+            };
         }
     });
 
@@ -140,7 +145,7 @@
         });
         scheduleGalleryWrap.innerHTML += `
             <section class="scheduleGallery">
-                <div class="schedulePoster" style="background-image: url(${moviePoster});"></div>
+                <div id="time_${movie_id}" class="schedulePoster" style="background-image: url(${moviePoster});"></div>
                 <article class="scheduleSection">
                     <h2 class="movietitle">${movieTitle}</h2>
                     <div id="time_${movie_id}" class="timeContainer">
@@ -149,6 +154,7 @@
                 </article>
             </section>
         `;
+        //document.getElementById(`poster_${movie["movie_id"]}`).style.backgroundImage = `url("${movie["img_path"]}")`;
     }
 
     // 클래스 객체 생성

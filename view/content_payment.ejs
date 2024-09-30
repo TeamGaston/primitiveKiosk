@@ -5,7 +5,7 @@
 <section class="paymentContainer">
     <article class="paymentHeader">
         <h2 class="paymentTitle">총 결제금액</h2>
-        <input class="paymentAmount" type="text" value="30,000원" readonly>
+        <input id="paymentAmount" class="paymentAmount" type="text" value="30,000원" readonly>
     </article>
     <article class="paymentOptionBox">
         <!-- 카드결제 -->
@@ -27,25 +27,47 @@
     ];
 
     const queryData = <%- JSON.stringify(queryData) %>;
+    // const DBData = <%- JSON.stringify(DBData) %>;
     console.log(queryData)
     const paymentCard = document.getElementById("cardPaymentTouchArea");
     const pointsUsage = document.getElementById("pointsUsageTouchArea");
+
+    // 총 결제 금액 입력
+    const paymentAmount = document.getElementById("paymentAmount");
+    const priceTable = { adult: 14000, youth: 11000, special: 11000 };
+
+    let price = 0;
+    for (const clientType in priceTable) {
+        price += queryData[clientType] * priceTable[clientType];
+    }
+    paymentAmount.value = price.toLocaleString("kr-KO");
+
+    const makeQuery = (queryData) => {
+        let query = "";
+
+        queryData["price"] = price;
+
+        for (const key in queryData) {
+            query += `${key}=${queryData[key]}&`;
+        }
+        console.log(query);
+        return query;
+    }
+
     // 카드 결제
     paymentCard.addEventListener("click", () => {
-        window.location.href = "/earn_point";
+        const query = makeQuery(queryData);
+        window.location.href = `/earn_point?${query}`;
     });
-
-    const makeQuery = () => {
-
-    }
 
     // 포인트 사용
     pointsUsage.addEventListener("click", () => {
-        window.location.href = "/user_verification";
+        const query = makeQuery(queryData);
+        window.location.href = `/user_verification?${query}`;
     });
     const paymentPoster = document.getElementById("paymentPoster");
     paymentPoster.style.backgroundImage = `url("${selectedMovieData["img_path"]}")`;
-    
+
 
 </script>
 
@@ -80,7 +102,8 @@
         margin-top: 10rem;
     }
 
-    .cardImg, .pointImg {
+    .cardImg,
+    .pointImg {
         background-image: url("./images/card_payment_icon.png");
         background-repeat: no-repeat;
         background-position: 49%;

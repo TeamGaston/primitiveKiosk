@@ -15,7 +15,7 @@ app.listen(3000, () => {
 });
 
 // data 저장
-const queryData = {test: "test Dummy"};
+let queryData = {};
 let movieQueryData = {} // 오직 주환이만 씀 // Dont use this Object only can use Juhwan
 
 /// ===페이지 이동=== ///
@@ -29,19 +29,19 @@ app.get("/", (req, res) => {
 
 // [admin_password] 관리자 > 비밀번호 화면
 app.get("/admin_password", (req, res) => {
-    res.render("layout", { content: "content_admin_password", sideBar: "", popup: "", bottomBar: "bottomBarFrame" });
+    res.render("layout", { content: "content_admin_password", sideBar: "", popup: "", bottomBar: "bottomBarFrame", queryData: queryData});
 });
 
 
 // [home] 1. 현장예매 / 2. 예매티켓조회
 app.get("/home", (req, res) => {
-    res.render("layout", { content: "content_home", sideBar: "", popup: "", bottomBar: "bottomBarFrame" });
+    res.render("layout", { content: "content_home", sideBar: "", popup: "", bottomBar: "bottomBarFrame", queryData: queryData});
 });
 
 // === 1. 현장예매 ===
 // [content_movie_selection] 영화별/시간대별 선택
 app.get("/movie_selection", (req, res) => {
-    res.render("layout", { content: "content_movie_selection", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame", queryData: queryData });
+    res.render("layout", { content: "content_movie_selection", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame", queryData: queryData});
 });
 
 // [content_select_movie_time] 상영시간선택
@@ -89,20 +89,22 @@ app.get("/payment", (req, res) => {
 
 // [popup_user_verification] 회원번호 입력
 app.get("/user_verification", (req, res) => {
-    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_user_verification", bottomBar: "bottomBarFrame" });
+    const queryData = req.query;
+    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_user_verification", bottomBar: "bottomBarFrame", queryData: queryData});
 });
 
 // [popup_point_confirmation] 사용 포인트 입력
 app.get("/point_confirmation", (req, res) => {
-    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_point_confirmation", bottomBar: "bottomBarFrame" });
+    const queryData = req.query;
+    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_point_confirmation", bottomBar: "bottomBarFrame", queryData: queryData});
 });
 
 // ## 카드 결제 ## 
 // [popup_payment_point_selection] 포인트를 적랍하시겠습니까?
 app.get("/earn_point", (req, res) => {
-    console.log("this is payment page", movieQueryData);
+    const queryData = req.query;
     //res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_payment_point_selection", bottomBar: "bottomBarFrame", queryData: queryData });
-    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_payment_point_selection", bottomBar: "bottomBarFrame", queryData: movieQueryData });
+    res.render("layout", { content: "content_payment", sideBar: "sideBarFrame", popup: "popup_payment_point_selection", bottomBar: "bottomBarFrame", queryData: queryData });
 });
 
 // [popup_payment_point_accumulation] 포인트 적립 번호 입력

@@ -14,8 +14,21 @@
 
 <script>
     const checkBtn = document.getElementById("checkBtn");
+    //const queryData_popup = <%- JSON.stringify(queryData) %>;
+
+    // const makeQuery = (queryData) => {
+    //     let query = "";
+
+    //     for (const key in queryData) {
+    //         query += `${key}=${queryData[key]}&`;
+    //     }
+    //     console.log(query);
+    //     return query;
+    // }
+
     checkBtn.addEventListener("click", () => {
-        window.location.href = "/point_confirmation";
+        const query = makeQuery(queryData);
+        window.location.href = `/point_confirmation?${query}`;
     });
 </script>
 
