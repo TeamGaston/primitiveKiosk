@@ -77,73 +77,74 @@
         }//
     }//$SelectionSwitcher
 
-    const posterMovieData = [
-        { movie_id: 1, duration: '2시간10분', title: '플립', "img_path": 'images/플립.jpg' },
-        { movie_id: 2, duration: '2시간10분', title: '아바타2', "img_path": 'images/아바타물의길.jpg' },
-        { movie_id: 3, duration: '2시간10분', title: '블라인드', "img_path": 'images/블라인드.jpg' },
-        { movie_id: 4, duration: '2시간10분', title: '나 홀로 집에1', "img_path": 'images/나홀로집에.jpg' },
-        { movie_id: 5, duration: '2시간10분', title: '1917', "img_path": 'images/1917.jpg' },
-        { movie_id: 6, duration: '2시간10분', title: '반지의 제왕', "img_path": 'images/반지의제왕.jpg' },
-    ];
+    const procedureMovieSelection = (posterMovieData, scheduleMovieData) => {
+        // const posterMovieData = [
+        //     { movie_id: 1, duration: '2시간10분', title: '플립', "img_path": 'images/플립.jpg' },
+        //     { movie_id: 2, duration: '2시간10분', title: '아바타2', "img_path": 'images/아바타물의길.jpg' },
+        //     { movie_id: 3, duration: '2시간10분', title: '블라인드', "img_path": 'images/블라인드.jpg' },
+        //     { movie_id: 4, duration: '2시간10분', title: '나 홀로 집에1', "img_path": 'images/나홀로집에.jpg' },
+        //     { movie_id: 5, duration: '2시간10분', title: '1917', "img_path": 'images/1917.jpg' },
+        //     { movie_id: 6, duration: '2시간10분', title: '반지의 제왕', "img_path": 'images/반지의제왕.jpg' },
+        // ];
 
-    const posterGallery = document.getElementById("posterGallery");
+        // const scheduleMovieData = [
+        //     { "movie_id": 1, "duration": "1시간50분", "title": "플립", start_time: '11:00', "img_path": 'images/플립.jpg' },
+        //     { "movie_id": 1, "duration": "1시간50분", "title": "플립", start_time: '12:00', "img_path": 'images/플립.jpg' },
+        //     { "movie_id": 1, "duration": "1시간50분", "title": "플립", start_time: '13:00', "img_path": 'images/플립.jpg' },
+        //     { "movie_id": 1, "duration": "1시간50분", "title": "플립", start_time: '14:00', "img_path": 'images/플립.jpg' },
+        //     { "movie_id": 1, "duration": "1시간50분", "title": "플립", start_time: '15:00', "img_path": 'images/플립.jpg' },
 
-    posterMovieData.forEach((movie) => {
-        posterGallery.innerHTML += `<div id="poster_${movie["movie_id"]}" value="${movie["title"]}" class="posterItem" style="font-size: 3rem;" style="background-image: url(${movie["poster"]});"></div>`;
-        document.getElementById(`poster_${movie["movie_id"]}`).style.backgroundImage = `url("${movie["img_path"]}")`;
-    });
+        //     { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", start_time: '11:00', "img_path": 'images/아바타물의길.jpg' },
+        //     { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", start_time: '12:00', "img_path": 'images/아바타물의길.jpg' },
+        //     { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", start_time: '13:00', "img_path": 'images/아바타물의길.jpg' },
+        //     { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", start_time: '14:00', "img_path": 'images/아바타물의길.jpg' },
 
-    const scheduleMovieData = [
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '11:00', "img_path": 'images/플립.jpg' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '12:00', "img_path": 'images/플립.jpg' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '13:00', "img_path": 'images/플립.jpg' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '14:00', "img_path": 'images/플립.jpg' },
-        { "movie_id": 1, "duration": "1시간50분", "title": "플립", showtime: '15:00', "img_path": 'images/플립.jpg' },
+        //     { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", start_time: '11:00', "img_path": 'images/블라인드.jpg' },
+        //     { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", start_time: '12:00', "img_path": 'images/블라인드.jpg' },
+        //     { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", start_time: '13:00', "img_path": 'images/블라인드.jpg' },
 
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '11:00', "img_path": 'images/아바타물의길.jpg' },
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '12:00', "img_path": 'images/아바타물의길.jpg' },
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '13:00', "img_path": 'images/아바타물의길.jpg' },
-        { "movie_id": 2, "duration": "1시간50분", "title": "아바타2 : 물의 길", showtime: '14:00', "img_path": 'images/아바타물의길.jpg' },
+        //     { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", start_time: '11:00', "img_path": 'images/나홀로집에.jpg' },
+        //     { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", start_time: '12:00', "img_path": 'images/나홀로집에.jpg' },
 
-        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '11:00', "img_path": 'images/블라인드.jpg' },
-        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '12:00', "img_path": 'images/블라인드.jpg' },
-        { "movie_id": 3, "duration": "1시간50분", "title": "블라인드", showtime: '13:00', "img_path": 'images/블라인드.jpg' },
+        //     { "movie_id": 5, "duration": "1시간50분", "title": "1917", start_time: '11:00', "img_path": 'images/1917.jpg' },
 
-        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '11:00', "img_path": 'images/나홀로집에.jpg' },
-        { "movie_id": 4, "duration": "1시간50분", "title": "나 홀로 집에1", showtime: '12:00', "img_path": 'images/나홀로집에.jpg' },
+        //     { "movie_id": 6, "duration": "1시간50분", "title": "반지의 제왕", start_time: '11:00', "img_path": 'images/반지의제왕.jpg' },
+        //     { "movie_id": 6, "duration": "1시간50분", "title": "반지의 제왕", start_time: '11:00', "img_path": 'images/반지의제왕.jpg' },
+        //     { "movie_id": 6, "duration": "1시간50분", "title": "반지의 제왕", start_time: '11:00', "img_path": 'images/반지의제왕.jpg' },
+        // ];
 
-        { "movie_id": 5, "duration": "1시간50분", "title": "1917", showtime: '11:00', "img_path": 'images/1917.jpg' },
+        const posterGallery = document.getElementById("posterGallery");
 
-        { "movie_id": 6, "duration": "1시간50분", "title": "반지의 제왕", showtime: '11:00', "img_path": 'images/반지의제왕.jpg' },
-        { "movie_id": 6, "duration": "1시간50분", "title": "반지의 제왕", showtime: '11:00', "img_path": 'images/반지의제왕.jpg' },
-        { "movie_id": 6, "duration": "1시간50분", "title": "반지의 제왕", showtime: '11:00', "img_path": 'images/반지의제왕.jpg' },
-    ];
-
-    const scheduleMovieObj = {};
-
-    scheduleMovieData.forEach((movie) => {
-        if (movie["movie_id"] in scheduleMovieObj) {
-            scheduleMovieObj[movie["movie_id"]]["showtime"].push(movie["showtime"]);
-        } else {
-            scheduleMovieObj[movie["movie_id"]] = {
-                title: movie["title"],
-                poster: movie["img_path"],
-                showtime: [movie["showtime"]]
-            };
-        }
-    });
-
-    const scheduleGalleryWrap = document.getElementById("scheduleGalleryWrap");
-    console.log(scheduleMovieObj);
-
-    for (const movie_id in scheduleMovieObj) {
-        const movieTitle = scheduleMovieObj[movie_id]["title"];
-        const moviePoster = scheduleMovieObj[movie_id]["poster"];
-        let movieTimes = "";
-        scheduleMovieObj[movie_id]["showtime"].forEach((showtime, index) => {
-            movieTimes += `<div id="showtime_${movie_id}_${index}" value=${movieTitle} class="timeSlot">${showtime}</div>`;
+        posterMovieData.forEach((movie) => {
+            posterGallery.innerHTML += `<div id="poster_${movie["movie_id"]}" value="${movie["title"]}" class="posterItem" style="font-size: 3rem;" style="background-image: url(${movie["poster"]});"></div>`;
+            document.getElementById(`poster_${movie["movie_id"]}`).style.backgroundImage = `url("${movie["img_path"]}")`;
         });
-        scheduleGalleryWrap.innerHTML += `
+
+        const scheduleMovieObj = {};
+
+        scheduleMovieData.forEach((movie) => {
+            if (movie["movie_id"] in scheduleMovieObj) {
+                scheduleMovieObj[movie["movie_id"]]["start_time"].push(movie["start_time"].replace(/:\d{2}$/, ''));
+            } else {
+                scheduleMovieObj[movie["movie_id"]] = {
+                    title: movie["title"],
+                    poster: movie["img_path"],
+                    start_time: [movie["start_time"].replace(/:\d{2}$/, '')]
+                };
+            }
+        });
+
+        const scheduleGalleryWrap = document.getElementById("scheduleGalleryWrap");
+        console.log(scheduleMovieObj);
+
+        for (const movie_id in scheduleMovieObj) {
+            const movieTitle = scheduleMovieObj[movie_id]["title"];
+            const moviePoster = scheduleMovieObj[movie_id]["poster"];
+            let movieTimes = "";
+            scheduleMovieObj[movie_id]["start_time"].forEach((start_time, index) => {
+                movieTimes += `<div id="start_time_${movie_id}_${index}" value=${movieTitle} class="timeSlot">${start_time}</div>`;
+            });
+            scheduleGalleryWrap.innerHTML += `
             <section class="scheduleGallery">
                 <div id="time_${movie_id}" class="schedulePoster" style="background-image: url(${moviePoster});"></div>
                 <article class="scheduleSection">
@@ -154,33 +155,61 @@
                 </article>
             </section>
         `;
-        //document.getElementById(`poster_${movie["movie_id"]}`).style.backgroundImage = `url("${movie["img_path"]}")`;
+            //document.getElementById(`poster_${movie["movie_id"]}`).style.backgroundImage = `url("${movie["img_path"]}")`;
+        }
+
+        // 클래스 객체 생성
+        const selectionSwitcher = new SelectionSwitcher('selectionSwitcher');
+        selectionSwitcher.control();
+
+        const makeQuery = (title) => {
+            return `title=${title}`;
+        }
+
+        const posters = document.querySelectorAll(".posterItem");
+        posters.forEach((poster) => {
+            poster.addEventListener("click", () => {
+                const query = makeQuery(poster.getAttribute("value"));
+                window.location.href = `/select_movie_time?${query}`;
+            });
+        });
+
+        const timeSlots = document.querySelectorAll(".timeSlot");
+        timeSlots.forEach((timeSlot) => {
+            timeSlot.addEventListener("click", () => {
+                const query = makeQuery(timeSlot.getAttribute("value"));
+                window.location.href = `/select_movie_time?${query}`;
+            });
+        })
     }
 
-    // 클래스 객체 생성
-    const selectionSwitcher = new SelectionSwitcher('selectionSwitcher');
-    selectionSwitcher.control();
+    const runMovieSelection = (async () => {
+        const settings = {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            }
+        };
+        try {
+            const [resByPoster, resBySchedule] = await Promise.all([
+                fetch("/movie_selection1", settings),
+                fetch("/movie_selection2", settings)
+            ]);
+            const posterMovieData = await resByPoster.json();
+            const scheduleMovieData = await resBySchedule.json();
 
-    const makeQuery = (title) => {
-        return `title=${title}`;
-    }
+            console.log(posterMovieData);
+            console.log(scheduleMovieData);
+            
+            procedureMovieSelection(posterMovieData, scheduleMovieData);
+        } catch (err) {
+            console.error(err);
+        }
+    })();
 
-    const posters = document.querySelectorAll(".posterItem");
-    posters.forEach((poster) => {
-        poster.addEventListener("click", () => {
-            const query = makeQuery(poster.getAttribute("value"));
-            window.location.href = `/select_movie_time?${query}`;
-        });
-    });
 
-    const timeSlots = document.querySelectorAll(".timeSlot");
-    timeSlots.forEach((timeSlot) => {
-        timeSlot.addEventListener("click", () => {
-            const query = makeQuery(timeSlot.getAttribute("value"));
-            window.location.href = `/select_movie_time?${query}`;
-        });
-    })
-
+    
 
     // fetch(`/popup/popup_select_movie_time`)
     //     .then(response => response.text())

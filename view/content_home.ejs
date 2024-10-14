@@ -5,7 +5,9 @@
 </section>
 <!-- 키패드 영역 -->
 <section class="keypadBoxArea">
-    <%- include("keypadFrame", { title: "예매 티켓 조회" } ) %>
+    <form action="/checkUser" method="POST">
+        <%- include("keypadFrame", { title: "예매 티켓 조회" } ) %>
+    </form>
 </section>
 
 <script>
@@ -26,7 +28,7 @@
                 setTimeout(() => {
                     console.log(`${returnTouchPageSecond - i}초 뒤에 터치 화면으로 돌아갑니다.`);
                     if (i === returnTouchPageSecond - 1) {
-                        window.location.href = "/";
+                        //window.location.href = "/";
                     }
                 }, i * 1000);
             }

@@ -9,10 +9,10 @@ app.use(express.static("public"));
 
 app.set("view engine", "ejs");
 app.set("views", "view");
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', "views");
 
 app.listen(3000, () => {
-    console.log("3000 Port is ready");
+    console.log("http://localhost:3000");
 });
 
 /// ===페이지 이동=== ///

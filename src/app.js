@@ -11,7 +11,7 @@ app.set("view engine", "ejs");
 app.set("views", "view");
 
 app.listen(3000, () => {
-    console.log("3000 Port is ready");
+    console.log("http://localhost:3000");
 });
 
 // data 저장
@@ -54,7 +54,7 @@ app.get("/select_movie_time", (req, res) => {
 // === 2. 예매티켓조회 ===
 // [content_ticket_info] 티켓정보
 app.get("/ticket_info", (req, res) => {
-    res.render("layout", { content: "content_ticket_info", sideBar: "", popup: "", bottomBar: "bottomBarFrame" });
+    res.render("layout", { content: "content_ticket_info", sideBar: "", popup: "", bottomBar: "bottomBarFrame", queryData: queryData });
 });
 
 // ===================
