@@ -19,15 +19,14 @@
     class Select_movie_Time {
         constructor(id) {
             this.id = id;
-            this.queryData = null;
-            this.DBData = null;
+            //this.DBData = null;
         }
 
         getData() {
             this.queryData = <%- JSON.stringify(queryData) %>;
-            this.DBData = {};
+            //this.DBData = {};
             //console.log(this.queryData);
-            
+
         }
 
         processData(movieTimeData = []) { // DB데이터 가공
@@ -35,9 +34,9 @@
             movieTimeData.forEach((movie) => {
                 if ("slot" in movieDataObj) {
                     movieDataObj["slot"].push({
-                        "theater": movie["theater"],
+                        "theater_name": movie["theater_name"],
                         "start_time": movie["start_time"].replace(/:\d{2}$/, ''),
-                        "reservable": ( this.hourToMinute(movie["start_time"]) > this.hourToMinute( this.updateClock() ) )
+                        "reservable": (this.hourToMinute(movie["start_time"]) > this.hourToMinute(this.updateClock()))
                     });
                 } else {
                     movieDataObj["movie_id"] = movie["movie_id"];
@@ -45,15 +44,15 @@
                     movieDataObj["duration"] = movie["duration"];
                     movieDataObj["poster"] = movie["img_path"];
                     movieDataObj["slot"] = [{
-                        "theater": movie["theater"],
+                        "theater_name": movie["theater_name"],
                         "start_time": movie["start_time"].replace(/:\d{2}$/, ''),
-                        "reservable": ( this.hourToMinute(movie["start_time"]) > this.hourToMinute( this.updateClock() ) )
+                        "reservable": (this.hourToMinute(movie["start_time"]) > this.hourToMinute(this.updateClock()))
                     }];
                 }
             });
 
             //console.log(movieDataObj);
-            
+
 
             return movieDataObj;
         }
@@ -72,13 +71,13 @@
             movieDataObj["slot"].forEach((slot, index) => {
                 allMvTime.innerHTML += slot["reservable"] ? `
                         <li class="mvTimeList" id="list0${index + 1}">
-                            <p class="theater">${slot["theater"]}</p>
+                            <p class="theater">${slot["theater_name"]}관</p>
                             <p class="startAndEndTime">${slot["start_time"]}</p>
                             <p class="startAndEndTime">~${this.getEndtime(slot["start_time"], movieDataObj["duration"])}</p>
                         </li>
                     ` : `
                         <li class="mvTimeList blockClick" id="list0${index + 1}">
-                            <p class="theater">${slot["theater"]}</p>
+                            <p class="theater">${slot["theater_name"]}관</p>
                             <p class="startAndEndTime">${slot["start_time"]}</p>
                             <p class="startAndEndTime">~${this.getEndtime(slot["start_time"], movieDataObj["duration"])}</p>
                         </li>
@@ -87,10 +86,10 @@
         }
 
         updateClock() {
-        const time = new Date();
-        const [hour, minute] = [time.getHours().toString().padStart(2, "0"), time.getMinutes().toString().padStart(2, "0")];
-        return `${hour}:${minute}`;
-    }
+            const time = new Date();
+            const [hour, minute] = [time.getHours().toString().padStart(2, "0"), time.getMinutes().toString().padStart(2, "0")];
+            return `${hour}:${minute}`;
+        }
 
         minuteToHour(minute) { // 분을 시간으로
             return [Math.floor(minute / 60), minute % 60].join(":");
@@ -126,7 +125,7 @@
                     // movieData["startTime"] = startTimeInfo.innerText;
                     // movieData["endTime"] = endTimeInfo.innerText.slice(1);
                     // console.log(movieData);
-                    this.queryData["theater"] = theaterInfo.innerText;
+                    this.queryData["theater_name"] = theaterInfo.innerText;
                     this.queryData["startTime"] = startTimeInfo.innerText;
                     this.queryData["endTime"] = endTimeInfo.innerText.slice(1);
 
@@ -145,7 +144,7 @@
 
         makeQuery() {
             let query = "";
-            for ( const queryKey in this.queryData ) {
+            for (const queryKey in this.queryData) {
                 query += `${queryKey}=${this.queryData[queryKey]}&`;
             }
             return query;
@@ -156,7 +155,7 @@
             timeSelectionBtn.addEventListener("click", (event) => {
                 const query = this.makeQuery();
                 console.log(query);
-                
+
                 location.href = `/select_headcount?${query}`; // 이건 살리고
                 //console.log(this.queryData);
             });
@@ -181,27 +180,22 @@
     //     { "movie_id": 1, "duration": 110, "title": "플립", showtime: '22:00', theater: 'D관', img_path: 'images/플립.jpg' }
     // ];
 
-    
-
+    // <%- JSON.stringify(queryData) %>;
     const runTimeSelection = (async () => {
         const settings = {
             method: "POST",
             headers: {
                 "Accept": 'application/json',
                 "Content-Type": 'application/json',
-            }
-        };
-        try {
-            const response = await fetch("/", settings)
-            const movieTimeData = await response.json();
-
-            console.log(movieTimeData);
-            
-            const page = new Select_movie_Time("select_movie_time_popup");
-            page.controller(movieTimeData);
-        } catch (err) {
-            console.error(err);
+            },
+            body: JSON.stringify(<%- JSON.stringify(queryData) %>)
         }
+        const response = await fetch("/select_movie_time", settings);
+
+        const movieTimeData = await response.json(); // 서버 응답 처리
+        const page = new Select_movie_Time("select_movie_time_popup");
+        page.controller(movieTimeData);
+        console.log("movieTimeData")
     })();
 
 </script>
@@ -218,7 +212,7 @@
     .posterImg {
         width: 30rem;
         height: 43rem;
-        background-image: url("images/베테랑.png");
+        /* background-image: url("images/베테랑.png"); */
         background-size: cover;
         /*border: 1px solid blue;*/
     }

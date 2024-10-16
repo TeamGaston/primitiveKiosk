@@ -3,7 +3,7 @@
     <p class="bookingNumberText">
         <%= title %>
     </p>
-    <input id="phoneNumber" class="phoneNumber" type="text" placeholder="010-1111-2222" name="checkInformation" disabled>
+    <input id="phoneNumber" class="phoneNumber" type="text" placeholder="010-1111-2222" readonly>
     <button type="button" class="key" value="1">1</button>
     <button type="button" class="key" value="2">2</button>
     <button type="button" class="key" value="3">3</button>
@@ -91,7 +91,9 @@
                             }
                             break;
                         default:
-                            numberDeque.pushData(keyValue);
+                            //console.log(e.target.id);
+                            ( e.target.id === "" ) && (numberDeque.pushData(keyValue));
+                            //numberDeque.pushData(keyValue);
                     }
                 }
 

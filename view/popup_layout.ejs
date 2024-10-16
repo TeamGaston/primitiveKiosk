@@ -6,12 +6,13 @@
 
 <script>
     const closePopup = document.getElementById("closePopup");
-    closePopup.style = "cursor: pointer;";
-    closePopup.addEventListener( "click", () => {
-        //document.getElementById("popupArea").style.display = "none";
-        history.back();
-    });
-
+    if (closePopup !== null) {
+        closePopup.style = "cursor: pointer;";
+        closePopup.addEventListener("click", () => {
+            //document.getElementById("popupArea").style.display = "none";
+            history.back();
+        });
+    }
 </script>
 
 <style>
@@ -23,6 +24,7 @@
         top: 0;
         left: 0;
     }
+
     .popupContent {
         padding: 0;
     }

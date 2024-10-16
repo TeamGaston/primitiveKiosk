@@ -22,51 +22,68 @@
 </section>
 
 <script>
-    const [selectedMovieData] = [
-        { movie_id: 1, title: '플립', img_path: 'images/플립.jpg' }
-    ];
+    const procedurePayment = (selectedMovieData) => {
+        // const [selectedMovieData] = [
+        //     { movie_id: 1, title: '플립', img_path: 'images/플립.jpg',  adult: 14000, youth: 11000, special: 11000 }
+        // ];
+        [selectedMovieData] = selectedMovieData;
 
-    const queryData = <%- JSON.stringify(queryData) %>;
-    // const DBData = <%- JSON.stringify(DBData) %>;
-    console.log(queryData)
-    const paymentCard = document.getElementById("cardPaymentTouchArea");
-    const pointsUsage = document.getElementById("pointsUsageTouchArea");
+        const queryData = <%- JSON.stringify(queryData) %>;
+        console.log(selectedMovieData)
+        const paymentCard = document.getElementById("cardPaymentTouchArea");
+        const pointsUsage = document.getElementById("pointsUsageTouchArea");
 
-    // 총 결제 금액 입력
-    const paymentAmount = document.getElementById("paymentAmount");
-    const priceTable = { adult: 14000, youth: 11000, special: 11000 };
+        // 총 결제 금액 입력
+        const paymentAmount = document.getElementById("paymentAmount");
+        const priceTable = { adult: 14000, youth: 11000, special: 11000 };
 
-    let price = 0;
-    for (const clientType in priceTable) {
-        price += queryData[clientType] * priceTable[clientType];
-    }
-    paymentAmount.value = price.toLocaleString("kr-KO");
-
-    const makeQuery = (queryData) => {
-        let query = "";
-
-        queryData["price"] = price;
-
-        for (const key in queryData) {
-            query += `${key}=${queryData[key]}&`;
+        let price = 0;
+        for (const clientType in priceTable) {
+            price += queryData[clientType] * priceTable[clientType];
         }
-        console.log(query);
-        return query;
+        paymentAmount.value = price.toLocaleString("kr-KO");
+
+        const makeQuery = (queryData) => {
+            let query = "";
+
+            queryData["price"] = price;
+
+            for (const key in queryData) {
+                query += `${key}=${queryData[key]}&`;
+            }
+            console.log(query);
+            return query;
+        }
+
+        // 카드 결제
+        paymentCard.addEventListener("click", () => {
+            const query = makeQuery(queryData);
+            window.location.href = `/earn_point?${query}`;
+        });
+
+        // 포인트 사용
+        pointsUsage.addEventListener("click", () => {
+            const query = makeQuery(queryData);
+            window.location.href = `/user_verification?${query}`;
+        });
+        const paymentPoster = document.getElementById("paymentPoster");
+        paymentPoster.style.backgroundImage =  `url("${selectedMovieData["img_path"]}")`
     }
 
-    // 카드 결제
-    paymentCard.addEventListener("click", () => {
-        const query = makeQuery(queryData);
-        window.location.href = `/earn_point?${query}`;
-    });
+    const runPayment = (async () => {
+        const settings = {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(<%- JSON.stringify(queryData) %>)
+        }
+        const response = await fetch("/payment", settings);
 
-    // 포인트 사용
-    pointsUsage.addEventListener("click", () => {
-        const query = makeQuery(queryData);
-        window.location.href = `/user_verification?${query}`;
-    });
-    const paymentPoster = document.getElementById("paymentPoster");
-    paymentPoster.style.backgroundImage = `url("${selectedMovieData["img_path"]}")`;
+        const paymentData = await response.json(); // 서버 응답 처리
+        procedurePayment(paymentData);
+    })();
 
 
 </script>

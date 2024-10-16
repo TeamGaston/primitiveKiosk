@@ -42,47 +42,67 @@
 </section>
 
 <script>
-    /// 바코드 랜덤 구현 ///
-    const canvas = document.getElementById("canvas");
-    const cWidth = canvas.width;
-    const cHeight = canvas.height;
-    const pen = canvas.getContext("2d");
+    class TicketPrint {
+        constructor(id) {
+            this.id = id;
+        }
 
-    const modiDot = (x, y) => {
-        pen.fillRect(x, -y + cHeight, 1, 1);
-        pen.fillStyle = "#333";
-    }
+        drawBarcode() {
+            /// 바코드 랜덤 구현 ///
+            const canvas = document.getElementById("canvas");
+            const cWidth = canvas.width;
+            const cHeight = canvas.height;
+            const pen = canvas.getContext("2d");
 
-    let num = 0;
-    while (num < cWidth) {
-        let ramdomNum = Math.floor(Math.random() * 5) + 1;
-        let ramdomStep = Math.floor(Math.random() * 4) + 2;
-        for (let x = num; x <= (num + ramdomNum); x++) {
-            for (let y = 0; y <= cHeight; y++) {
-                modiDot(x, y);
+            const modiDot = (x, y) => {
+                pen.fillRect(x, -y + cHeight, 1, 1);
+                pen.fillStyle = "#333";
+            }
+
+            let num = 0;
+            while (num < cWidth) {
+                let randomNum = Math.floor(Math.random() * 5) + 1;
+                let randomStep = Math.floor(Math.random() * 4) + 2;
+                for (let x = num; x <= (num + randomNum); x++) {
+                    for (let y = 0; y <= cHeight; y++) {
+                        modiDot(x, y);
+                    }
+                }
+                num += (randomNum + randomStep);
             }
         }
-        num += (ramdomNum + ramdomStep);
-    }
 
-    /// 바코드 랜덤 넘버 구현 ///
+        makeReserveNum() {
+            /// 바코드 랜덤 넘버 구현 ///
+            let reservedNumber = "";
 
-    const randomDigitDom = {
-        random3Num: ['', [900, 100]],
-        random4Num: ['', [9000, 1000]],
-        random5Num: ['', [90000, 10000]]
-    }
+            const randomDigitDom = {
+                random4Num: [null, [9000, 1000]],
+                random3Num: [null, [900, 100]],
+                random5Num: [null, [90000, 10000]]
+            }
 
-    const getRandomDigitNumber = ([max, min]) => {
-        return Math.floor(Math.random() * max) + min;
-    }
+            const getRandomDigitNumber = ([max, min]) => {
+                return Math.floor(Math.random() * max) + min;
+            }
 
-    for (let key in randomDigitDom) {
-        if (document.getElementById(key)) {
-            randomDigitDom[key][0] = document.getElementById(key);
+            for (let key in randomDigitDom) {
+                if (document.getElementById(key)) {
+                    randomDigitDom[key][0] = document.getElementById(key);
+                }
+                const partOfReservedNumber = getRandomDigitNumber([...randomDigitDom[key][1]]);
+                randomDigitDom[key][0].innerText = partOfReservedNumber;
+                reservedNumber += partOfReservedNumber;
+            }
+            console.log(reservedNumber)
         }
-        randomDigitDom[key][0].innerText = getRandomDigitNumber([...randomDigitDom[key][1]])
+        runTicketInfo() {
+            this.drawBarcode();
+            this.makeReserveNum();
+        }
     }
+    const ticket_info = new TicketPrint("ticket_info");
+    ticket_info.runTicketInfo();
 
     const printTicketBtn = document.getElementById("printTicketBtn");
     const ticketArea = document.getElementById("ticketArea");
@@ -93,12 +113,53 @@
         window.location.href = "/complete";
     });
 
+    /// 바코드 랜덤 구현 ///
+    // const canvas = document.getElementById("canvas");
+    // const cWidth = canvas.width;
+    // const cHeight = canvas.height;
+    // const pen = canvas.getContext("2d");
+
+    // const modiDot = (x, y) => {
+    //     pen.fillRect(x, -y + cHeight, 1, 1);
+    //     pen.fillStyle = "#333";
+    // }
+
+    // let num = 0;
+    // while (num < cWidth) {
+    //     let ramdomNum = Math.floor(Math.random() * 5) + 1;
+    //     let ramdomStep = Math.floor(Math.random() * 4) + 2;
+    //     for (let x = num; x <= (num + ramdomNum); x++) {
+    //         for (let y = 0; y <= cHeight; y++) {
+    //             modiDot(x, y);
+    //         }
+    //     }
+    //     num += (ramdomNum + ramdomStep);
+    // }
+
+    /// 바코드 랜덤 넘버 구현 ///
+
+    // const randomDigitDom = {
+    //     random3Num: ['', [900, 100]],
+    //     random4Num: ['', [9000, 1000]],
+    //     random5Num: ['', [90000, 10000]]
+    // }
+
+    // const getRandomDigitNumber = ([max, min]) => {
+    //     return Math.floor(Math.random() * max) + min;
+    // }
+
+    // for (let key in randomDigitDom) {
+    //     if (document.getElementById(key)) {
+    //         randomDigitDom[key][0] = document.getElementById(key);
+    //     }
+    //     randomDigitDom[key][0].innerText = getRandomDigitNumber([...randomDigitDom[key][1]])
+    // }
 </script>
 
 <style>
     .popupContent {
         text-align: center;
-        /* padding: 3rem; 이거 안먹음*/ 
+        /* padding: 3rem; 이거 안먹음*/
     }
 
     .printLabel {

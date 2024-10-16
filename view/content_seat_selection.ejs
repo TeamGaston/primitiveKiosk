@@ -60,7 +60,7 @@
             <empty></empty>
 
             <input id="B5" type="checkbox" class="seat-checkbox">
-            <label for="seat-B5" for="seat5">B5</label>
+            <label for="B5">B5</label>
 
             <input id="B6" type="checkbox" class="seat-checkbox">
             <label for="B6">B6</label>
@@ -172,147 +172,165 @@
 
 <script>
     // 임시 데이터
-    const DbValue = [
-        { showtime: '11:00', theather: 'A관', seat_name: 'A1', reservation_status: true },
-        { showtime: '11:00', theather: 'A관', seat_name: 'B1', reservation_status: true },
-        { showtime: '11:00', theather: 'A관', seat_name: 'C1', reservation_status: true },
-        { showtime: '11:00', theather: 'A관', seat_name: 'D1', reservation_status: true },
-        { showtime: '11:00', theather: 'A관', seat_name: 'E1', reservation_status: true },
-    ];
+    procedureSeatSelection = (DbValue) => {
+        // const DbValue = [
+        //     { showtime: '11:00', theather: 'A관', seat_name: 'A1', reservation_status: true },
+        //     { showtime: '11:00', theather: 'A관', seat_name: 'B1', reservation_status: true },
+        //     { showtime: '11:00', theather: 'A관', seat_name: 'C1', reservation_status: true },
+        //     { showtime: '11:00', theather: 'A관', seat_name: 'D1', reservation_status: true },
+        //     { showtime: '11:00', theather: 'A관', seat_name: 'E1', reservation_status: true },
+        // ];
 
-    // 예약된 자석 확인
-    DbValue.forEach((item, index) => {
-        const label = document.querySelector(`label[for="${item.seat_name}"]`);
-        label.classList.add("reservationSeat");
-    })
+        // 예약된 자석 확인
+        DbValue.forEach((item, index) => {
+            const label = document.querySelector(`label[for="${item.seat_name}"]`);
+            label.classList.add("reservationSeat");
+        })
 
-    // 보내져야하는 데이터
-    const headCount = {
-        adult: 0,
-        youth: 0,
-        special: 0,
-        seatCount: 0,
-        reservationSeat: []
-    }
-    
-    const queryData = <%- JSON.stringify(queryData) %>;
-    const countDom = {} // dom id 객체
+        // 보내져야하는 데이터
+        const headCount = {
+            adult: 0,
+            youth: 0,
+            special: 0,
+            seatCount: 0,
+            reservationSeat: []
+        }
 
-    const applyQuery = (headCount = headCount, queryData = queryData) => {
-        for (const clientType in headCount) {
-            if (clientType in queryData) {
-                headCount[clientType] = Number(queryData[clientType]);
+        const queryData = <%- JSON.stringify(queryData) %>;
+        const countDom = {} // dom id 객체
+
+        const applyQuery = (headCount = headCount, queryData = queryData) => {
+            for (const clientType in headCount) {
+                if (clientType in queryData) {
+                    headCount[clientType] = Number(queryData[clientType]);
+                }
             }
         }
-    }
 
-    applyQuery(headCount, queryData);
+        applyQuery(headCount, queryData);
 
-    // countDom < dom id 동적 할당
-    for (let key in headCount) {
-        if (document.getElementById(`${key}Count`)) {
-            const typeByHeadcount = document.getElementById(`${key}Count`);
-            countDom[`${key}Count`] = typeByHeadcount
-            typeByHeadcount.innerText = headCount[key];
+        // countDom < dom id 동적 할당
+        for (let key in headCount) {
+            if (document.getElementById(`${key}Count`)) {
+                const typeByHeadcount = document.getElementById(`${key}Count`);
+                countDom[`${key}Count`] = typeByHeadcount
+                typeByHeadcount.innerText = headCount[key];
+            }
         }
-    }
-    
-    //applyQuery(countDom, queryData);
-    const { adultCount, youthCount, specialCount } = countDom;
-    const choosenSeat = document.getElementById("choosenSeat");
 
-    
+        //applyQuery(countDom, queryData);
+        const { adultCount, youthCount, specialCount } = countDom;
+        const choosenSeat = document.getElementById("choosenSeat");
 
-    // 버튼 예외처리
-    const disalbledBtnFunc = () => {
-        const totalCount = (headCount.adult + headCount.youth + headCount.special);
-        if (totalCount == headCount.seatCount) {
-            choosenSeat.classList.remove("disalbledBtn");
-        } else {
-            choosenSeat.classList.add("disalbledBtn");
+
+
+        // 버튼 예외처리
+        const disalbledBtnFunc = () => {
+            const totalCount = (headCount.adult + headCount.youth + headCount.special);
+            if (totalCount == headCount.seatCount) {
+                choosenSeat.classList.remove("disalbledBtn");
+            } else {
+                choosenSeat.classList.add("disalbledBtn");
+            }
         }
-    }
 
-    // 발생한 event가 plus인지 아닌지(minus) 검사 후 코드 실행
-    document.getElementById("ticketCountArea").addEventListener("click", (event) => {
-        if (event.target.id != null && event.target.id != "ticketCountArea") {
-            const isPlus = /.*Plus.*/.test(event.target.id);
-            if (isPlus) {
-                // plus 
-                if (Number(adultCount.innerText) + Number(youthCount.innerText) + Number(specialCount.innerText) == 8) {
-                    adultCount.innerText = headCount.adult;
-                    youthCount.innerText = headCount.youth;
-                    specialCount.innerText = headCount.special;
-                    disalbledBtnFunc();
+        // 발생한 event가 plus인지 아닌지(minus) 검사 후 코드 실행
+        document.getElementById("ticketCountArea").addEventListener("click", (event) => {
+            if (event.target.id != null && event.target.id != "ticketCountArea") {
+                const isPlus = /.*Plus.*/.test(event.target.id);
+                if (isPlus) {
+                    // plus 
+                    if (Number(adultCount.innerText) + Number(youthCount.innerText) + Number(specialCount.innerText) == 8) {
+                        adultCount.innerText = headCount.adult;
+                        youthCount.innerText = headCount.youth;
+                        specialCount.innerText = headCount.special;
+                        disalbledBtnFunc();
+
+                    } else {
+                        const idTotalLen = Number(event.target.id.length);
+                        const targetId = event.target.id.slice(0, (idTotalLen - 12));
+                        const targetDOM = document.getElementById(`${targetId}Count`);
+                        const currentValue = Number(targetDOM.innerHTML);
+                        headCount[targetId] = Number(currentValue + 1);
+                        targetDOM.innerHTML = Number(currentValue + 1);
+                        disalbledBtnFunc();
+                    }
 
                 } else {
+                    // minus 
                     const idTotalLen = Number(event.target.id.length);
-                    const targetId = event.target.id.slice(0, (idTotalLen - 12));
+                    const targetId = event.target.id.slice(0, (idTotalLen - 13));
                     const targetDOM = document.getElementById(`${targetId}Count`);
-                    const currentValue = Number(targetDOM.innerHTML);
-                    headCount[targetId] = Number(currentValue + 1);
-                    targetDOM.innerHTML = Number(currentValue + 1);
-                    disalbledBtnFunc();
+                    if (Number(targetDOM.innerHTML) == 0) {
+                        targetDOM.innerHTML = 0;
+                        disalbledBtnFunc();
+
+                    } else {
+                        const currentValue = Number(targetDOM.innerHTML);
+                        headCount[targetId] = Number(currentValue - 1);
+                        targetDOM.innerHTML = Number(currentValue - 1);
+                        disalbledBtnFunc();
+                    }
                 }
+            }
+        })
 
-            } else {
-                // minus 
-                const idTotalLen = Number(event.target.id.length);
-                const targetId = event.target.id.slice(0, (idTotalLen - 13));
-                const targetDOM = document.getElementById(`${targetId}Count`);
-                if (Number(targetDOM.innerHTML) == 0) {
-                    targetDOM.innerHTML = 0;
+        // 좌석
+        document.getElementById("sectionBottom").addEventListener("change", (event) => {
+            const totalCount = (headCount.adult + headCount.youth + headCount.special);
+            if (document.getElementById(event.target.id).checked) {
+                if (totalCount > headCount.seatCount) {
+                    headCount.seatCount++;
                     disalbledBtnFunc();
-
+                    headCount.reservationSeat.push(event.target.id);
                 } else {
-                    const currentValue = Number(targetDOM.innerHTML);
-                    headCount[targetId] = Number(currentValue - 1);
-                    targetDOM.innerHTML = Number(currentValue - 1);
-                    disalbledBtnFunc();
+                    document.getElementById(event.target.id).checked = false;
                 }
-            }
-        }
-    })
-
-    // 좌석
-    document.getElementById("sectionBottom").addEventListener("change", (event) => {
-        const totalCount = (headCount.adult + headCount.youth + headCount.special);
-        if (document.getElementById(event.target.id).checked) {
-            if (totalCount > headCount.seatCount) {
-                headCount.seatCount++;
-                disalbledBtnFunc();
-                headCount.reservationSeat.push(event.target.id);
+                console.log(headCount);
             } else {
-                document.getElementById(event.target.id).checked = false;
+                headCount.seatCount--;
+                disalbledBtnFunc();
+                // 배열에서 값 제거
+                const index = headCount.reservationSeat.indexOf(event.target.id);
+                if (index > -1) {
+                    headCount.reservationSeat.splice(index, 1);
+                }
+                console.log(headCount);
             }
-            console.log(headCount);
-        } else {
-            headCount.seatCount--;
-            disalbledBtnFunc();
-            // 배열에서 값 제거
-            const index = headCount.reservationSeat.indexOf(event.target.id);
-            if (index > -1) {
-                headCount.reservationSeat.splice(index, 1);
+        });
+
+        const makeQuery = (queryData) => {
+            let query = "";
+
+            queryData["seat_names"] = headCount["reservationSeat"];
+            for (const key in queryData) {
+                query += `${key}=${queryData[key]}&`;
             }
-            console.log(headCount);
+            console.log(query);
+            return query;
         }
-    });
 
-    const makeQuery = (queryData) => {
-        let query = "";
+        choosenSeat.addEventListener("click", () => {
+            const query = makeQuery(queryData);
+            location.href = `/payment?${query}`;
+        });
 
-        queryData["seat_names"] = headCount["reservationSeat"];
-        for (const key in queryData) {
-            query += `${key}=${queryData[key]}&`;
-        }
-        console.log(query);
-        return query;
     }
+    const runSeatSelection = (async () => {
+        const settings = {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(<%- JSON.stringify(queryData) %>)
+        }
+        const response = await fetch("/select_seat", settings);
 
-    choosenSeat.addEventListener("click", () => {
-        const query = makeQuery(queryData);
-        location.href = `/payment?${query}`;
-    });
+        const seatData = await response.json(); // 서버 응답 처리
+        procedureSeatSelection(seatData);
+        console.log("select_seat")
+    })();
 </script>
 
 <style>

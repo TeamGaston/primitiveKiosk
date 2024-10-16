@@ -1,10 +1,10 @@
 <section class="mainArea">
     <section class="headArea">
         <!-- 포스터 영역 -->
-        <div class="poster"></div>
+        <div id="posterArea" class="poster"></div>
         <!-- 영화 정보 영역 -->
         <section class="movieInformation">
-            <p class="movieTitle">베테랑</p>
+            <p id="movieTitle" class="movieTitle"></p>
             <ul id="listArea" class="listArea">
 
             </ul>
@@ -17,45 +17,76 @@
 </section>
 
 <script>
-const movieData = [
-{ movie_id: 1,
-showtime: '11:00',
-duration: '2시간 10분',
-title: '플립',
-ticket_count: 2,
-seats: ['D09', 'D10'],
-today: '2024-09-20',
-img_path:
-'images/베테랑.png'
-}
-];
+    const procedureTicketInfo = (movieData) => {
+        console.log(movieData)
+        // const movieData = [
+        //     {
+        //         movie_id: 1,
+        //         showtime: '11:00',
+        //         duration: '2시간 10분',
+        //         title: '플립',
+        //         ticket_count: 2,
+        //         seats: ['D09', 'D10'],
+        //         today: '2024-09-20',
+        //         img_path:
+        //             'images/베테랑.png'
+        //     }
+        // ];
 
-const [{showtime,duration,title,ticket_count,seats,today}] = movieData;
-const html =
-`
-<li class="informationList">일시/시간<span class="gapElement"></span>
-    <span class="informationDetail letterSpacing" id="moiveDate">${title}</span>&nbsp;
-    (&nbsp;<span class="informationDetail" id="startTime">${showtime}</span>&nbsp;)
-</li>
+        const [{ showtime, duration, title, ticket_count, seat_names, img_path }] = movieData;
+        const date = new Date();
+        const today = `${date.getFullYear()} - ${date.getMonth() + 1} - ${date.getDate()}`;
+        
+        document.getElementById("posterArea").style.backgroundImage = `url("${img_path}")`;
+        document.getElementById("movieTitle").innerText = title;
+        const html =
+            `
+                <li class="informationList">일시/시간<span class="gapElement"></span>
+                    <span class="informationDetail letterSpacing" id="moiveDate">${showtime.replace(/:\d{2}$/, '')}</span>
+                </li>
 
-<li class="informationList letterSpacing">상영일자<span class="gapElement">
-        <span class="informationDetail" id="memberInfo">${today}</span></li>
+                <li class="informationList letterSpacing">상영일자<span class="gapElement">
+                        <span class="informationDetail" id="memberInfo">${today}</span></li>
 
-<li class="informationList letterSpacing">상영시간<span class="gapElement">
-        <span class="informationDetail" id="runningTime">${duration}</span></li>
+                <li class="informationList letterSpacing">상영시간<span class="gapElement">
+                        <span class="informationDetail" id="runningTime">${duration} 분</span></li>
 
-<li class="informationList letterSpacing">티켓매수<span class="gapElement">
-        <span class="informationDetail" id="ticketCount">${ticket_count}</span></li>
+                <li class="informationList letterSpacing">티켓매수<span class="gapElement">
+                        <span class="informationDetail" id="ticketCount">${ticket_count}</span></li>
 
-<li class="informationList letterSpacing">좌석정보<span class="gapElement">
-        <span class="informationDetail" id="seatInfo">${showtime}</span></li>
-`
+                <li class="informationList letterSpacing">좌석정보<span class="gapElement">
+                        <span class="informationDetail" id="seatInfo">${seat_names}</span></li>
+            `;
 
-document.getElementById('listArea').innerHTML = html;
-const submitButton = document.getElementById("submitButton");
-submitButton.addEventListener("click",()=>{
-    window.location.href = "/printTicket";
-})
+        document.getElementById('listArea').innerHTML = html;
+        const submitButton = document.getElementById("submitButton");
+        submitButton.addEventListener("click", () => {
+            window.location.href = "/printTicket";
+        })
+    }
+
+    const runTimeSelection = (async () => {
+        const queryData = <%- JSON.stringify(queryData) %>;
+        const settings = {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify({ checkInformation: queryData["num"] })
+        }
+        try {
+            const response = await fetch("/checkUser", settings);
+            const reservedData = await response.json();
+
+            
+
+            procedureTicketInfo(reservedData);
+        } catch (err) {
+            console.log(err)
+        }
+
+    })();
 </script>
 
 <style>
@@ -76,7 +107,7 @@ submitButton.addEventListener("click",()=>{
     .poster {
         width: 28rem;
         height: 42rem;
-        background-image: url("images/베테랑.png");
+        /* background-image: url("images/베테랑.png"); */
         background-size: cover;
         margin-left: 8.5rem;
     }

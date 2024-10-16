@@ -2,7 +2,46 @@ import { log } from "console";
 import express from "express";
 import mysql from "mysql";
 import path from "path";
+/* DONGHYUN*/
 
+import dbconfig from '../config/dbconfig.js';
+const db = mysql.createConnection( dbconfig );
+/*let dbData = null;
+async function fetchDataFromDatabase() {
+            try {
+                const [data1, data2] = await Promise.all([
+                    new Promise((resolve, reject) => {
+                        connection.query('select * from movies where 1', (error, results) => {
+                            if (error) reject(error);
+                            resolve(results);
+                        });
+                    }),
+                    new Promise((resolve, reject) => {
+                        connection.query('select B.movie_id, B.duration, B.title,  A.start_time, B.img_path from showtimes A join movies B on A.movie_id = B.movie_id', (error, results) => {
+                            if (error) reject(error);
+                            resolve(results);
+                        });
+                    })
+                ]);
+        
+                // 결과를 객체로 묶기
+                const result = {
+                    movie_selection_data: data1,
+                    movie_time_selection_data: data2,
+                };
+                return result;
+        
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+}
+
+fetchDataFromDatabase().then(result => {
+    dbData = result; // 데이터 출력
+    console.log(dbData);
+});*/
+
+/* END DONGHYUN */
 const app = express();
 
 app.use(express.static("public"));
@@ -10,9 +49,81 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.set("views", "view");
 
-app.listen(3000, () => {
-    console.log("http://localhost:3000");
+app.listen(45120, () => {
+    console.log("http://kkms4001.iptime.org:45120    45120 Port is ready");
 });
+
+
+/*******************************************************************/
+//DONGHYUN DB ROUTING
+
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+
+
+db.connect((err) => {
+    if (err) {
+        console.error('Database connection failed: ' + err.stack);
+        return;
+    }
+    console.log('Connected to database.');
+});
+
+app.post("/movie_selection1", (req, res) => {
+    db.query('SELECT * FROM movies WHERE 1', (err, dbData) => {
+        if (err) {
+            console.error(err); // 쿼리 오류 처리
+            res.status(500).send('Database query error');
+        } else {
+            res.json(dbData); // 정상적으로 dbData를 클라이언트에 반환
+        }
+    });
+});
+
+app.post("/movie_selection2", (req, res) => {
+    const sql = 'SELECT B.movie_id, B.duration, B.title, A.start_time, B.img_path FROM showtimes A JOIN movies B ON A.movie_id = B.movie_id'
+    db.query(sql, (err, dbData) => {
+        if (err) {
+            console.error(err); // 쿼리 오류 처리
+            res.status(500).send('Database query error');
+        } else {
+
+            res.json(dbData); // 정상적으로 dbData를 클라이언트에 반환
+        }
+    });
+});
+
+app.post("/checkUser",(req,res)=>{
+	console.log(req.body.checkInformation)
+    const checkInformation = req.body.checkInformation;
+    const sql = `select * from reservations where reservation_num = "${checkInformation}"`;
+    
+    db.query(sql, (err, dbData) => {
+        if (err) {
+            console.error(err); // 쿼리 오류 처리
+            res.status(500).send('Database query error');
+        } else {
+            if (dbData && dbData.length > 0) { // 데이터가 있으면
+                console.log("Dbdata: ", dbData);
+                console.log("데이터 있다.");
+                // req.body.checkInformation
+		console.log( `/ticket_info?num=${checkInformation}` )
+                //res.redirect(`/ticket_info?num=${checkInformation}`)
+                res.json()
+            } else { // 데이터가 없으면
+                console.log("Dbdata: ", dbData);
+                console.log("데이터 없다.");
+                res.send('데이터 없다'); // 데이터가 없을 때 리다이렉트할 페이지
+            }
+        }
+    });
+});
+
+//DONGHYUN DB ROUTING
+/*******************************************************************/
+
+
 
 // data 저장
 let queryData = {};
@@ -29,24 +140,28 @@ app.get("/", (req, res) => {
 
 // [admin_password] 관리자 > 비밀번호 화면
 app.get("/admin_password", (req, res) => {
-    res.render("layout", { content: "content_admin_password", sideBar: "", popup: "", bottomBar: "bottomBarFrame", queryData: queryData});
+    res.render("layout", { content: "content_admin_password", sideBar: "", popup: "", bottomBar: "bottomBarFrame", queryData: queryData });
 });
 
 
 // [home] 1. 현장예매 / 2. 예매티켓조회
 app.get("/home", (req, res) => {
-    res.render("layout", { content: "content_home", sideBar: "", popup: "", bottomBar: "bottomBarFrame", queryData: queryData});
+    res.render("layout", { content: "content_home", sideBar: "", popup: "", bottomBar: "bottomBarFrame", queryData: queryData });
 });
 
 // === 1. 현장예매 ===
 // [content_movie_selection] 영화별/시간대별 선택
 app.get("/movie_selection", (req, res) => {
-    res.render("layout", { content: "content_movie_selection", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame", queryData: queryData});
+    res.render("layout", { content: "content_movie_selection", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame", queryData: queryData });
 });
 
 // [content_select_movie_time] 상영시간선택
 app.get("/select_movie_time", (req, res) => {
     const queryData = req.query;
+    /* DONGHYUN */
+	console.log("test");
+	console.log(queryData);
+    /* END DONGHYUN*/
     res.render("layout", { content: "content_select_movie_time", sideBar: "sideBarFrame", popup: "", bottomBar: "bottomBarFrame", queryData: queryData });
 });
 
@@ -54,9 +169,9 @@ app.get("/select_movie_time", (req, res) => {
 // === 2. 예매티켓조회 ===
 // [content_ticket_info] 티켓정보
 app.get("/ticket_info", (req, res) => {
+    const queryData = req.query;
     res.render("layout", { content: "content_ticket_info", sideBar: "", popup: "", bottomBar: "bottomBarFrame", queryData: queryData });
 });
-
 // ===================
 // app.get("/popup/:popupId", (req, res) => {
 //     const popupId = req.params.popupId; // URL에서 경로 매개변수 'popupId'를 가져옵니다.

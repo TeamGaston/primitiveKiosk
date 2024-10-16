@@ -5,9 +5,7 @@
 </section>
 <!-- 키패드 영역 -->
 <section class="keypadBoxArea">
-    <form action="/checkUser" method="POST">
-        <%- include("keypadFrame", { title: "예매 티켓 조회" } ) %>
-    </form>
+    <%- include("keypadFrame", { title: "예매 티켓 조회" } ) %>
 </section>
 
 <script>
@@ -17,22 +15,46 @@
         window.location.href = "/movie_selection";
     });
 
-    checkBtn.addEventListener("click", () => {
-        window.location.href = "/ticket_info";
-    });
+
 
     document.addEventListener("DOMContentLoaded", () => {
-            const returnTouchPageSecond = 15;
+        const returnTouchPageSecond = 15;
 
-            for (let i = 0; i < returnTouchPageSecond; i++) {
-                setTimeout(() => {
-                    console.log(`${returnTouchPageSecond - i}초 뒤에 터치 화면으로 돌아갑니다.`);
-                    if (i === returnTouchPageSecond - 1) {
-                        //window.location.href = "/";
-                    }
-                }, i * 1000);
-            }
-        });
+        for (let i = 0; i < returnTouchPageSecond; i++) {
+            setTimeout(() => {
+                //console.log(`${returnTouchPageSecond - i}초 뒤에 터치 화면으로 돌아갑니다.`);
+                if (i === returnTouchPageSecond - 1) {
+                    //window.location.href = "/";
+                }
+            }, i * 1000);
+        }
+    });
+    
+    const runTimeSelection = async () => {
+        const displayNumber = document.getElementById("phoneNumber");
+        const settings = {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify({ checkInformation: displayNumber.value })
+        }
+        const response = await fetch("/checkUser", settings);
+        const reservedData = await response.json();
+        console.log(reservedData)
+        //alert("?")
+        if ( reservedData !== "no reservation" ) {
+            window.location.href = `/ticket_info?num=${displayNumber.value}`;
+        } else {
+            console.log("d여긴가?")
+            displayNumber.value = "잘못된 예매 번호 입니다.";
+        }
+    };
+    checkBtn.addEventListener("click", () => {
+        //window.location.href = "/ticket_info";
+        runTimeSelection();
+    });
 </script>
 
 <style>
