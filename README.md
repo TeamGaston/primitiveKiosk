@@ -15,3 +15,4 @@ Cinema Kiosk는 영화관 키오스크 시스템을 웹 기반으로 구현한 �
 - **`views/`**: 서버 측 템플릿 파일 (EJS 사용)
 
 ## 일시중단
+# back_cinemaKiosk
